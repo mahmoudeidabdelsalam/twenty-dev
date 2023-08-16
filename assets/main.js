@@ -1,5 +1,6 @@
 // Webpack Imports
 import * as bootstrap from 'bootstrap';
+import 'owl.carousel';
 
 (function () {
 	'use strict';
@@ -22,4 +23,32 @@ import * as bootstrap from 'bootstrap';
 			trigger: 'focus',
 		});
 	});
+
+  const myCarouselElement = document.querySelector('#carouselExampleIndicators')
+
+  const carousel = new bootstrap.Carousel(myCarouselElement, {
+    interval: 2000,
+    touch: false
+  });
+
+  $(document).ready(function(){
+    $('.owl-carousel').owlCarousel({
+        loop:true,
+        rtl:true,
+        margin:10,
+        nav:true,
+        responsive:{
+          0:{
+            items:1
+          },
+          600:{
+            items:2
+          },
+          1000:{
+            items:3
+          }
+        }
+    });
+  });
+
 })();

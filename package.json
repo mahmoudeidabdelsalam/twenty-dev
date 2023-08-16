@@ -16,9 +16,10 @@
     "last 2 versions"
   ],
   "dependencies": {
-    "bootstrap": "^5.2.0",
     "@popperjs/core": "^2.11.6",
-    "jquery": "^3.6.0"
+    "bootstrap": "^5.2.0",
+    "jquery": "^3.6.0",
+    "owl.carousel": "^2.3.4"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.8",
