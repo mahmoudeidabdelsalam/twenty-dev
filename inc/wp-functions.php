@@ -725,3 +725,44 @@ function entry_actions() {
 }
 add_action( 'gform_after_update_entry', 'entry_entry_actions', 10, 3 );
 
+/**
+ * Get taxonomies terms links
+ * @see get_object_taxonomies()
+ */
+function wp_custom_tag_terms_links($post_id) {
+	// Get post by post ID.
+	if ( ! $post_id ) {
+		return '';
+	}
+	$out = [];
+  // Get the terms related to post.
+  $terms = get_the_terms( $post_id, 'products-tag' );
+  if ( ! empty( $terms ) ) {
+    foreach ( $terms as $term ) {
+      $out[] = sprintf( '<a class="text-dark" href="%1$s">%2$s</a>',
+        esc_url( get_term_link( $term->slug, 'products-tag') ),
+        esc_html( $term->name )
+      );
+    }
+  }
+	return implode( '', $out );
+}
+
+add_action( 'admin_init', 'my_remove_menu_pages' );
+function my_remove_menu_pages() {
+  global $user_ID;
+  if ( $user_ID != 1 ) { //your user id
+   remove_menu_page('upload.php'); // Media
+   remove_menu_page('link-manager.php'); // Links
+   remove_menu_page('edit-comments.php'); // Comments
+  //  remove_menu_page('edit.php?post_type=acf-field-group'); // acf
+   remove_menu_page('snapshot'); // snapshot
+   remove_menu_page('Wordfence'); // Wordfence
+   remove_menu_page('media-cloud'); // media-cloud
+   remove_menu_page('media-cloud-tools'); // Wordfence
+   remove_menu_page('plugins.php'); // Plugins
+   remove_menu_page('themes.php'); // Appearance
+  //  remove_menu_page('tools.php'); // Tools
+  //  remove_menu_page('options-general.php'); // Settings
+  }
+}

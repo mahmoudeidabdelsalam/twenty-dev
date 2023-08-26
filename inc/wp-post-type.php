@@ -206,6 +206,19 @@ register_taxonomy(
 );
 
 register_taxonomy( 
+  'structure-type', //taxonomy 
+  'cars', //post-type
+  array(
+    'hierarchical'  => true, 
+    'label'         => __( 'هيكل السيارة','taxonomy general name'), 
+    'singular_name' => __( 'هيكل السيارة', 'taxonomy general name' ), 
+    'rewrite'       => true, 
+    'query_var'     => true,
+    'show_admin_column' => true 
+  )
+);
+
+register_taxonomy( 
   'push-type', //taxonomy 
   'basic_specifications', //post-type
   array(
@@ -262,7 +275,7 @@ register_taxonomy(
   array('products', 'cars'), //post type
   array( 
     'hierarchical'  => true, 
-    'label'         => __( 'القسم','taxonomy general name'), 
+    'label'         => __( 'قسم السيارات','taxonomy general name'), 
     'singular_name' => __( 'القسم', 'taxonomy general name' ), 
     'rewrite'       => true, 
     'query_var'     => true ,
@@ -318,7 +331,7 @@ function dump(...$objects) {
 }
 
 // custom author pagination
-function custom_author_pagination($args = array(), $query_object = 'wp_query') {
+function custom_bootstrap_pagination($args = array(), $query_object = 'wp_query') {
   if ($query_object == 'wp_query') {
       global $wp_query;
       $main_query = $wp_query;
@@ -346,11 +359,13 @@ function custom_author_pagination($args = array(), $query_object = 'wp_query') {
   if ($paginate_links) {
       ?>
 
-        <ul class="pagination col-12 row justify-content-center ml-0 mr-0 mt-5 mb-5">
-            <?php foreach ($paginate_links as $link): ?>
-                <li class="page-item"><span class="page-link"><?php echo $link; ?></span></li>
-            <?php endforeach; ?>
-        </ul>
+    <nav class="d-flex" aria-label="Page navigation example">
+      <ul class="pagination p-0 m-auto" dir="ltr">
+        <?php foreach ($paginate_links as $link): ?>
+          <li class="page-item"><span class="page-link"><?php echo $link; ?></span></li>
+        <?php endforeach; ?>
+      </ul>
+    </nav>
 
       <?php
   }
@@ -364,14 +379,10 @@ function custom_base_pagination($args = array(), $query_object = 'wp_query') {
   } else {
       $main_query = $query_object;
   }
-  //var_dump($wp_query);
   $big = 99999; // This needs to be an unlikely integer
-  // For more options and info view the docs for paginate_links()
-  // http://codex.wordpress.org/Function_Reference/paginate_links
   $current_page = max(1, get_query_var('paged'));
   $pages_count = $main_query->max_num_pages;
   $default_args = array(
-      //'base' => str_replace($big, '%#%', get_pagenum_link($big)),
       'current' => $current_page,
       'total' => $pages_count,
       'mid_size' => 2,
@@ -382,15 +393,15 @@ function custom_base_pagination($args = array(), $query_object = 'wp_query') {
   $args = wp_parse_args($args, $default_args);
   $paginate_links = paginate_links($args);
   if ($paginate_links) {
-      ?>
-
-        <ul class="pagination col-12 row justify-content-center ml-0 mr-0 mt-5 mb-5">
-            <?php foreach ($paginate_links as $link): ?>
-                <li class="page-item"><span class="page-link"><?php echo $link; ?></span></li>
-            <?php endforeach; ?>
-        </ul>
-
-      <?php
+    ?>
+    <nav class="d-flex" aria-label="Page navigation example">
+      <ul class="pagination p-0 m-auto" dir="ltr">
+        <?php foreach ($paginate_links as $link): ?>
+          <li class="page-item"><span class="page-link"><?php echo $link; ?></span></li>
+        <?php endforeach; ?>
+      </ul>
+    </nav>
+    <?php
   }
 }
 
@@ -557,11 +568,11 @@ function custom_base_pagination($args = array(), $query_object = 'wp_query') {
 
 register_taxonomy( 
   'realestate-cities', //taxonomy 
-  'cars', //post-type
+  'car-show', //post-type
   array( 
     'hierarchical'  => true, 
-    'label'         => __( 'cities','taxonomy general name'), 
-    'singular_name' => __( 'cities', 'taxonomy general name' ), 
+    'label'         => __( 'المدينة','taxonomy general name'), 
+    'singular_name' => __( 'المدينة', 'taxonomy general name' ), 
     'rewrite'       => true, 
     'query_var'     => true,
     'show_admin_column' => true 
@@ -570,11 +581,37 @@ register_taxonomy(
 
 register_taxonomy( 
   'realestate-package', //taxonomy 
-  'cars', //post-type
+  'car-show', //post-type
   array(
     'hierarchical'  => true, 
-    'label'         => __( 'Package','taxonomy general name'), 
-    'singular_name' => __( 'Package', 'taxonomy general name' ), 
+    'label'         => __( 'تصنيف','taxonomy general name'), 
+    'singular_name' => __( 'تصنيف', 'taxonomy general name' ), 
+    'rewrite'       => true, 
+    'query_var'     => true,
+    'show_admin_column' => true 
+  )
+);
+
+register_taxonomy( 
+  'show-type', //taxonomy 
+  'car-show', //post-type
+  array(
+    'hierarchical'  => true, 
+    'label'         => __( 'قسم المعارض','taxonomy general name'), 
+    'singular_name' => __( 'القسم', 'taxonomy general name' ), 
+    'rewrite'       => true, 
+    'query_var'     => true,
+    'show_admin_column' => true 
+  )
+);
+
+register_taxonomy( 
+  'agents-type', //taxonomy 
+  'agents', //post-type
+  array(
+    'hierarchical'  => true, 
+    'label'         => __( 'قسم الوكلاء','taxonomy general name'), 
+    'singular_name' => __( 'القسم', 'taxonomy general name' ), 
     'rewrite'       => true, 
     'query_var'     => true,
     'show_admin_column' => true 
@@ -600,7 +637,7 @@ function car_show_post_type() {
   );
   $args = array(
       'labels' => $labels,
-      'supports' => array('title','revisions', 'author'),
+      'supports' => array('editor', 'title','revisions', 'author'),
       'hierarchical' => false,
       'public' => true,
       'show_ui' => true,
@@ -620,3 +657,43 @@ function car_show_post_type() {
 }
 // Hook into the 'init' action
 add_action('init', 'car_show_post_type', 0);
+
+// Register models custom Post Type
+function agents_post_type() {
+  $labels = array(
+      'name' => __('الوكلاء', 'Post Type General Name', 'post-type'),
+      'singular_name' => _x('الوكلاء', 'Post Type Singular Name', 'post-type'),
+      'menu_name' => __('الوكلاء', 'post-type'),
+      'parent_item_colon' => __('Parent الوكلاء:', 'post-type'),
+      'all_items' => __('All', 'post-type'),
+      'view_item' => __('View الوكلاء', 'post-type'),
+      'add_new_item' => __('Add New', 'post-type'),
+      'add_new' => __('Add New', 'post-type'),
+      'edit_item' => __('Edit', 'post-type'),
+      'update_item' => __('Update', 'post-type'),
+      'search_items' => __('Search', 'post-type'),
+      'not_found' => __('Not found', 'post-type'),
+      'not_found_in_trash' => __('Not found in Trash', 'post-type'),
+  );
+  $args = array(
+      'labels' => $labels,
+      'supports' => array('editor', 'title','revisions', 'author'),
+      'hierarchical' => false,
+      'public' => true,
+      'show_ui' => true,
+      'show_in_menu' => true,
+      'show_in_nav_menus' => true,
+      'show_in_admin_bar' => true,
+      'menu_position' => 4,
+      'menu_icon' => 'dashicons-welcome-widgets-menus',
+      'can_export' => true,
+      'has_archive' => true,
+      'exclude_from_search' => false,
+      'publicly_queryable' => true,
+      'capability_type' => 'post',
+      'show_in_rest' => true,
+  );
+  register_post_type('agents', $args);
+}
+// Hook into the 'init' action
+add_action('init', 'agents_post_type', 0);

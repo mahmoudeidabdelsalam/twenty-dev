@@ -141,7 +141,7 @@ $term_page_link = get_field('term_page_link', 'option');
                     </p>
                     <p>
                       <span class="author">
-                        <a class="logo-author" href="<?php echo get_author_posts_url($author_id); ?>">
+                        <a class="logo-author" href="#">
                           <img class="img-fluid" src="<?= ($avatar)? $avatar:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
                         </a>
                         <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
@@ -233,7 +233,7 @@ $term_page_link = get_field('term_page_link', 'option');
                   </p>
                   <p>
                     <span class="author">
-                      <a class="logo-author" href="<?php echo get_author_posts_url($author_id); ?>">
+                      <a class="logo-author" href="#">
                         <img class="img-fluid" src="<?= ($avatar)? $avatar:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
                       </a>
                       <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
@@ -259,7 +259,7 @@ $term_page_link = get_field('term_page_link', 'option');
             while ( $query->have_posts() ):
               $query->the_post();
               $img_url = get_the_post_thumbnail_url(get_the_ID(),'medium');
-              $author_id = get_the_author_ID();
+              $author_id = get_the_author_meta('ID');
               $avatar = get_field('user_logo', 'user_'. $author_id);
           ?>
             <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
@@ -287,7 +287,7 @@ $term_page_link = get_field('term_page_link', 'option');
                     </p>
                     <p>
                       <span class="author">
-                        <a class="logo-author" href="<?php echo get_author_posts_url($author_id); ?>">
+                        <a class="logo-author" href="#">
                           <img class="img-fluid" src="<?= ($avatar)? $avatar:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
                         </a>
                         <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
@@ -342,7 +342,7 @@ $term_page_link = get_field('term_page_link', 'option');
         ?>
           <div class="col-md-4 col-12 mb-3">
             <div class="showroom car-box bg-white p-2 position-relative">
-              <a class="logo-author" href="<?php echo get_author_posts_url($author_id); ?>">
+              <a class="logo-author" href="#">
                 <img class="img-fluid" src="<?= ($background)? $background:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
                 <?php if($cities_term): ?>
                   <span class="package position-absolute"><i class="far fa-chart-bar"></i> شريك  <?= $package_term->name; ?></span>
@@ -468,7 +468,7 @@ $term_page_link = get_field('term_page_link', 'option');
                       </p>
                       <p>
                         <span class="author">
-                          <a class="logo-author" href="<?php echo get_author_posts_url($author_id); ?>">
+                          <a class="logo-author" href="#">
                             <img class="img-fluid" src="<?= ($avatar)? $avatar:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
                           </a>
                           <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
@@ -523,7 +523,7 @@ $term_page_link = get_field('term_page_link', 'option');
                       </p>
                       <p>
                         <span class="author">
-                          <a class="logo-author" href="<?php echo get_author_posts_url($author_id); ?>">
+                          <a class="logo-author" href="#">
                             <img class="img-fluid" src="<?= ($avatar)? $avatar:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
                           </a>
                           <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
@@ -687,7 +687,7 @@ $term_page_link = get_field('term_page_link', 'option');
 </section>
 
 <!-- contact us -->
-<section id="section-contact" class="section-contact mt-5">
+<section id="section-contact" class="section-contact mt-5 mb-5">
   <div class="container">
     <h3 class="section-title text-center font-bold">تواصل معنا</h3>
     <div class="row">      
@@ -716,7 +716,27 @@ $term_page_link = get_field('term_page_link', 'option');
   </div>
 </section>
 
-
+<script type="text/javascript">
+  jQuery(function ($) {
+      $('.owl-carousel').owlCarousel({
+        loop:true,
+        rtl:true,
+        margin:10,
+        nav:true,
+        responsive:{
+          0:{
+            items:1
+          },
+          600:{
+            items:2
+          },
+          1000:{
+            items:3
+          }
+        }
+    });
+  });
+</script>
 <?php
 get_footer();
 ?>

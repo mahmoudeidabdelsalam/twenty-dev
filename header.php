@@ -139,7 +139,7 @@
 						// Loading WordPress Custom Menu (theme_location).
 						wp_nav_menu(
 							array(
-								'menu_class'     => 'navbar-nav ml-auto',
+								'menu_class'     => 'navbar-nav ml-auto p-0',
 								'container'      => '',
 								'fallback_cb'    => 'WP_Bootstrap_Navwalker::fallback',
 								'walker'         => new WP_Bootstrap_Navwalker(),
@@ -180,7 +180,7 @@
             // Loading WordPress Custom Menu (theme_location).
             wp_nav_menu(
               array(
-                'menu_class'     => 'navbar-nav ml-auto',
+                'menu_class'     => 'navbar-nav ml-auto p-0',
                 'container'      => '',
                 'fallback_cb'    => 'WP_Bootstrap_Navwalker::fallback',
                 'walker'         => new WP_Bootstrap_Navwalker(),

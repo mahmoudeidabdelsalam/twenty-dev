@@ -24,31 +24,20 @@ import 'owl.carousel';
 		});
 	});
 
-  const myCarouselElement = document.querySelector('#carouselExampleIndicators')
+  const myCarouselElement = document.querySelector('#carouselExampleIndicators');
 
   const carousel = new bootstrap.Carousel(myCarouselElement, {
     interval: 2000,
     touch: false
   });
+  console.log(carousel);
 
-  $(document).ready(function(){
-    $('.owl-carousel').owlCarousel({
-        loop:true,
-        rtl:true,
-        margin:10,
-        nav:true,
-        responsive:{
-          0:{
-            items:1
-          },
-          600:{
-            items:2
-          },
-          1000:{
-            items:3
-          }
-        }
-    });
+  const carouselBasicCar = document.querySelector('#carouselBasicCar');
+
+  const carouselSingle = new bootstrap.Carousel(carouselBasicCar, {
+    interval: 2000,
+    touch: false
   });
+  console.log(carouselSingle);
 
 })();
