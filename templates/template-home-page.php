@@ -231,7 +231,7 @@ if( !$favorites ){
                 <div class="car-box-head d-flex justify-content-between position-absolute">
                   <div class="car-box-head-right d-flex">
                     <div class="car-box-head-favorite">
-                      <?php echo '<button class="favorite-button icon-box bg-white rounded-100 text-primary border-0 ' . (in_array(get_the_ID(), $favorites) ? 'is_favorite' : '') . '" data-post-id="' . get_the_ID() . '" data-favorites="' . esc_attr(json_encode($favorites)) . '" data-is-favorite="' . (in_array(get_the_ID(), $favorites) ? 'true' : 'false') . '">' . (in_array(get_the_ID(), $favorites) ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>') . '</button>'; ?>
+                      <?php echo '<button class="favorite-button icon-box bg-white rounded-100 text-primary border-0 ' . (in_array($car->ID, $favorites) ? 'is_favorite' : '') . '" data-post-id="' . $car->ID . '" data-favorites="' . esc_attr(json_encode($favorites)) . '" data-is-favorite="' . (in_array($car->ID, $favorites) ? 'true' : 'false') . '">' . (in_array($car->ID, $favorites) ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>') . '</button>'; ?>
                     </div>
                     <div class="car-box-head-share icon-box bg-white rounded-100 text-primary">
                       <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -480,7 +480,7 @@ if( !$favorites ){
                     <div class="car-box-head d-flex justify-content-between position-absolute">
                       <div class="car-box-head-right d-flex">
                         <div class="car-box-head-favorite">
-                          <?php echo '<button class="favorite-button icon-box bg-white rounded-100 text-primary border-0 ' . (in_array(get_the_ID(), $favorites) ? 'is_favorite' : '') . '" data-post-id="' . get_the_ID() . '" data-favorites="' . esc_attr(json_encode($favorites)) . '" data-is-favorite="' . (in_array(get_the_ID(), $favorites) ? 'true' : 'false') . '">' . (in_array(get_the_ID(), $favorites) ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>') . '</button>'; ?>
+                          <?php echo '<button class="favorite-button icon-box bg-white rounded-100 text-primary border-0 ' . (in_array($car->ID, $favorites) ? 'is_favorite' : '') . '" data-post-id="' . $car->ID . '" data-favorites="' . esc_attr(json_encode($favorites)) . '" data-is-favorite="' . (in_array($car->ID, $favorites) ? 'true' : 'false') . '">' . (in_array($car->ID, $favorites) ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>') . '</button>'; ?>
                         </div>
                         <div class="car-box-head-share icon-box bg-white rounded-100 text-primary">
                           <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
