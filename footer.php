@@ -11,7 +11,7 @@
             </a>
           </div>
         </div>
-        <div class="col-md-6 col-12">
+        <div class="col-md-7 col-12">
           <?php
             if ( has_nav_menu( 'footer-menu' ) ) : // See function register_nav_menus() in functions.php
               wp_nav_menu(
@@ -27,7 +27,7 @@
             endif;
           ?>
         </div>
-        <div class="col-md-4 col-12 social-media">
+        <div class="col-md-3 col-12 social-media">
           <span class="text-white font-bold">تواصل معنا :</span>
             <ul class="social-icons d-flex">
               <?php
