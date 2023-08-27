@@ -10,6 +10,7 @@ get_header();
 $placeholder = get_theme_file_uri().'/assets/img/placeholder.png';
 $brands = get_terms('basic-brand', array('parent' => 0, 'number' => 12));
 $term_page_link = get_field('term_page_link', 'option');
+$installment_page_link = get_field('page_installment', 'option');
 
 $user_id = get_current_user_id();
 $favorites = get_user_meta($user_id, 'favorites', true) ;
@@ -388,7 +389,7 @@ if( !$favorites ){
         <?php endforeach; ?>
       </div>
       <div class="text-center col-12">
-        <a href="#" class="btn btn-outline-dark rounded-0 py-2 px-4">كل المعارض</a>
+        <a href="<?= $installment_page_link; ?>" class="btn btn-outline-dark rounded-0 py-2 px-4">كل المعارض</a>
       </div>
     </div>
   </div>
