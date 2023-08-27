@@ -280,14 +280,8 @@ if ( ! function_exists( 'twenty_article_posted_on' ) ) {
 	 */
 	function twenty_article_posted_on() {
 		printf(
-			wp_kses_post( __( '<span class="sep">Posted on </span><a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s">%4$s</time></a><span class="by-author"> <span class="sep"> by </span> <span class="author-meta vcard"><a class="url fn n" href="%5$s" title="%6$s" rel="author">%7$s</a></span></span>', 'twenty' ) ),
-			esc_url( get_the_permalink() ),
-			esc_attr( get_the_date() . ' - ' . get_the_time() ),
-			esc_attr( get_the_date( 'c' ) ),
-			esc_html( get_the_date() . ' - ' . get_the_time() ),
-			esc_url( get_author_posts_url( (int) get_the_author_meta( 'ID' ) ) ),
-			sprintf( esc_attr__( 'View all posts by %s', 'twenty' ), get_the_author() ),
-			get_the_author()
+			wp_kses_post( __( '<time class="entry-date" datetime="%1$s">%1$s</time>', 'twenty' ) ),
+			esc_attr( get_the_date( 'j F, Y' ) ),
 		);
 	}
 }

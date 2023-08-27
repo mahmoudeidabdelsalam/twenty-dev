@@ -13,9 +13,9 @@ $tag_term = $wp_query->get_queried_object();
 $banner = get_field('icon_term', $tag_term);
 
 $args = array(
-  'post_type'        => array( 'cars' ),
-  'posts_per_page' => 9,
-  'paged' => $paged,
+  'post_type'       => array( 'cars' ),
+  'posts_per_page'  => 9,
+  'paged'           => $paged,
 );
 
 $args['tax_query'] = array(
