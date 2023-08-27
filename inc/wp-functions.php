@@ -766,3 +766,32 @@ function my_remove_menu_pages() {
   //  remove_menu_page('options-general.php'); // Settings
   }
 }
+
+// save favorites function
+function save_user_favorites() {
+  if (!isset($_POST['favorites'])) {
+    wp_send_json_error('Favorites not provided');
+  }
+  // Check if user is logged in
+  if (!is_user_logged_in()) {
+    wp_send_json_error('User not logged in');
+  }
+  // Get user ID
+  $user_id = get_current_user_id();
+  // Get favorites 
+  $favorites = get_user_meta($user_id, 'favorites', true) ;
+  if( !$favorites ){
+      $favorites = [];
+  }
+  if( in_array($_POST['post_id'], $favorites) ){
+      unset( $favorites[array_search($_POST['post_id'], $favorites)] );
+  } else {
+      $favorites[] = $_POST['post_id'];
+  }
+  // Update user meta
+  update_user_meta($user_id, 'favorites', $favorites);
+  wp_send_json_success();
+}
+
+add_action( 'wp_ajax_nopriv_save_user_favorites', 'save_user_favorites' );
+add_action( 'wp_ajax_save_user_favorites', 'save_user_favorites');

@@ -10,6 +10,12 @@ get_header();
 $placeholder = get_theme_file_uri().'/assets/img/placeholder.png';
 $brands = get_terms('basic-brand', array('parent' => 0, 'number' => 12));
 $term_page_link = get_field('term_page_link', 'option');
+
+$user_id = get_current_user_id();
+$favorites = get_user_meta($user_id, 'favorites', true) ;
+if( !$favorites ){
+    $favorites = [];
+}
 ?>
 
 <section id="section-slider" class="section-slider">
@@ -92,7 +98,7 @@ $term_page_link = get_field('term_page_link', 'option');
         <h2 class="section-title">عروضنا مستمرة</h2>
       </div>
       <div class="row">
-        <div class="owl-carousel owl-theme">
+        <div class="owl-carousel owl-theme owl-offers">
         <?php
           while ( $query->have_posts() ):
             $query->the_post();
@@ -112,8 +118,14 @@ $term_page_link = get_field('term_page_link', 'option');
                 <div class="car-box-img position-relative">
                   <div class="car-box-head d-flex justify-content-between position-absolute">
                     <div class="car-box-head-right d-flex">
-                      <div class="car-box-head-favorite icon-box bg-white rounded-100 text-primary"><i class="far fa-heart"></i></div>
-                      <div class="car-box-head-share icon-box bg-white rounded-100 text-primary"><i class="fas fa-share-square"></i></div>
+                      <div class="car-box-head-favorite">
+                      <?php echo '<button class="favorite-button icon-box bg-white rounded-100 text-primary border-0 ' . (in_array(get_the_ID(), $favorites) ? 'is_favorite' : '') . '" data-post-id="' . get_the_ID() . '" data-favorites="' . esc_attr(json_encode($favorites)) . '" data-is-favorite="' . (in_array(get_the_ID(), $favorites) ? 'true' : 'false') . '">' . (in_array(get_the_ID(), $favorites) ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>') . '</button>'; ?>
+                      </div>
+                      <div class="car-box-head-share icon-box bg-white rounded-100 text-primary">
+                        <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6.27816 12.073V3.20029L5.04516 4.47066L3.96629 3.33924L7.04879 0.16333L10.1313 3.33924L9.05241 4.47066L7.81941 3.20029V12.073H6.27816ZM0.883789 17.6308V5.72117H4.73691V7.30912H2.42504V16.0429H11.6725V7.30912H9.36066V5.72117H13.2138V17.6308H0.883789Z" fill="#D97E00"/>
+                        </svg>
+                      </div>
                     </div>
                     <div class="car-box-head-left d-flex">
                       <div class="car-box-head-offer bg-green rounded-4">
@@ -145,19 +157,19 @@ $term_page_link = get_field('term_page_link', 'option');
                           <img class="img-fluid" src="<?= ($avatar)? $avatar:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
                         </a>
                         <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
-                        <i class="fas fa-arrow-left"></i>
+                        <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M20.2588 8.03857H1.25879M1.25879 8.03857L8.25879 15.0386M1.25879 8.03857L8.25879 1.03857" stroke="#141414" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                       </span>
                     </p>
                   </div>
                 </div>
-                <?php if($finance_price): ?>
                 <div class="car-box-footer bg-blue">
                   <span>قسط يبدأ من</span>
                   <span>|</span>
                   <span><?= $finance_price; ?></span>
                   <span>ريال/ شهريا</span>
                 </div>
-                <?php endif; ?>
               </div>
 
           <?php
@@ -218,8 +230,14 @@ $term_page_link = get_field('term_page_link', 'option');
               <div class="car-box-img position-relative">
                 <div class="car-box-head d-flex justify-content-between position-absolute">
                   <div class="car-box-head-right d-flex">
-                    <div class="car-box-head-favorite icon-box bg-white rounded-100 text-primary"><i class="far fa-heart"></i></div>
-                    <div class="car-box-head-share icon-box bg-white rounded-100 text-primary"><i class="fas fa-share-square"></i></div>
+                    <div class="car-box-head-favorite">
+                      <?php echo '<button class="favorite-button icon-box bg-white rounded-100 text-primary border-0 ' . (in_array(get_the_ID(), $favorites) ? 'is_favorite' : '') . '" data-post-id="' . get_the_ID() . '" data-favorites="' . esc_attr(json_encode($favorites)) . '" data-is-favorite="' . (in_array(get_the_ID(), $favorites) ? 'true' : 'false') . '">' . (in_array(get_the_ID(), $favorites) ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>') . '</button>'; ?>
+                    </div>
+                    <div class="car-box-head-share icon-box bg-white rounded-100 text-primary">
+                      <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.27816 12.073V3.20029L5.04516 4.47066L3.96629 3.33924L7.04879 0.16333L10.1313 3.33924L9.05241 4.47066L7.81941 3.20029V12.073H6.27816ZM0.883789 17.6308V5.72117H4.73691V7.30912H2.42504V16.0429H11.6725V7.30912H9.36066V5.72117H13.2138V17.6308H0.883789Z" fill="#D97E00"/>
+                      </svg>
+                    </div>
                   </div>                    
                 </div>
                 <a class="link-img" href="<?= get_permalink($car->ID); ?>"><img class="img-fluid" src="<?= ($img_url)? $img_url:$placeholder; ?>" alt="<?= get_the_title($car->ID); ?>"></a>
@@ -237,19 +255,19 @@ $term_page_link = get_field('term_page_link', 'option');
                         <img class="img-fluid" src="<?= ($avatar)? $avatar:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
                       </a>
                       <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
-                      <i class="fas fa-arrow-left"></i>
+                      <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20.2588 8.03857H1.25879M1.25879 8.03857L8.25879 15.0386M1.25879 8.03857L8.25879 1.03857" stroke="#141414" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
                     </span>
                   </p>
                 </div>
               </div>
-              <?php if($finance_price): ?>
               <div class="car-box-footer bg-primary">
                 <span>قسط يبدأ من</span>
                 <span>|</span>
                 <span><?= $finance_price; ?></span>
                 <span>ريال/ شهريا</span>
               </div>
-              <?php endif; ?>
             </div>
           </div>
           <?php 
@@ -272,8 +290,14 @@ $term_page_link = get_field('term_page_link', 'option');
                 <div class="car-box-img position-relative">
                   <div class="car-box-head d-flex justify-content-between position-absolute">
                     <div class="car-box-head-right d-flex">
-                      <div class="car-box-head-favorite icon-box bg-white rounded-100 text-primary"><i class="far fa-heart"></i></div>
-                      <div class="car-box-head-share icon-box bg-white rounded-100 text-primary"><i class="fas fa-share-square"></i></div>
+                      <div class="car-box-head-favorite">
+                        <?php echo '<button class="favorite-button icon-box bg-white rounded-100 text-primary border-0 ' . (in_array(get_the_ID(), $favorites) ? 'is_favorite' : '') . '" data-post-id="' . get_the_ID() . '" data-favorites="' . esc_attr(json_encode($favorites)) . '" data-is-favorite="' . (in_array(get_the_ID(), $favorites) ? 'true' : 'false') . '">' . (in_array(get_the_ID(), $favorites) ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>') . '</button>'; ?>
+                      </div>
+                      <div class="car-box-head-share icon-box bg-white rounded-100 text-primary">
+                        <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6.27816 12.073V3.20029L5.04516 4.47066L3.96629 3.33924L7.04879 0.16333L10.1313 3.33924L9.05241 4.47066L7.81941 3.20029V12.073H6.27816ZM0.883789 17.6308V5.72117H4.73691V7.30912H2.42504V16.0429H11.6725V7.30912H9.36066V5.72117H13.2138V17.6308H0.883789Z" fill="#D97E00"/>
+                        </svg>                        
+                      </div>
                     </div>                    
                   </div>
                   <a class="link-img" href="<?= get_permalink(); ?>"><img class="img-fluid" src="<?= ($img_url)? $img_url:$placeholder; ?>" alt="<?= get_the_title(); ?>"></a>
@@ -291,19 +315,19 @@ $term_page_link = get_field('term_page_link', 'option');
                           <img class="img-fluid" src="<?= ($avatar)? $avatar:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
                         </a>
                         <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
-                        <i class="fas fa-arrow-left"></i>
+                        <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M20.2588 8.03857H1.25879M1.25879 8.03857L8.25879 15.0386M1.25879 8.03857L8.25879 1.03857" stroke="#141414" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                       </span>
                     </p>
                   </div>
                 </div>
-                <?php if($finance_price): ?>
                 <div class="car-box-footer bg-dark">
                   <span>قسط يبدأ من</span>
                   <span>|</span>
                   <span><?= $finance_price; ?></span>
                   <span>ريال/ شهريا</span>
                 </div>
-                <?php endif; ?>
               </div>
             </div>
           <?php
@@ -322,7 +346,7 @@ $term_page_link = get_field('term_page_link', 'option');
   $partners = get_field('partners');
   if($partners):
 ?>
-<section id="section-partners" class="section-partners bg-light py-4 mt-3">
+<section id="section-partners" class="section-partners bg-gray py-4 mt-3">
   <div class="cars-listing">
     <div class="container">
       <div class="section-header">
@@ -344,16 +368,18 @@ $term_page_link = get_field('term_page_link', 'option');
             <div class="showroom car-box bg-white p-2 position-relative">
               <a class="logo-author" href="#">
                 <img class="img-fluid" src="<?= ($background)? $background:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
-                <?php if($cities_term): ?>
-                  <span class="package position-absolute"><i class="far fa-chart-bar"></i> شريك  <?= $package_term->name; ?></span>
-                <?php endif; ?>
+                <span class="package position-absolute text-dark font-bold">
+                  <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.3334 6.249L20.5793 7.61484L19.9834 5.039L22.0001 3.31567L19.3509 3.0865L18.3334 0.666504L17.2976 3.0865L14.6667 3.31567L16.6651 5.039L16.0417 7.61484L18.3334 6.249ZM21.0834 18.0832H15.5834V8.9165H21.0834V18.0832ZM0.916748 12.5832V18.0832H6.41675V12.5832H0.916748ZM4.58342 16.2498H2.75008V14.4165H4.58342V16.2498ZM8.25008 6.1665V18.0832H13.7501V6.1665H8.25008ZM11.9167 16.2498H10.0834V7.99984H11.9167V16.2498Z" fill="#141414"/>
+                  </svg>
+                  شريك 
+                  <?= ($package_term)? $package_term->name:''; ?>
+                </span>
               </a>
               <div class="meta-user car-box-content">
                 <h4 class="text-uppercase"><?= the_author_meta( 'display_name', $author_id ); ?></h4>
                 <div class="information">
-                  <?php if($cities_term): ?>
-                    <span class="d-block"><i class="fas fa-map-marker-alt"></i> <?= $cities_term->name; ?></span>
-                  <?php endif; ?>
+                  <span class="d-block"><i class="fas fa-map-marker-alt"></i> <?= ($cities_term)? $cities_term->name:'السعودية'; ?></span>
                   <span><i class="fas fa-car"></i> <?php printf( __( 'عدد السيارات: %s', 'textdomain' ), $query->found_posts ); ?></span>
                 </div>
               </div>
@@ -372,7 +398,7 @@ $term_page_link = get_field('term_page_link', 'option');
 <!-- Brands -->
 <section id="brands" class="section-brands py-5 bg-white">
   <div class="section-header">
-    <h2 class="section-headline text-center">اختار ما بين مجموعة رائعة من العلامات التجارية</h2>
+    <h2 class="section-headline text-center font-bold">اختار ما بين مجموعة رائعة من العلامات التجارية</h2>
   </div>
   <div class="container mt-3">
     <div class="row">
@@ -393,8 +419,8 @@ $term_page_link = get_field('term_page_link', 'option');
                 </a>
               </div>
             </div>
-            <span><?= $term->name; ?></span>
-            <span class="d-block"><b>سيارة</b> <?= $term->count; ?></span>
+            <span class="font-bold"><?= $term->name; ?></span>
+            <span class="d-block">سيارة <?= $term->count; ?></span>
           </div>
         </div>
       <?php 
@@ -453,8 +479,14 @@ $term_page_link = get_field('term_page_link', 'option');
                   <div class="car-box-img position-relative">
                     <div class="car-box-head d-flex justify-content-between position-absolute">
                       <div class="car-box-head-right d-flex">
-                        <div class="car-box-head-favorite icon-box bg-white rounded-100 text-primary"><i class="far fa-heart"></i></div>
-                        <div class="car-box-head-share icon-box bg-white rounded-100 text-primary"><i class="fas fa-share-square"></i></div>
+                        <div class="car-box-head-favorite">
+                          <?php echo '<button class="favorite-button icon-box bg-white rounded-100 text-primary border-0 ' . (in_array(get_the_ID(), $favorites) ? 'is_favorite' : '') . '" data-post-id="' . get_the_ID() . '" data-favorites="' . esc_attr(json_encode($favorites)) . '" data-is-favorite="' . (in_array(get_the_ID(), $favorites) ? 'true' : 'false') . '">' . (in_array(get_the_ID(), $favorites) ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>') . '</button>'; ?>
+                        </div>
+                        <div class="car-box-head-share icon-box bg-white rounded-100 text-primary">
+                          <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6.27816 12.073V3.20029L5.04516 4.47066L3.96629 3.33924L7.04879 0.16333L10.1313 3.33924L9.05241 4.47066L7.81941 3.20029V12.073H6.27816ZM0.883789 17.6308V5.72117H4.73691V7.30912H2.42504V16.0429H11.6725V7.30912H9.36066V5.72117H13.2138V17.6308H0.883789Z" fill="#D97E00"/>
+                          </svg>                          
+                        </div>
                       </div>                    
                     </div>
                     <a class="link-img" href="<?= get_permalink($car->ID); ?>"><img class="img-fluid" src="<?= ($img_url)? $img_url:$placeholder; ?>" alt="<?= get_the_title($car->ID); ?>"></a>
@@ -472,19 +504,21 @@ $term_page_link = get_field('term_page_link', 'option');
                             <img class="img-fluid" src="<?= ($avatar)? $avatar:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
                           </a>
                           <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
-                          <i class="fas fa-arrow-left"></i>
+                          <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.2588 8.03857H1.25879M1.25879 8.03857L8.25879 15.0386M1.25879 8.03857L8.25879 1.03857" stroke="#141414" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
                         </span>
                       </p>
                     </div>
                   </div>
-                  <?php if($finance_price): ?>
+
                   <div class="car-box-footer bg-primary">
                     <span>قسط يبدأ من</span>
                     <span>|</span>
                     <span><?= $finance_price; ?></span>
                     <span>ريال/ شهريا</span>
                   </div>
-                  <?php endif; ?>
+
                 </div>
               </div>
             <?php 
@@ -508,8 +542,14 @@ $term_page_link = get_field('term_page_link', 'option');
                   <div class="car-box-img position-relative">
                     <div class="car-box-head d-flex justify-content-between position-absolute">
                       <div class="car-box-head-right d-flex">
-                        <div class="car-box-head-favorite icon-box bg-white rounded-100 text-primary"><i class="far fa-heart"></i></div>
-                        <div class="car-box-head-share icon-box bg-white rounded-100 text-primary"><i class="fas fa-share-square"></i></div>
+                        <div class="car-box-head-favorite">
+                          <?php echo '<button class="favorite-button icon-box bg-white rounded-100 text-primary border-0 ' . (in_array(get_the_ID(), $favorites) ? 'is_favorite' : '') . '" data-post-id="' . get_the_ID() . '" data-favorites="' . esc_attr(json_encode($favorites)) . '" data-is-favorite="' . (in_array(get_the_ID(), $favorites) ? 'true' : 'false') . '">' . (in_array(get_the_ID(), $favorites) ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>') . '</button>'; ?>
+                        </div>
+                        <div class="car-box-head-share icon-box bg-white rounded-100 text-primary">
+                          <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6.27816 12.073V3.20029L5.04516 4.47066L3.96629 3.33924L7.04879 0.16333L10.1313 3.33924L9.05241 4.47066L7.81941 3.20029V12.073H6.27816ZM0.883789 17.6308V5.72117H4.73691V7.30912H2.42504V16.0429H11.6725V7.30912H9.36066V5.72117H13.2138V17.6308H0.883789Z" fill="#D97E00"/>
+                          </svg>                          
+                        </div>
                       </div>                    
                     </div>
                     <a class="link-img" href="<?= get_permalink(); ?>"><img class="img-fluid" src="<?= ($img_url)? $img_url:$placeholder; ?>" alt="<?= get_the_title(); ?>"></a>
@@ -527,19 +567,19 @@ $term_page_link = get_field('term_page_link', 'option');
                             <img class="img-fluid" src="<?= ($avatar)? $avatar:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
                           </a>
                           <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
-                          <i class="fas fa-arrow-left"></i>
+                          <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.2588 8.03857H1.25879M1.25879 8.03857L8.25879 15.0386M1.25879 8.03857L8.25879 1.03857" stroke="#141414" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
                         </span>
                       </p>
                     </div>
                   </div>
-                  <?php if($finance_price): ?>
                   <div class="car-box-footer bg-dark">
                     <span>قسط يبدأ من</span>
                     <span>|</span>
                     <span><?= $finance_price; ?></span>
                     <span>ريال/ شهريا</span>
                   </div>
-                  <?php endif; ?>
                 </div>
               </div>
             <?php
@@ -566,7 +606,7 @@ $term_page_link = get_field('term_page_link', 'option');
         <img class="img-fluid" src="<?= $bgServices; ?>" alt="<?= $headlineServices; ?>">
       </div>
       <div class="col-md-4 col-12">
-        <h3 class="section-headline headline-border"><?= $headlineServices; ?></h3>
+        <h3 class="section-headline headline-border font-bold"><?= $headlineServices; ?></h3>
         <div class="section-content">
           <?= $contentServices; ?>
         </div>
@@ -587,7 +627,7 @@ $term_page_link = get_field('term_page_link', 'option');
           <div class="box-services">
             <img class="box-services-img" src="<?= $img; ?>" alt="<?= $headline; ?>">
             <div class="box-services-content">
-              <h5><?= $headline; ?></h5>
+              <h5 class="font-bold"><?= $headline; ?></h5>
               <span><?= $content_step; ?></span>
             </div>
           </div>
@@ -643,8 +683,8 @@ $term_page_link = get_field('term_page_link', 'option');
 <section id="section-testimonial" class="section-testimonial mt-5">
   <div class="container-fluid">
     <div class="row">
-      <h3 class="section-headline text-white font-bold">عملاء سعداء</h3>
-      <div class="owl-carousel owl-theme">
+      <h3 class="section-headline text-white font-bold mb-4">عملاء سعداء</h3>
+      <div class="owl-carousel owl-theme owl-testimonials">
         <?php 
         if( have_rows('testimonials') ):
           $counter = 0;
@@ -700,7 +740,7 @@ $term_page_link = get_field('term_page_link', 'option');
         $text_url_boxs = get_sub_field('text_url_boxs');
         ?>
         <div class="col-md-4 col-12 box-card">
-          <div class="box-services d-flex align-items-center">
+          <div class="box-services d-flex align-items-center bg-gray">
             <div class="box-services-content d-flex align-items-center flex-column">
               <h5 class="col-12 text-right font-bold h1 mb-4"><?= $title_boxs; ?></h5>
               <span class="col-12 mb-auto text-right mb-4"><?= $text_boxs; ?></span>
@@ -718,7 +758,7 @@ $term_page_link = get_field('term_page_link', 'option');
 
 <script type="text/javascript">
   jQuery(function ($) {
-      $('.owl-carousel').owlCarousel({
+      $('.owl-offers').owlCarousel({
         loop:true,
         rtl:true,
         margin:10,
@@ -735,6 +775,63 @@ $term_page_link = get_field('term_page_link', 'option');
           }
         }
     });
+
+    $('.owl-testimonials').owlCarousel({
+        loop:true,
+        rtl:true,
+        margin:10,
+        nav:true,
+        responsive:{
+          0:{
+            items:1
+          },
+          600:{
+            items:2
+          },
+          1000:{
+            items:4
+          }
+        }
+    });
+
+
+    $('.favorite-button').click(function(e) {
+      e.preventDefault();
+      var button = $(this);
+      var action = 'add';
+      var ajax = 0;
+      var postId = button.data('postId');
+      if (button.hasClass('is_favorite')) { 
+          var action = 'remove';
+      }
+      if (postId !== "" && !ajax) { 
+          ajax = 1 ;
+          // Save favorites to the user metadata via AJAX 
+          $.post("<?= admin_url( 'admin-ajax.php' ); ?>", {
+              'action': 'save_user_favorites',
+              'favorites': 'favorites',
+              'post_id': postId // add user ID to request parameters,
+          })  
+          .done(function(response) {
+            ajax = 0;
+            console.log('Favorites saved:', response);
+            if (action == 'add') { 
+              button.addClass('is_favorite');
+              button.html( '<i class="fas fa-heart"></i>' );
+            } else {
+              console.log(`User ${postId} removed from favorites.`);
+              button.html( '<i class="far fa-heart"></i>');
+            }
+          })
+          .fail(function(xhr, status, error) {
+              console.log('Failed to save favorites:', error);
+              console.log('Server response:', xhr.responseText);
+          });
+      } else {
+          console.log(`Cannot add/remove user with empty ID`);
+      } 
+    });
+
   });
 </script>
 <?php

@@ -60,6 +60,7 @@ $teal: #20c997;
 $cyan: #0dcaf0;
 $darken: #323232;
 $light: #f4f0e5;
+$gray: #f6f6f6;
 
 // Fonts
 $font-family-sans-serif: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
@@ -147,6 +148,18 @@ body {
 	}
 }
 
+@media (min-width: 1400px) {
+
+  .container,
+  .container-lg,
+  .container-md,
+  .container-sm,
+  .container-xl,
+  .container-xxl {
+    max-width: 1440px;
+  }
+}
+
 img {
 	vertical-align: middle;
 }
@@ -181,6 +194,10 @@ img {
 
 .float-right {
   float: right;
+}
+
+.bg-gray {
+  background: $gray;
 }
 /**
  * WordPress customization
@@ -271,11 +288,14 @@ p.text-lg {
 header {
   nav.navbar-dark {
     min-height: 100px;
+    background: $dark;
 
     #navbar {
       a {
         font-size: 20px;
         color: rgb(255, 255, 255);
+        margin-left: 15px;
+        border-bottom: 2px solid transparent;
 
         &:hover {
           border-bottom: 2px solid rgb(217, 125, 2);
@@ -297,6 +317,14 @@ header {
           border-bottom: 2px solid rgb(217, 125, 2);
         }
       }
+
+      &:hover {
+        .current_page_item {
+          a {
+            border-bottom: none;
+          }
+        }
+      }
     }
   }
 
@@ -311,18 +339,23 @@ header {
       padding: 0;
 
       li {
-        border: 1px solid #141414;
-        padding: 5px;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0 10px;
-        border-radius: 100%;
-
         a {
-          color: #141414;
+          color: $dark;
+          border: 1px solid $dark;
+          padding: 5px;
+          width: 40px;
+          height: 40px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 0 10px;
+          border-radius: 100%;
+          
+          &:hover {
+            background: $dark;
+            transform: rotate(5deg);
+            color: $white;
+          }
         }
       }
     }
@@ -336,9 +369,10 @@ header {
 // Main Slide
 .carousel-caption {
   bottom: 140px;
-  width: auto;
   left: auto;
-  right: 3%;
+  right: 4%;
+  width: auto;
+  margin-right: -5px;
 
   a {
     border: 1px solid #fff;
@@ -353,7 +387,7 @@ header {
 
 .carousel-indicators {
   left: auto;
-  margin: 5% 2%;
+  margin: 5% 4%;
 
   button {
     width: 15px !important;
@@ -362,9 +396,28 @@ header {
 
     &.active {
       width: 41px !important;
-      border-radius: 24px;
+      border-radius: 0;
       height: 11px !important;
       padding: 1px;
+      margin-left: 15px;
+      margin-right: 15px;
+
+      &::before,
+      &::after {
+        content: "";
+        height: 13px;
+        width: 15px;
+        float: right;
+        border-radius: 100%;
+        margin-right: -9px;
+        background: #fff;
+        margin-top: -1px;
+      }
+
+      &::before {
+        float: left;
+        margin-left: -8px;
+      }
     }
   }
 }
@@ -606,6 +659,12 @@ h3.section-headline {
 
       img {
         width: 100%;
+
+        &:hover {
+          -webkit-transform: scaleX(-1);
+          transform: scaleX(-1);
+          z-index: 9;
+        }
       }
     }
 	}
@@ -614,6 +673,7 @@ h3.section-headline {
 		top: 10px;
 		left: 15px;
 		right: 15px;
+    z-index: 10;
 	}
 
 	.icon-box {
@@ -665,6 +725,10 @@ h3.section-headline {
 				font-weight: bold;
 				color: $color_3;
 			}
+
+      span.price {
+        text-decoration: line-through;
+      }      
 		}
 		span.author {
 			display: flex;
@@ -705,7 +769,9 @@ h3.section-headline {
 }
 
 .owl-carousel {
-	padding: 0 50px;
+  &.owl-offers {
+    padding: 0 50px;
+  }
 
 	.owl-nav {
 		position: absolute;
@@ -716,11 +782,22 @@ h3.section-headline {
 		justify-content: space-between;
 
 		button {
+      width: 40px;
+      height: 40px;
+      background-repeat: no-repeat !important;
+      background-position: center !important;
+
 			span {
-				font-size: 70px;
-				margin: -10px;
-				color: $color_2;
+				display: none;
 			}
+
+      &.owl-next {
+        background-image: url('../img/left.svg');
+      }
+      
+      &.owl-prev {
+        background-image: url('../img/right.svg');
+      }
 		}
 	}
 }
@@ -766,10 +843,11 @@ h3.section-headline {
 
 .box-card {
   .box-services {
-    background-color: rgb(232, 232, 232);
+    background-color: $gray;
     padding: 5px 10px;
     text-align: center;
     min-height: 350px;
+    border-radius: 4px;
 
     &-img {
       max-width: 100%;
@@ -781,12 +859,6 @@ h3.section-headline {
 
     &-content {
       padding: 10px;
-    }
-  }
-
-  &:nth-child(odd) {
-    .box-services {
-      background-color: rgb(249, 240, 222);
     }
   }
 }
@@ -807,20 +879,35 @@ h3.section-headline {
   background-color: rgb(39, 39, 39);
   margin-right: 50px;
   border-radius: 0px 100px 30px 0px;
-  padding: 50px 30px 0 0;
+  padding: 50px 130px 0 0;
+  max-height: 415px;
 
   .box-testimonials {
     color: rgb(255, 255, 255);
+
+    iframe {
+      width: 100%;
+      min-height: 190px;
+    }
   }
 
   .owl-nav {
-    top: -90px;
-    width: 60px;
     left: 20%;
+    top: -85px;
+    width: 60px;
+
+    button.owl-prev {
+      opacity: .5;
+      margin-left: 20px;
+    }    
   }
 
   .owl-stage-outer {
     padding-left: 190px;
+  }
+
+  .owl-item {
+    margin-right: 60px !important;
   }
 }
 
@@ -908,11 +995,21 @@ h3.section-headline {
     padding: 0;
 
     li {
-      height: 40px;
-      width: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      list-style: none;
+
+      a {
+        height: 40px;
+        width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 100%;
+
+        &:hover {
+          background-color: $white;
+          color: $dark !important;
+        }
+      }
     }
   }  
 }
@@ -1330,6 +1427,10 @@ span.page-link {
     }
   }
 
+  .car-box-content {
+    margin: 10px;
+  }
+
   .logo-author {
     width: 100%;
 
@@ -1337,7 +1438,6 @@ span.page-link {
       height: 266px;
       object-fit: cover;
       border-radius: 4px;
-      border: 2px solid rgb(51, 51, 51);
       width: 100%;
     }
   }
@@ -1434,7 +1534,8 @@ span.page-link {
 }
 
 .showroom.car-box {
-    background: rgb(246, 246, 246);
+  background: $white;
+  border-radius: 8px;
 }
 
 .box-finance {
@@ -1592,4 +1693,31 @@ iframe {
       }
     }
   }
+}
+
+.car-box-head-favorite {
+    cursor: pointer;
+}
+
+div#topbar {
+  margin-right: 15px;
+  margin-top: -3px;
+
+  .navbar-nav {
+    .favorites {
+      .nav-link {
+        &::after {
+          content: "\f004";
+          font-family: "Font Awesome 5 Free";
+          color: #d97d02;
+          float: right;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}
+
+.dropdown-toggle:after {
+    display: none;
 }

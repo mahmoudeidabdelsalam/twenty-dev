@@ -29,10 +29,10 @@ $args = array(
 $query = new WP_Query( $args );
 ?>
 
-<section class="container-fluid p-0">
-  <div class="row m-0">
+<section class="container-fluid">
+  <div class="row">
     <?php if($banner): ?>
-      <img class="img-fluid" src="<?= $banner; ?>" alt="<?= the_title(); ?>">
+      <img class="img-fluid p-0" src="<?= $banner; ?>" alt="<?= the_title(); ?>">
     <?php endif; ?>
   </div>
 </section>
