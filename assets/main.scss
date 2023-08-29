@@ -1721,3 +1721,84 @@ div#topbar {
 .dropdown-toggle:after {
     display: none;
 }
+
+.banneer-content {
+  h2 {
+    font-size: 33px;
+    font-weight: bold;
+    margin-bottom: 15px;
+
+    p {
+      font-size: 21px;
+      font-weight: 400;
+    }    
+  }
+}
+
+
+.the-content {
+  font-size: 18px;
+  line-height: 28px;
+  
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 30px;
+
+    &::after {
+      content: "";
+      width: 36px;
+      height: 4px;
+      background: $primary;
+      display: block;
+      margin-top: 10px;
+    }
+  }
+
+  ul {
+    padding: 0;
+  }
+}
+
+
+.related-page {
+  ul {
+      list-style: none;
+
+    li {
+      border: 2px solid rgb(246, 246, 246);
+      min-width: 320px;
+      padding: 15px 30px;
+
+      .item-page-related {
+        width: 100%;
+        display: inline-block;
+
+        .content-page-related {
+          display: flex;
+
+          span {
+            color: $dark;
+            font-weight: bold;
+            font-size: 18px;
+            margin-left: auto;
+          }          
+        }
+
+        .img-page-related {
+          width: 65px;
+          height: 65px;
+          background: rgb(246, 246, 246);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 14px;
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }  
+}

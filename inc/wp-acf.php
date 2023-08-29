@@ -2318,7 +2318,6 @@ if( function_exists('acf_add_local_field_group') ):
     'key' => 'group_62bb44fd414124b7208',
     'title' => 'فحص السيارة',
     'fields' => array(
-      // tab checking car
       array(
         'key' => 'field_62bb46aeb121312334128331',
         'label' => 'السيارة',
@@ -2381,7 +2380,6 @@ if( function_exists('acf_add_local_field_group') ):
         'return_format' => 'F j, Y',
         'first_day' => 1,
       ),
-      // المحرك وناقل الحركه
       array(
         'key' => 'field_62bb46aeb12123231231312334128331',
         'label' => 'المحرك وناقل الحركه',
@@ -2606,7 +2604,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241433',
         'label' => 'كرسي الماكينة',
@@ -2659,7 +2656,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241434',
         'label' => 'وجه كرتير الماكينة',
@@ -2712,7 +2708,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241435',
         'label' => 'وجه غطاء البلوف',
@@ -2765,7 +2760,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241436',
         'label' => 'قاعدة فلتر الزيت',
@@ -2818,7 +2812,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241437',
         'label' => 'وجه الثلاجة',
@@ -2871,7 +2864,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241438',
         'label' => 'تهريبات ماء',
@@ -2924,7 +2916,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241439',
         'label' => 'رادياتير الماء',
@@ -2977,7 +2968,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241440',
         'label' => 'وجه صدر الماكينة امام / خلفي',
@@ -3030,7 +3020,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241441',
         'label' => 'طرمبة الماء',
@@ -3083,7 +3072,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241442',
         'label' => 'السيور',
@@ -3136,7 +3124,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241458',
         'label' => 'صفايه البنزين',
@@ -3189,7 +3176,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241443',
         'label' => 'فلتر الهواء',
@@ -3242,7 +3228,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241444',
         'label' => 'وجه طرمبة الزيت',
@@ -3295,7 +3280,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241445',
         'label' => 'كرسي الجير بوكس',
@@ -3348,7 +3332,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241446',
         'label' => 'وجه كرتير الجير',
@@ -3401,7 +3384,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241447',
         'label' => 'صوف عصا الجير',
@@ -3454,7 +3436,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241448',
         'label' => 'ماسورة مبرد الجير',
@@ -3507,7 +3488,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241449',
         'label' => 'حالة الجير',
@@ -3560,7 +3540,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241450',
         'label' => 'عدم وجود تسرب زيت من المحرك ',
@@ -3613,7 +3592,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241451',
         'label' => 'مروحه المحرك ',
@@ -3666,7 +3644,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241452',
         'label' => 'دورة التبريد وخراطيم الفرامل ',
@@ -3719,7 +3696,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241453',
         'label' => 'بكرات سير المحرك ',
@@ -3772,7 +3748,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241454',
         'label' => 'نظام التعليق وإمتصاص الصدمات ',
@@ -3825,7 +3800,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241455',
         'label' => 'حوامل التوجيه وقضبان الربط ',
@@ -3878,7 +3852,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241456',
         'label' => 'محور العجلة ',
@@ -3931,7 +3904,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
       array(
         'key' => 'field_62bb4124141241457',
         'label' => 'محور التدوير ',
@@ -3984,8 +3956,6 @@ if( function_exists('acf_add_local_field_group') ):
         'append' => '',
         'maxlength' => '',
       ),
-
-
       array(
         'key' => 'field_62bc432a5243434255345341412827c',
         'label' => 'ملاحظات بالصور',
@@ -5549,7 +5519,6 @@ if( function_exists('acf_add_local_field_group') ):
         'new_lines' => 'wpautop',
         'esc_html' => 0,
       ),
-      
       array(
         'key' => 'field_62bb4124141241457006585',
         'label' => 'زيت الماكينة',
@@ -6734,7 +6703,7 @@ if( function_exists('acf_add_local_field_group') ):
           ),
         ),
       ),
-  ),
+    ),
   'location' => array(
     array(
       array(
@@ -10862,53 +10831,49 @@ if( function_exists('acf_add_local_field_group') ):
     'show_in_rest' => 0,
   ));
     
-
-
-    acf_add_local_field_group(array(
-      'key' => 'group_6333fb67a673c',
-      'title' => 'تم البيع',
-      'fields' => array(
+  acf_add_local_field_group(array(
+    'key' => 'group_6333fb67a673c',
+    'title' => 'تم البيع',
+    'fields' => array(
+      array(
+        'key' => 'field_6333fb67ac6e4',
+        'label' => 'تم البيع',
+        'name' => 'sold_done',
+        'type' => 'true_false',
+        'instructions' => '',
+        'required' => 0,
+        'conditional_logic' => 0,
+        'wrapper' => array(
+          'width' => '',
+          'class' => '',
+          'id' => '',
+        ),
+        'message' => '',
+        'default_value' => 0,
+        'ui' => 1,
+        'ui_on_text' => '',
+        'ui_off_text' => '',
+      ),
+    ),
+    'location' => array(
+      array(
         array(
-          'key' => 'field_6333fb67ac6e4',
-          'label' => 'تم البيع',
-          'name' => 'sold_done',
-          'type' => 'true_false',
-          'instructions' => '',
-          'required' => 0,
-          'conditional_logic' => 0,
-          'wrapper' => array(
-            'width' => '',
-            'class' => '',
-            'id' => '',
-          ),
-          'message' => '',
-          'default_value' => 0,
-          'ui' => 1,
-          'ui_on_text' => '',
-          'ui_off_text' => '',
+          'param' => 'post_type',
+          'operator' => '==',
+          'value' => 'products',
         ),
       ),
-      'location' => array(
-        array(
-          array(
-            'param' => 'post_type',
-            'operator' => '==',
-            'value' => 'products',
-          ),
-        ),
-      ),
-      'menu_order' => 0,
-      'position' => 'side',
-      'style' => 'default',
-      'label_placement' => 'top',
-      'instruction_placement' => 'label',
-      'hide_on_screen' => '',
-      'active' => true,
-      'description' => '',
-      'show_in_rest' => 0,
-    ));
-    
-	
+    ),
+    'menu_order' => 0,
+    'position' => 'side',
+    'style' => 'default',
+    'label_placement' => 'top',
+    'instruction_placement' => 'label',
+    'hide_on_screen' => '',
+    'active' => true,
+    'description' => '',
+    'show_in_rest' => 0,
+  ));
 
   acf_add_local_field_group(array(
     'key' => 'group_622db219d7c8a',
@@ -11220,7 +11185,6 @@ if( function_exists('acf_add_local_field_group') ):
     'show_in_rest' => 0,
   ));
 
-  
   acf_add_local_field_group(array(
     'key' => 'group_62333dfd42d73',
     'title' => 'finance',
@@ -11723,170 +11687,308 @@ if( function_exists('acf_add_local_field_group') ):
     'show_in_rest' => 0,
   ));
   
-  endif;		
+endif;		
 
-  add_action( 'acf/include_fields', function() {
+add_action( 'acf/include_fields', function() {
 	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
 		return;
 	}
 
-acf_add_local_field_group( array(
-  'key' => 'group_64e89e3d36957',
-  'title' => 'Corporate finance',
-  'fields' => array(
-    array(
-      'key' => 'field_64e89ef1ba026',
-      'label' => 'box finance',
-      'name' => 'box_finance',
-      'aria-label' => '',
-      'type' => 'repeater',
-      'instructions' => '',
-      'required' => 0,
-      'conditional_logic' => 0,
-      'wrapper' => array(
-        'width' => '',
-        'class' => '',
-        'id' => '',
-      ),
-      'layout' => 'row',
-      'pagination' => 0,
-      'min' => 0,
-      'max' => 0,
-      'collapsed' => '',
-      'button_label' => 'Add Row',
-      'rows_per_page' => 20,
-      'sub_fields' => array(
-        array(
-          'key' => 'field_64e89e3eba021',
-          'label' => 'color box finance',
-          'name' => 'color_box_finance',
-          'aria-label' => '',
-          'type' => 'color_picker',
-          'instructions' => '',
-          'required' => 0,
-          'conditional_logic' => 0,
-          'wrapper' => array(
-            'width' => '',
-            'class' => '',
-            'id' => '',
-          ),
-          'default_value' => '',
-          'enable_opacity' => 0,
-          'return_format' => 'string',
-          'parent_repeater' => 'field_64e89ef1ba026',
-        ),
-        array(
-          'key' => 'field_64e89e75ba022',
-          'label' => 'icon box finance',
-          'name' => 'icon_box_finance',
-          'aria-label' => '',
-          'type' => 'image',
-          'instructions' => '',
-          'required' => 0,
-          'conditional_logic' => 0,
-          'wrapper' => array(
-            'width' => '',
-            'class' => '',
-            'id' => '',
-          ),
-          'return_format' => 'url',
-          'library' => 'all',
-          'min_width' => '',
-          'min_height' => '',
-          'min_size' => '',
-          'max_width' => '',
-          'max_height' => '',
-          'max_size' => '',
-          'mime_types' => '',
-          'preview_size' => 'medium',
-          'parent_repeater' => 'field_64e89ef1ba026',
-        ),
-        array(
-          'key' => 'field_64e89ea7ba023',
-          'label' => 'headline box finance',
-          'name' => 'headline_box_finance',
-          'aria-label' => '',
-          'type' => 'text',
-          'instructions' => '',
-          'required' => 0,
-          'conditional_logic' => 0,
-          'wrapper' => array(
-            'width' => '',
-            'class' => '',
-            'id' => '',
-          ),
-          'default_value' => '',
-          'maxlength' => '',
-          'placeholder' => '',
-          'prepend' => '',
-          'append' => '',
-          'parent_repeater' => 'field_64e89ef1ba026',
-        ),
-        array(
-          'key' => 'field_64e89eb6ba024',
-          'label' => 'content box finance',
-          'name' => 'content_box_finance',
-          'aria-label' => '',
-          'type' => 'textarea',
-          'instructions' => '',
-          'required' => 0,
-          'conditional_logic' => 0,
-          'wrapper' => array(
-            'width' => '',
-            'class' => '',
-            'id' => '',
-          ),
-          'default_value' => '',
-          'maxlength' => '',
-          'rows' => '',
-          'placeholder' => '',
-          'new_lines' => '',
-          'parent_repeater' => 'field_64e89ef1ba026',
-        ),
-        array(
-          'key' => 'field_64e89ec4ba025',
-          'label' => 'id form box finance',
-          'name' => 'id_form_box_finance',
-          'aria-label' => '',
-          'type' => 'number',
-          'instructions' => '',
-          'required' => 0,
-          'conditional_logic' => 0,
-          'wrapper' => array(
-            'width' => '',
-            'class' => '',
-            'id' => '',
-          ),
-          'default_value' => '',
-          'min' => '',
-          'max' => '',
-          'placeholder' => '',
-          'step' => '',
-          'prepend' => '',
-          'append' => '',
-          'parent_repeater' => 'field_64e89ef1ba026',
-        ),
-      ),
-    ),
-  ),
-  'location' => array(
-    array(
+  acf_add_local_field_group( array(
+    'key' => 'group_64e89e3d36957',
+    'title' => 'Corporate finance',
+    'fields' => array(
       array(
-        'param' => 'post_template',
-        'operator' => '==',
-        'value' => 'templates/template-corporate-finance.php',
+        'key' => 'field_64e89ef1ba026',
+        'label' => 'box finance',
+        'name' => 'box_finance',
+        'aria-label' => '',
+        'type' => 'repeater',
+        'instructions' => '',
+        'required' => 0,
+        'conditional_logic' => 0,
+        'wrapper' => array(
+          'width' => '',
+          'class' => '',
+          'id' => '',
+        ),
+        'layout' => 'row',
+        'pagination' => 0,
+        'min' => 0,
+        'max' => 0,
+        'collapsed' => '',
+        'button_label' => 'Add Row',
+        'rows_per_page' => 20,
+        'sub_fields' => array(
+          array(
+            'key' => 'field_64e89e3eba021',
+            'label' => 'color box finance',
+            'name' => 'color_box_finance',
+            'aria-label' => '',
+            'type' => 'color_picker',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+              'width' => '',
+              'class' => '',
+              'id' => '',
+            ),
+            'default_value' => '',
+            'enable_opacity' => 0,
+            'return_format' => 'string',
+            'parent_repeater' => 'field_64e89ef1ba026',
+          ),
+          array(
+            'key' => 'field_64e89e75ba022',
+            'label' => 'icon box finance',
+            'name' => 'icon_box_finance',
+            'aria-label' => '',
+            'type' => 'image',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+              'width' => '',
+              'class' => '',
+              'id' => '',
+            ),
+            'return_format' => 'url',
+            'library' => 'all',
+            'min_width' => '',
+            'min_height' => '',
+            'min_size' => '',
+            'max_width' => '',
+            'max_height' => '',
+            'max_size' => '',
+            'mime_types' => '',
+            'preview_size' => 'medium',
+            'parent_repeater' => 'field_64e89ef1ba026',
+          ),
+          array(
+            'key' => 'field_64e89ea7ba023',
+            'label' => 'headline box finance',
+            'name' => 'headline_box_finance',
+            'aria-label' => '',
+            'type' => 'text',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+              'width' => '',
+              'class' => '',
+              'id' => '',
+            ),
+            'default_value' => '',
+            'maxlength' => '',
+            'placeholder' => '',
+            'prepend' => '',
+            'append' => '',
+            'parent_repeater' => 'field_64e89ef1ba026',
+          ),
+          array(
+            'key' => 'field_64e89eb6ba024',
+            'label' => 'content box finance',
+            'name' => 'content_box_finance',
+            'aria-label' => '',
+            'type' => 'textarea',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+              'width' => '',
+              'class' => '',
+              'id' => '',
+            ),
+            'default_value' => '',
+            'maxlength' => '',
+            'rows' => '',
+            'placeholder' => '',
+            'new_lines' => '',
+            'parent_repeater' => 'field_64e89ef1ba026',
+          ),
+          array(
+            'key' => 'field_64e89ec4ba025',
+            'label' => 'id form box finance',
+            'name' => 'id_form_box_finance',
+            'aria-label' => '',
+            'type' => 'number',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+              'width' => '',
+              'class' => '',
+              'id' => '',
+            ),
+            'default_value' => '',
+            'min' => '',
+            'max' => '',
+            'placeholder' => '',
+            'step' => '',
+            'prepend' => '',
+            'append' => '',
+            'parent_repeater' => 'field_64e89ef1ba026',
+          ),
+        ),
       ),
     ),
-  ),
-  'menu_order' => 0,
-  'position' => 'normal',
-  'style' => 'default',
-  'label_placement' => 'top',
-  'instruction_placement' => 'label',
-  'hide_on_screen' => '',
-  'active' => true,
-  'description' => '',
-  'show_in_rest' => 0,
-));
+    'location' => array(
+      array(
+        array(
+          'param' => 'post_template',
+          'operator' => '==',
+          'value' => 'templates/template-corporate-finance.php',
+        ),
+      ),
+    ),
+    'menu_order' => 0,
+    'position' => 'normal',
+    'style' => 'default',
+    'label_placement' => 'top',
+    'instruction_placement' => 'label',
+    'hide_on_screen' => '',
+    'active' => true,
+    'description' => '',
+    'show_in_rest' => 0,
+  ));
 });
+
+add_action( 'acf/include_fields', function() {
+	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
+		return;
+	}
+
+	acf_add_local_field_group( array(
+    'key' => 'group_64ed994db9530',
+    'title' => 'Banner Page Header',
+    'fields' => array(
+      array(
+        'key' => 'field_64ed994e90c06',
+        'label' => 'headline',
+        'name' => 'headline_banneer',
+        'aria-label' => '',
+        'type' => 'text',
+        'instructions' => '',
+        'required' => 0,
+        'conditional_logic' => 0,
+        'wrapper' => array(
+          'width' => '',
+          'class' => '',
+          'id' => '',
+        ),
+        'default_value' => '',
+        'maxlength' => '',
+        'placeholder' => '',
+        'prepend' => '',
+        'append' => '',
+      ),
+      array(
+        'key' => 'field_64ed99e490c07',
+        'label' => 'content',
+        'name' => 'content_banneer',
+        'aria-label' => '',
+        'type' => 'textarea',
+        'instructions' => '',
+        'required' => 0,
+        'conditional_logic' => 0,
+        'wrapper' => array(
+          'width' => '',
+          'class' => '',
+          'id' => '',
+        ),
+        'default_value' => '',
+        'maxlength' => 500,
+        'rows' => '',
+        'placeholder' => '',
+        'new_lines' => 'wpautop',
+      ),
+      array(
+        'key' => 'field_64edb3a665356',
+        'label' => 'related page',
+        'name' => 'related_page',
+        'aria-label' => '',
+        'type' => 'repeater',
+        'instructions' => '',
+        'required' => 0,
+        'conditional_logic' => 0,
+        'wrapper' => array(
+          'width' => '',
+          'class' => '',
+          'id' => '',
+        ),
+        'layout' => 'table',
+        'pagination' => 0,
+        'min' => 0,
+        'max' => 0,
+        'collapsed' => '',
+        'button_label' => 'Add Row',
+        'rows_per_page' => 20,
+        'sub_fields' => array(
+          array(
+            'key' => 'field_64edb3b565357',
+            'label' => 'page link',
+            'name' => 'page_link',
+            'aria-label' => '',
+            'type' => 'link',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+              'width' => '',
+              'class' => '',
+              'id' => '',
+            ),
+            'return_format' => 'array',
+            'parent_repeater' => 'field_64edb3a665356',
+          ),
+          array(
+            'key' => 'field_64edb3dd65358',
+            'label' => 'page icon',
+            'name' => 'page_icon',
+            'aria-label' => '',
+            'type' => 'image',
+            'instructions' => '',
+            'required' => 0,
+            'conditional_logic' => 0,
+            'wrapper' => array(
+              'width' => '',
+              'class' => '',
+              'id' => '',
+            ),
+            'return_format' => 'url',
+            'library' => 'all',
+            'min_width' => '',
+            'min_height' => '',
+            'min_size' => '',
+            'max_width' => '',
+            'max_height' => '',
+            'max_size' => '',
+            'mime_types' => '',
+            'preview_size' => 'medium',
+            'parent_repeater' => 'field_64edb3a665356',
+          ),
+        ),
+      ),
+    ),
+    'location' => array(
+      array(
+        array(
+          'param' => 'page_template',
+          'operator' => '==',
+          'value' => 'default',
+        ),
+      ),
+    ),
+    'menu_order' => 0,
+    'position' => 'acf_after_title',
+    'style' => 'default',
+    'label_placement' => 'top',
+    'instruction_placement' => 'label',
+    'hide_on_screen' => '',
+    'active' => true,
+    'description' => '',
+    'show_in_rest' => 1,
+  ) );
+} );
 
