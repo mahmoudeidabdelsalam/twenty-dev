@@ -1994,6 +1994,10 @@ section#basicSpecificationsRemainder {
   }    
 }
 
+.h-banner {
+    background: #F4F0E5;
+    min-height: 300px;
+}
 
 // Mobile Style
 @media (max-width: breakpoint-max(sm)) {
