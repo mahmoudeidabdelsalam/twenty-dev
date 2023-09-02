@@ -29,11 +29,15 @@ $args['tax_query'] = array(
 $query = new WP_Query( $args );
 ?>
 
-<section class="container-fluid p-0">
-  <div class="row m-0">
-    <?php if($banner): ?>
-      <img class="img-fluid" src="<?= $banner; ?>" alt="<?= $tag_term->name; ?>">
-    <?php endif; ?>
+<section class="container-fluid position-relative">
+  <div class="row h-banner">
+      <?php if($banner): ?>
+        <img class="img-fluid p-0" src="<?= $banner; ?>" alt="<?= $tag_term->name; ?>">
+      <?php endif; ?>
+      <div class="banner-data position-absolute end-0 start-0 top-0 bottom-0 px-lg-5">
+        <h3 class="font-bold mb-4 px-lg-5 h1"><?= $tag_term->name; ?></h3>
+        <div class="px-lg-5"><?= term_description(); ?></div>
+      </div>
   </div>
 </section>
 
