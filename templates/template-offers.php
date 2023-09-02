@@ -29,13 +29,17 @@ $args = array(
 $query = new WP_Query( $args );
 ?>
 
-<section class="container-fluid">
-  <div class="row">
+<section class="container-fluid position-relative">
+  <div class="row h-banner">
     <?php if($banner): ?>
       <img class="img-fluid p-0" src="<?= $banner; ?>" alt="<?= the_title(); ?>">
     <?php endif; ?>
+    <div class="banner-data position-absolute end-0 start-0 top-0 bottom-0 px-lg-5">
+      <?php the_content(); ?>
+    </div>
   </div>
 </section>
+
 
 <section class="container-fluid mt-5 mb-5">
   <div class="row">
