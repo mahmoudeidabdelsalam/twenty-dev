@@ -18,8 +18,8 @@ $placeholder = get_theme_file_uri().'/assets/img/placeholder.png';
       $content = get_the_content();
       $map = get_field('map_user', 'user_'. $author_id);
 
-      $cars = new WP_Query( array( 'author' => $author_id, 'post_type' => 'cars' ) );
-
+      $cars = new WP_Query( array( 'author' => $author_id, 'post_type' => 'cars', 'posts_per_page' => -1 ) );
+      $count = $cars->found_posts;
       ?>
 
         <!-- Page Header Start -->
@@ -86,7 +86,8 @@ $placeholder = get_theme_file_uri().'/assets/img/placeholder.png';
 
         <div class="container mb-5">
           <div class="row">
-            <h2 class="mt-5 mb-5">سيارات المعرض</h2>
+            <h2 class="mt-5 mb-2 font-bold">سيارات المعرض</h2>
+            <span class="mb-5 d-inline-block h6 text-primary">(<?= $count; ?>) سيارة</span>
             <?php
             if ( $cars->have_posts() ):
               while ( $cars->have_posts() ):
@@ -130,14 +131,12 @@ $placeholder = get_theme_file_uri().'/assets/img/placeholder.png';
                       </p>
                     </div>
                   </div>
-                  <?php if($finance_price): ?>
-                  <div class="car-box-footer bg-blue">
+                  <div class="car-box-footer bg-cyan">
                     <span>قسط يبدأ من</span>
                     <span>|</span>
                     <span><?= $finance_price; ?></span>
                     <span>ريال/ شهريا</span>
                   </div>
-                  <?php endif; ?>
                 </div>
               </div>
             <?php

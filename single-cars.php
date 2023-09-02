@@ -61,7 +61,7 @@ if ($query->have_posts()):
   ?> 
 
   <!-- Page Header Start -->
-  <div class="page-header mb-3 bg-primary">
+  <div class="page-header mb-3 bg-orange">
     <div class="container">
       <h1 class="text-dark mb-3 font-bold"><?= the_title(); ?></h1>
       <p class="text-lg"><img src="<?= $img_tag; ?>" alt="<?= $tag; ?>"> <?= $tag; ?></p>
@@ -248,7 +248,13 @@ if ($query->have_posts()):
         <!-- SideBar Car -->
         <div class="col-md-4 col-12">
           <div class="alert alert-warning" role="alert">
-            <?= get_post_field('post_content', $car_id); ?>
+            <?php if(get_post_field('post_content', $car_id)): ?>
+              <?= get_post_field('post_content', $car_id); ?>
+            <?php else: ?>
+              <h3 style="text-align: right;">لماذا هذه السيارة مناسبة لك ؟</h3>
+              <p style="text-align: right;"><strong>لانها تحتوي علي : </strong></p>
+              <p style="text-align: right;">مثبت سرعة - تبريد وتدفئة للمقاعد - بلوتوث - كاميرا خلفية</p>
+            <?php endif; ?>
           </div>
           <div class="d-flex flex-lg-row flex-column">
             <div class="cash-money box-price mb-2">
@@ -312,43 +318,44 @@ if ($query->have_posts()):
       </div>
     </div>
 
-    <div class="bg-light p-5 mt-5">
+    <div class="bg-gray p-5 mt-5">
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-12">
+            <h2 class="mb-3 font-bold">أسئلة تهمك</h2>
             <div class="accordion" id="accordionExample">
               <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOneFAQ">
-                  <button class="accordion-button p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOneFAQ" aria-expanded="true" aria-controls="collapseOneFAQ">
-                    <span class="h4">كيف أشتري سيارة ؟</span>
+                  <button class="accordion-button py-4 px-3 font-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOneFAQ" aria-expanded="true" aria-controls="collapseOneFAQ">
+                    <span class="h4 font-bold">كيف أشتري سيارة ؟</span>
                   </button>
                 </h2>
                 <div id="collapseOneFAQ" class="accordion-collapse collapse show" aria-labelledby="headingOneFAQ" data-bs-parent="#accordionExample">
-                  <div class="accordion-body p-5 h5">
+                  <div class="accordion-body py-4 px-3 h5">
                     يتم شراء سيارة من خلال دفع عربون وهذا العربون مخصوم من ثمن السيارة الاجمالي ومسترد لك في حالة عدم اتمام عملية الشراء شرط عدم تثبيت حجز السيارة.
                   </div>
                 </div>
               </div>
-              <div class="accordion-item">
+              <div class="accordion-item mt-3">
                 <h2 class="accordion-header" id="headingTwoFAQ">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwoFAQ" aria-expanded="false" aria-controls="collapseTwoFAQ">
-                    <span class="h4">كيف ادفع قيمة السيارة ؟</span>
+                  <button class="accordion-button py-4 px-3 font-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwoFAQ" aria-expanded="false" aria-controls="collapseTwoFAQ">
+                    <span class="h4 font-bold">كيف ادفع قيمة السيارة ؟</span>
                   </button>
                 </h2>
                 <div id="collapseTwoFAQ" class="accordion-collapse collapse" aria-labelledby="headingTwoFAQ" data-bs-parent="#accordionExample">
-                  <div class="accordion-body p-5 h5">
+                  <div class="accordion-body py-4 px-3 h5">
                     يتم شراء سيارة من خلال دفع عربون وهذا العربون مخصوم من ثمن السيارة الاجمالي ومسترد لك في حالة عدم اتمام عملية الشراء شرط عدم تثبيت حجز السيارة.
                   </div>
                 </div>
               </div>
-              <div class="accordion-item">
+              <div class="accordion-item mt-3">
                 <h2 class="accordion-header" id="headingThreeFAQ">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThreeFAQ" aria-expanded="false" aria-controls="collapseThreeFAQ">
-                    <span class="h4">هل موقعكم معتمد من وزارة التجارة</span>
+                  <button class="accordion-button py-4 px-3 font-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThreeFAQ" aria-expanded="false" aria-controls="collapseThreeFAQ">
+                    <span class="h4 font-bold">هل موقعكم معتمد من وزارة التجارة</span>
                   </button>
                 </h2>
                 <div id="collapseThreeFAQ" class="accordion-collapse collapse" aria-labelledby="headingThreeFAQ" data-bs-parent="#accordionExample">
-                  <div class="accordion-body p-5 h5">
+                  <div class="accordion-body py-4 px-3 h5">
                     يتم شراء سيارة من خلال دفع عربون وهذا العربون مخصوم من ثمن السيارة الاجمالي ومسترد لك في حالة عدم اتمام عملية الشراء شرط عدم تثبيت حجز السيارة.
                   </div>
                 </div>

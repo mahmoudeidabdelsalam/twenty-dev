@@ -53,11 +53,11 @@ $indigo: #6610f2;
 $purple: #6f42c1;
 $pink: #d63384;
 $red: #dc3545;
-$orange: #fd7e14;
+$orange: #FB9701;
 $yellow: #ffc107;
 $green: #1EB147;
 $teal: #20c997;
-$cyan: #0dcaf0;
+$cyan: #0EBCC7;
 $darken: #323232;
 $light: #f4f0e5;
 $gray: #f6f6f6;
@@ -148,6 +148,27 @@ body {
 	}
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+  height:3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #141414;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #d97d02;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #fff;
+}
+
 @media (min-width: 1400px) {
 
   .container,
@@ -198,6 +219,14 @@ img {
 
 .bg-gray {
   background: $gray;
+}
+
+.bg-orange {
+  background-color: $orange;
+}
+
+.bg-cyan {
+  background-color: $cyan;
 }
 /**
  * WordPress customization
@@ -1060,7 +1089,6 @@ h3.section-headline {
         .form-check-input {
           height: 21px;
           width: 36px;
-          border: 2px solid rgb(217, 125, 2);
           cursor: pointer;
         }
       }
@@ -1290,6 +1318,7 @@ span.page-link {
         color: rgb(122, 121, 121);
         margin-bottom: 0;
         margin-top: 20px;
+        font-weight: 300;
       }
 
       .old-price {
@@ -1444,7 +1473,8 @@ span.page-link {
 }
 
 .showroom-map {
-    border: 1px solid $dark;
+    border: 1px solid #ccc;
+    max-width: 500px;
 
   iframe {
     height: 213px;
@@ -1801,4 +1831,216 @@ div#topbar {
       }
     }
   }  
+}
+
+.login-header {
+  background: rgb(246, 246, 246);
+  text-align: center;
+  padding: 20px;
+
+  h3 {
+  line-height: 30px;
+  font-size: 30px;
+  }
+}
+
+.login-body {
+  padding: 20px;
+
+	p {
+    margin-top: 30px;
+
+		label {
+			color: rgb(50, 50, 50);
+			font-size: 16px;
+			display: block;
+			margin-bottom: 5px;
+		}
+		
+		input[type="password"],
+    input[type="text"],
+    input[type="email"] {
+			height: 42px;
+			width: 100%;
+			background: rgb(242, 242, 242);
+			border: 1px solid rgb(221, 221, 221);
+			border-radius: 4px;
+			margin-top: 10px;
+		}
+	}
+	
+	input#wp-submit {
+		background: rgb(217, 126, 0);
+		border: 1px solid rgb(221, 221, 221);
+		width: 100%;
+		height: 45px;
+		border-radius: 5px;
+		color: rgb(255, 255, 255);
+		font-size: 18px;
+	}
+}
+
+.sidebar-dashboard {
+  background: rgb(246, 246, 246);
+  padding: 24px 50px;
+  min-height: 100vh;
+  border-left: 1px solid rgb(204, 204, 204);
+
+  .head {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+
+  .item {
+    a {
+      display: flex;
+      padding: 10px;
+      align-items: center;
+      border: 1px solid transparent;
+
+      &:hover {
+        border: 1px solid rgb(204, 204, 204);
+        border-radius: 4px;
+        background: rgba(204, 204, 204, 0.3);
+      }
+    }
+
+    .info {
+      margin: 0 25px;
+      display: flex;
+      flex-flow: column;
+
+      b {
+        color: rgb(50, 50, 50);
+        font-size: 18px;
+      }
+
+      span {
+        color: rgb(169, 169, 169);
+      }
+    }
+  }
+}
+
+div#PhotoCars {
+  img {
+    width: 31%;
+    margin: 1%;
+    padding: 0;
+  }
+}
+
+.form-label {
+  font-size: 16px;
+  color: rgb(169, 169, 169);
+}
+
+.hidden {
+    display: none;
+}
+
+.galleries {
+  display: flex;
+  flex-wrap: wrap;
+
+  .item {
+    width: 300px;
+    margin: 10px;
+
+    img {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+    }
+
+    div {
+      padding: 10px;
+      border: 1px solid #eee;
+    }
+
+    .remove {
+      padding: 10px;
+      text-align: center;
+      background: #222;
+      width: 100%;
+      color: #fff;
+    }  
+  }
+}
+
+.form-select {
+  background-position: left 0.75rem center;
+}
+section#basicSpecificationsRemainder {
+  .form-switch {
+    padding: 10px;
+
+    * {
+      cursor: pointer;
+    }
+
+    .form-check-input {
+      float: right;
+      margin-left: 15px;
+    }
+  }
+}
+
+.banner-data {
+    padding-top: 85px;
+
+  p {
+    font-size: 21px;
+  }    
+}
+
+
+// Mobile Style
+@media (max-width: breakpoint-max(sm)) {
+  .navbar-brand {
+      border: none;
+  }
+
+  header {
+    nav {
+      div#navbar {
+          width: 100%;
+
+        .navbar-nav {
+          display: flex;
+          flex-wrap: nowrap;
+          flex-direction: row;
+          overflow-x: scroll;
+          white-space: nowrap;
+          width: 100%;
+          overflow-y: hidden;
+          padding: 15px !important;
+
+          .current_page_item {
+            a {
+              background: #d97d02;
+            }
+          }
+
+          &:hover {
+            .current_page_item {
+              a {
+                background: transparent;
+              }
+            }
+          }
+
+          a {
+            border: none;
+            padding: 10px;
+            border-radius: 15px;
+
+            &:hover {
+              background: #d97d02;
+            }
+          }
+        }
+      }
+    }  
+  }
 }

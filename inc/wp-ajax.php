@@ -2,7 +2,6 @@
 // Plugin Name: النوع
 add_action('wp_ajax_ajax_function_ids_brands', 'ajax_function_ids_brands', 0);
 add_action('wp_ajax_nopriv_ajax_function_ids_brands', 'ajax_function_ids_brands');
-
 function ajax_function_ids_brands() {
   if ( isset( $_POST['parent_id'] ) ) {
     foreach ($_POST['parent_id'] as $parent_id) {
@@ -29,7 +28,6 @@ function ajax_function_ids_brands() {
 // Plugin Name: الفئة
 add_action('wp_ajax_ajax_function_ids_types', 'ajax_function_ids_types', 0);
 add_action('wp_ajax_nopriv_ajax_function_ids_types', 'ajax_function_ids_types');
-
 function ajax_function_ids_types() {
   if ( isset( $_POST['parent_id'] ) ) {
     foreach ($_POST['parent_id'] as $parent_id) {
@@ -53,11 +51,9 @@ function ajax_function_ids_types() {
   die;
 }
 
-
 // Plugin Name: السيارات
 add_action('wp_ajax_ajax_function_get_cars', 'ajax_function_get_cars', 0);
 add_action('wp_ajax_nopriv_ajax_function_get_cars', 'ajax_function_get_cars');
-
 function ajax_function_get_cars() {
         
   $placeholder = get_theme_file_uri().'/assets/img/placeholder.png';
@@ -236,5 +232,115 @@ function ajax_function_get_cars() {
     </div>
   <?php endif; ?>
 <?php
+  die;
+}
+
+// Plugin Name: صور مقترحة
+add_action('wp_ajax_ajax_function_photo_suggested', 'ajax_function_photo_suggested', 0);
+add_action('wp_ajax_nopriv_ajax_function_photo_suggested', 'ajax_function_photo_suggested');
+function ajax_function_photo_suggested() {
+  if ( isset( $_POST['car_id'] ) ) {
+    $query = new WP_Query (array('post_type' => 'cars', 'post__in' => array($_POST['car_id'])));
+    if ($query->have_posts()):
+      while ($query->have_posts()):
+        $query->the_post();
+        $galleries = (get_field('car_galleries', $_POST['car_id']))? get_field('car_galleries', $_POST['car_id']): get_field('car_galleries');
+          if($galleries):
+            foreach( $galleries as $img): 
+          ?>
+            <img src="<?= $img['url']; ?>" alt="slide">
+          <?php
+            endforeach;
+          endif;
+      endwhile;
+    endif;
+  }
+  die;
+}
+
+// Plugin Name: اضافة سيارة مقترحة
+add_action('wp_ajax_set_function_add_new_suggested', 'set_function_add_new_suggested', 0);
+add_action('wp_ajax_nopriv_set_function_add_new_suggested', 'set_function_add_new_suggested');
+function set_function_add_new_suggested() {
+  if ( isset($_POST['car_id']) && isset($_POST['car_name']) && $_POST['car_price'] &&  $_POST['car_price_after'] && $_POST['car_installment'] ) {
+    $car_id = duplicate($_POST['car_id'], $_POST['car_name'], $_POST['car_price'], $_POST['car_price_after'], $_POST['car_installment']);
+    $result = [
+      "success" => true,
+      "message" => 'تم اضافة السيارة بنجاح <a href="'.get_permalink($car_id).'">عرض السيارة</a>',
+    ];
+    echo json_encode($result);
+  } else {
+    $result = [
+      "success" => false,
+      "message" => 'املي جميع الحقول المطلوبة',
+    ];
+    echo json_encode($result);
+  }
+  die;
+}
+
+// plugin اضافة مواصفات سيارة جديدة
+/*
+  Plugin Name: ajax basic brand
+*/
+add_action('wp_ajax_lvl_one_basic_brand', 'lvl_one_basic_brand', 0);
+add_action('wp_ajax_nopriv_lvl_one_basic_brand', 'lvl_one_basic_brand');
+function lvl_one_basic_brand() {
+  if ( isset( $_POST['parent_id'] ) ) {
+    $categories=  get_categories('parent='.$_POST['parent_id'].'&hide_empty=1&taxonomy=basic-brand');
+    if($categories) {
+      foreach ($categories as $cat) {
+        $option .= '<option value="'.$cat->term_id.'">';
+        $option .= $cat->cat_name;
+        $option .= '</option>';
+      }
+      echo '<option value="0" selected="selected">اختار الفئة</option>'.$option;
+        die();
+    } else {
+      echo '<option value="0" selected="selected">لا يوجد الفئة</option>';
+    }
+  }
+  die;
+}
+
+
+// Plugin Name: اضافة موضفات السيارة الاسياسية
+add_action('wp_ajax_set_function_add_new_Basic', 'set_function_add_new_Basic', 0);
+add_action('wp_ajax_nopriv_set_function_add_new_Basic', 'set_function_add_new_Basic');
+function set_function_add_new_Basic() {
+  if ( isset($_POST['parent_brand_id']) && isset($_POST['child_brand_id']) && $_POST['fuel_id'] &&  $_POST['engine_id'] && $_POST['cylinder_id'] && $_POST['push_id'] && $_POST['gear_id'] && $_POST['color_id'] && $_POST['safeties'] ) {
+    $id_basic = additionBasicManually($_POST['basic_name'], $_POST['parent_brand_id'], $_POST['child_brand_id'], $_POST['fuel_id'], $_POST['engine_id'], $_POST['cylinder_id'], $_POST['push_id'], $_POST['gear_id'], $_POST['color_id'], $_POST['safeties']);
+    $result = [
+      "success" => true,
+      "id_basic" => $id_basic
+    ];
+    echo json_encode($result);
+  } else {
+    $result = [
+      "success" => false,
+    ];
+    echo json_encode($result);
+  }
+  die;
+}
+
+// Plugin Name: اضافة سيارة جديدة يدوي
+add_action('wp_ajax_set_function_add_new_Manually', 'set_function_add_new_Manually', 0);
+add_action('wp_ajax_nopriv_set_function_add_new_Manually', 'set_function_add_new_Manually');
+function set_function_add_new_Manually() {
+  if ( isset($_POST['id_basic']) && isset($_POST['car_name']) && $_POST['car_price'] &&  $_POST['car_price_after'] && $_POST['car_installment'] && $_POST['tag_id'] && $_POST['model_id'] && $_POST['galleries'] && $_POST['featured_img'] ) {
+    $car_id = additionCarManually($_POST['id_basic'], $_POST['car_name'], $_POST['car_price'], $_POST['car_price_after'], $_POST['car_installment'], $_POST['tag_id'], $_POST['model_id'], $_POST['galleries'], $_POST['featured_img']);
+    $result = [
+      "success" => true,
+      "message" => 'تم اضافة السيارة بنجاح <a href="'.get_permalink($car_id).'">عرض السيارة</a>',
+    ];
+    echo json_encode($result);
+  } else {
+    $result = [
+      "success" => false,
+      "message" => 'املي جميع الحقول المطلوبة',
+    ];
+    echo json_encode($result);
+  }
   die;
 }

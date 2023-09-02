@@ -40,4 +40,9 @@ import 'owl.carousel';
   });
   console.log(carouselSingle);
 
+  var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+  var toastList = toastElList.map(function (toastEl) {
+    return new bootstrap.Toast(toastEl, option)
+  });
+  console.log(toastList);
 })();
