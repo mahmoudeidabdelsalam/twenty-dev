@@ -2048,3 +2048,80 @@ section#basicSpecificationsRemainder {
     }  
   }
 }
+
+.form-control {
+  border-radius: 8px;
+  min-height: 44px;
+  border-color: #3E3E3E;
+}
+
+.form-group {
+  position: relative;
+
+  .form-control[type=file] {
+    padding: 10px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      background: #fff;
+      right: 2px;
+      top: 2px;
+      width: 109px;
+      height: 42px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      pointer-events: none;
+    }
+  }
+
+  svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+.filter {
+  .input-group {
+    background: rgb(246, 246, 246);
+    padding: 8px 16px 8px 16px;
+    border-radius: 8px;
+    border: 1px solid rgb(232, 232, 232);
+
+    .form-control {
+      border: none;
+      background: transparent;
+      box-shadow: none;
+    }    
+  }
+}
+
+.item-order  {
+  padding-right: 10px;
+  border-right: 2px solid rgb(179, 179, 179); 
+
+  .link-call {
+    color: rgb(179, 179, 179);
+  }
+
+  svg {
+    rect {
+      fill: rgb(179, 179, 179);
+    }
+  }
+
+  &.is-done {
+    border-right: 2px solid rgb(30, 177, 71);
+
+    .link-call {
+      color: rgb(30, 177, 71);
+    }
+
+    svg {
+      rect {
+        fill: rgb(30, 177, 71);
+      }
+    }
+  }
+}

@@ -308,10 +308,11 @@ function lvl_one_basic_brand() {
 add_action('wp_ajax_set_function_add_new_Basic', 'set_function_add_new_Basic', 0);
 add_action('wp_ajax_nopriv_set_function_add_new_Basic', 'set_function_add_new_Basic');
 function set_function_add_new_Basic() {
-  if ( isset($_POST['parent_brand_id']) && isset($_POST['child_brand_id']) && $_POST['fuel_id'] &&  $_POST['engine_id'] && $_POST['cylinder_id'] && $_POST['push_id'] && $_POST['gear_id'] && $_POST['color_id'] && $_POST['safeties'] ) {
-    $id_basic = additionBasicManually($_POST['basic_name'], $_POST['parent_brand_id'], $_POST['child_brand_id'], $_POST['fuel_id'], $_POST['engine_id'], $_POST['cylinder_id'], $_POST['push_id'], $_POST['gear_id'], $_POST['color_id'], $_POST['safeties']);
+  if ( isset($_POST['parent_brand_id']) && isset($_POST['child_brand_id']) && $_POST['fuel_id'] &&  $_POST['engine_id'] && $_POST['cylinder_id'] && $_POST['push_id'] && $_POST['gear_id'] && $_POST['color_id'] && $_POST['safeties'] && $_POST['comforts'] && $_POST['techniques'] && $_POST['external'] ) {
+    $id_basic = additionBasicManually($_POST['basic_name'], $_POST['parent_brand_id'], $_POST['child_brand_id'], $_POST['fuel_id'], $_POST['engine_id'], $_POST['cylinder_id'], $_POST['push_id'], $_POST['gear_id'], $_POST['color_id'], $_POST['safeties'], $_POST['comforts'], $_POST['techniques'], $_POST['external']);
     $result = [
       "success" => true,
+      "message" => 'تم اضافة مواصفات اساسية',
       "id_basic" => $id_basic
     ];
     echo json_encode($result);

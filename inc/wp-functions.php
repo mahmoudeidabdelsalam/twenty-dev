@@ -377,7 +377,7 @@ function duplicate($car_id, $car_name, $car_price, $car_price_after, $car_instal
 }
 
 // addition BasicManually
-function additionBasicManually($basic_name, $parent_brand_id, $child_brand_id, $fuel_id, $engine_id, $cylinder_id, $push_id, $gear_id, $color_id, $safeties) {
+function additionBasicManually($basic_name, $parent_brand_id, $child_brand_id, $fuel_id, $engine_id, $cylinder_id, $push_id, $gear_id, $color_id, $safeties, $comforts, $techniques, $external) {
   $user_id = get_current_user_id();
   // add acf for new car
   $car = [
@@ -385,22 +385,58 @@ function additionBasicManually($basic_name, $parent_brand_id, $child_brand_id, $
     'post_name'   => sanitize_title($basic_name),
     'post_status' => 'draft',
     'post_type'   => 'basic_specifications',
-    'post_author' => $user_id
+    'post_author' => $user_id,
   ];
   $car_id = wp_insert_post($car);
 
+  do_action( 'acf/save_post' , $car_id );
+
   if ($car_id) {
-    $safeties_arr = [];
-    
+
+    $counter = 0;
     foreach ($safeties as $safety) {
-      $safeties_arr['text_specifications'] = $safety;
+      $counter++;
+      $row = array(
+        'field_622db90sad052ccd'	=> $safety
+      );
+      add_row('field_622db8e4sadd52ccb', $row, $car_id);
     }
-    // UPDATE POST META
-    update_field('specifications', $safeties_arr, $car_id);
+
+    $counter = 0;
+    foreach ($comforts as $comfort) {
+      $counter++;
+      $row = array(
+        'field_622db905125sadds12qwq14052ccd'	=> $comfort
+      );
+      add_row('field_622db414414148adsdae452ccb', $row, $car_id);
+    }
+
+    $counter = 0;
+    foreach ($techniques as $technique) {
+      $counter++;
+      $row = array(
+        'field_622db903ddas213dsadsad41412414052ccd'	=> $technique
+      );
+      add_row('field_622db84124sdae12asda31321312341241241241e452ccb', $row, $car_id);
+    }
+
+    $counter = 0;
+    foreach ($external as $exter) {
+      $counter++;
+      $row = array(
+        'field_622db90052qwwdqweqsdadasdasdqwewqeccd'	=> $exter
+      );
+      add_row('field_622db812323qadqwwqee12e1232133sae452ccb', $row, $car_id);
+    }
 
     // UPDATE TAXONOMY
-    wp_set_object_terms( $car_id, intval( $parent_brand_id ), 'basic-brand' );
-    wp_set_object_terms( $car_id, intval( $child_brand_id ), 'basic-brand' );
+    wp_set_object_terms( $car_id, $child_brand_id, 'basic-brand');
+    wp_set_object_terms( $car_id, $fuel_id, 'fuel-type');
+    wp_set_object_terms( $car_id, $engine_id, 'engine-type');
+    wp_set_object_terms( $car_id, $cylinder_id, 'cylinders-type');
+    wp_set_object_terms( $car_id, $push_id, 'push-type');
+    wp_set_object_terms( $car_id, $gear_id, 'gear-type');
+    wp_set_object_terms( $car_id, $color_id, 'color-type');
   } 
 
   return $car_id;

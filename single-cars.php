@@ -265,7 +265,7 @@ if ($query->have_posts()):
                 <p>بعد الضريبة</p>
                 <strong class="text-green d-block"><?= ($price_offer)? $price_offer:$car_price; ?> <?= the_field('currency_pricing', 'option'); ?></strong>
                 <?php if($price_offer):?><span class="old-price"><?= $car_price; ?> <?= the_field('currency_pricing', 'option'); ?></span><?php endif; ?>              
-                <a class="btn btn-success text-white w-100" href="/buying/">شراء هذة السيارة <i class="fas fa-arrow-left"></i></a>
+                <a class="btn btn-success text-white w-100" href="/buying/?car=<?= $car_id; ?>">شراء هذة السيارة <i class="fas fa-arrow-left"></i></a>
               </div>
             </div>
             <div class="cash-money box-price mb-2">
@@ -275,7 +275,7 @@ if ($query->have_posts()):
                 <strong class="text-green d-block"><?= $finance_price; ?></strong>
                 <p>مدة القسط</p>
                 <b>60</b> <small>شهر</small>
-                <a class="btn btn-dark text-white w-100" href="/financing/">طلب تمويل للسيارة <i class="fas fa-arrow-left"></i></a>
+                <a class="btn btn-dark text-white w-100" href="/financing/?car=<?= $car_id; ?>">طلب تمويل للسيارة <i class="fas fa-arrow-left"></i></a>
               </div>
             </div>
           </div>

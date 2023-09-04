@@ -53,7 +53,7 @@ $query = new WP_Query( $args );
             </svg>            
             <div class="info">
               <b>210</b>
-              <span>طلبات التمويل</span>
+              <span>طلبات الشراء</span>
             </div>
           </a>
         </li>
@@ -107,7 +107,7 @@ $query = new WP_Query( $args );
         </li>
         <!--  طلبات الشراء اونلاين -->
         <li class="item">
-          <a href="?tab=data">
+          <a href="?tab=personal">
             <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
               <mask id="mask0_689_13444" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="19">
               <path d="M15.1256 10.9998V12.4998H12.1257V10.9998C12.1257 10.602 12.2837 10.2205 12.565 9.93921C12.8463 9.65791 13.2278 9.49988 13.6257 9.49988C14.0235 9.49988 14.405 9.65791 14.6863 9.93921C14.9676 10.2205 15.1256 10.602 15.1256 10.9998ZM10.2507 12.4998H17.0006V16.9997H10.2507V12.4998Z" fill="white" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
@@ -160,7 +160,7 @@ $query = new WP_Query( $args );
             <div class="col-md-7 col-12 mt-5">
               <div class="card bg-gray p-5">
                 <h2 class="font-bold">أضافة سيارة من خلال المعرض بشكل يدوي</h2>
-                <p>في حالة عدم ايجاد السيارة في السيارات المقترحة يرجي أضافة السيارة من هنا</p>
+                <p>في حالة عدم ايجاد السيارة في السيارات المقترحةيرجي أضافة السيارة من هنا</p>
                 <a href="?tab=manually" class="btn btn-dark text-white py-2 mt-4 font-bold">
                   <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5.5 12H19.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -179,6 +179,16 @@ $query = new WP_Query( $args );
           get_template_part( 'templates/include/dashboard', 'add-manually' );
         elseif ($tab == 'funding'):
           get_template_part( 'templates/include/dashboard', 'funding' );
+        elseif ($tab == 'personal'):
+          get_template_part( 'templates/include/dashboard', 'personal' );
+        elseif ($tab == 'orders'):
+          get_template_part( 'templates/include/dashboard', 'orders' );
+        elseif ($tab == 'cars'):
+          get_template_part( 'templates/include/dashboard', 'cars' );
+        elseif ($tab == 'view'):
+          get_template_part( 'templates/include/dashboard', 'view' );     
+        elseif ($tab == 'call'):
+          get_template_part( 'templates/include/dashboard', 'call' );                              
         endif; 
       ?>
     </div>

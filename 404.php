@@ -7,20 +7,13 @@
 
 get_header();
 
-$search_enabled = get_theme_mod( 'search_enabled', '1' ); // Get custom meta-value.
+
+$bg_error = get_theme_file_uri().'/assets/img/404.gif';
 ?>
-<div id="post-0" class="content error404 not-found">
-	<h1 class="entry-title"><?php esc_html_e( 'Not found', 'twenty' ); ?></h1>
-	<div class="entry-content">
-		<p><?php esc_html_e( 'It looks like nothing was found at this location.', 'twenty' ); ?></p>
-		<div>
-			<?php
-				if ( '1' === $search_enabled ) :
-					get_search_form();
-				endif;
-			?>
-		</div>
-	</div><!-- /.entry-content -->
-</div><!-- /#post-0 -->
+
+<div>
+  <img class="m-auto d-block img-fluid" src="<?= $bg_error; ?>" alt="error 404">
+</div>
+
 <?php
 get_footer();

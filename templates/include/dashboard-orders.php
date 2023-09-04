@@ -43,7 +43,7 @@
   <div class="col-12">
     <div class="row m-0">
       <div class="col-md-4 col-12">
-        <h3>طلبات التمويل</h3>
+        <h3>طلبات الشراء</h3>
         <div class="card item-order d-flex flex-lg-row flex-column align-items-center mt-5 is-done">
           <div class="card-right-img">
             <svg width="32" height="31" viewBox="0 0 32 31" fill="none" xmlns="http://www.w3.org/2000/svg">

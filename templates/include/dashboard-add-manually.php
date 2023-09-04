@@ -262,37 +262,37 @@
       <div class="mb-5">
         <label class="form-label h2 font-bold text-dark">الأمان</label>
         <div class="form-check form-switch">
-          <input class="form-check-input" value="وسائد هوائية" name="safety[]" type="checkbox" id="Safety-1">
+          <input class="form-check-input" value="وسائد هوائية" name="safety[]" type="checkbox" checked id="Safety-1">
           <label class="form-check-label" for="Safety-1">
             <span>وسائد هوائية</span>
           </label>
         </div>  
         <div class="form-check form-switch">
-          <input class="form-check-input" value="فرامل ABS" name="safety[]" type="checkbox" id="Safety-2">
+          <input class="form-check-input" value="فرامل ABS" name="safety[]" type="checkbox" checked id="Safety-2">
           <label class="form-check-label" for="Safety-2">
             <span>فرامل ABS</span>
           </label>
         </div>          
         <div class="form-check form-switch">
-          <input class="form-check-input" value="سنتر لوك" name="safety[]" type="checkbox" id="Safety-3">
+          <input class="form-check-input" value="سنتر لوك" name="safety[]" type="checkbox" checked id="Safety-3">
           <label class="form-check-label" for="Safety-3">
             <span>سنتر لوك</span>
           </label>
         </div>   
         <div class="form-check form-switch">
-          <input class="form-check-input" value="أحزمة أمان" name="safety[]" type="checkbox" id="Safety-4">
+          <input class="form-check-input" value="أحزمة أمان" name="safety[]" type="checkbox" checked id="Safety-4">
           <label class="form-check-label" for="Safety-4">
             <span>أحزمة أمان</span>
           </label>
         </div>   
         <div class="form-check form-switch">
-          <input class="form-check-input" value="مساعد الفرامل BA" name="safety[]" type="checkbox" id="Safety-5">
+          <input class="form-check-input" value="مساعد الفرامل BA" name="safety[]" type="checkbox" checked id="Safety-5">
           <label class="form-check-label" for="Safety-5">
             <span>مساعد الفرامل BA</span>
           </label>
         </div>  
         <div class="form-check form-switch">
-          <input class="form-check-input" value="EBD توزيع قوة الفرامل الكترونيا<" name="safety[]" type="checkbox" id="Safety-6">
+          <input class="form-check-input" value="EBD توزيع قوة الفرامل الكترونيا" name="safety[]" type="checkbox" checked id="Safety-6">
           <label class="form-check-label" for="Safety-6">
             <span>EBD توزيع قوة الفرامل الكترونيا</span>
           </label>
@@ -302,49 +302,49 @@
       <div class="mb-5">
         <label class="form-label h2 font-bold text-dark">الراحة</label>
         <div class="form-check form-switch">
-          <input class="form-check-input" value="تحكم دريكسون" name="comforts[]" type="checkbox" id="comforts-1">
+          <input class="form-check-input" value="تحكم دريكسون" name="comforts[]" type="checkbox" checked id="comforts-1">
           <label class="form-check-label" for="comforts-1">
             <span>تحكم دريكسون</span>
           </label>
         </div>  
         <div class="form-check form-switch">
-          <input class="form-check-input" value="مثبت سرعة" name="comforts[]" type="checkbox" id="comforts-2">
+          <input class="form-check-input" value="مثبت سرعة" name="comforts[]" type="checkbox" checked id="comforts-2">
           <label class="form-check-label" for="comforts-2">
             <span>مثبت سرعة</span>
           </label>
         </div>          
         <div class="form-check form-switch">
-          <input class="form-check-input" value="زجاج كهربائي" name="comforts[]" type="checkbox" id="comforts-3">
+          <input class="form-check-input" value="زجاج كهربائي" name="comforts[]" type="checkbox" checked id="comforts-3">
           <label class="form-check-label" for="comforts-3">
             <span>زجاج كهربائي</span>
           </label>
         </div>   
         <div class="form-check form-switch">
-          <input class="form-check-input" value="تشغيل مفتاح" name="comforts[]" type="checkbox" id="comforts-4">
+          <input class="form-check-input" value="تشغيل مفتاح" name="comforts[]" type="checkbox" checked id="comforts-4">
           <label class="form-check-label" for="comforts-4">
             <span>تشغيل مفتاح</span>
           </label>
         </div>   
         <div class="form-check form-switch">
-          <input class="form-check-input" value="مكيف يدوي" name="comforts[]" type="checkbox" id="comforts-5">
+          <input class="form-check-input" value="مكيف يدوي" name="comforts[]" type="checkbox" checked id="comforts-5">
           <label class="form-check-label" for="comforts-5">
             <span>مكيف يدوي</span>
           </label>
         </div>  
         <div class="form-check form-switch">
-          <input class="form-check-input" value="تحكم مقاعد يدوى" name="comforts[]" type="checkbox" id="comforts-6">
+          <input class="form-check-input" value="تحكم مقاعد يدوى" name="comforts[]" type="checkbox" checked id="comforts-6">
           <label class="form-check-label" for="comforts-6">
             <span>تحكم مقاعد يدوى</span>
           </label>
         </div>  
         <div class="form-check form-switch">
-          <input class="form-check-input" value="مقاعد قماش وجلد" name="comforts[]" type="checkbox" id="comforts-7">
+          <input class="form-check-input" value="مقاعد قماش وجلد" name="comforts[]" type="checkbox" checked id="comforts-7">
           <label class="form-check-label" for="comforts-7">
             <span>مقاعد قماش وجلد</span>
           </label>
         </div>  
         <div class="form-check form-switch">
-          <input class="form-check-input" value="فتح الابواب بالريموت" name="comforts[]" type="checkbox" id="comforts-7">
+          <input class="form-check-input" value="فتح الابواب بالريموت" name="comforts[]" type="checkbox" checked id="comforts-7">
           <label class="form-check-label" for="comforts-7">
             <span>فتح الابواب بالريموت</span>
           </label>
@@ -354,43 +354,43 @@
       <div class="mb-5">
         <label class="form-label h2 font-bold text-dark">تقنيات</label>
         <div class="form-check form-switch">
-          <input class="form-check-input" value="بلوتوث" name="techniques[]" type="checkbox" id="techniques-1">
+          <input class="form-check-input" value="بلوتوث" name="techniques[]" type="checkbox" checked id="techniques-1">
           <label class="form-check-label" for="techniques-1">
             <span>بلوتوث</span>
           </label>
         </div>  
         <div class="form-check form-switch">
-          <input class="form-check-input" value="مدخل USB" name="techniques[]" type="checkbox" id="techniques-2">
+          <input class="form-check-input" value="مدخل USB" name="techniques[]" type="checkbox" checked id="techniques-2">
           <label class="form-check-label" for="techniques-2">
             <span>مدخل USB</span>
           </label>
         </div>          
         <div class="form-check form-switch">
-          <input class="form-check-input" value="كاميرا خلفية" name="comforts[]" type="checkbox" id="techniques-3">
+          <input class="form-check-input" value="كاميرا خلفية" name="comforts[]" type="checkbox" checked id="techniques-3">
           <label class="form-check-label" for="techniques-3">
             <span>كاميرا خلفية</span>
           </label>
         </div>   
         <div class="form-check form-switch">
-          <input class="form-check-input" value="منافذ طاقة" name="techniques[]" type="checkbox" id="techniques-4">
+          <input class="form-check-input" value="منافذ طاقة" name="techniques[]" type="checkbox" checked id="techniques-4">
           <label class="form-check-label" for="techniques-4">
             <span>منافذ طاقة</span>
           </label>
         </div>   
         <div class="form-check form-switch">
-          <input class="form-check-input" value="شاشة وسائط" name="techniques[]" type="checkbox" id="techniques-5">
+          <input class="form-check-input" value="شاشة وسائط" name="techniques[]" type="checkbox" checked id="techniques-5">
           <label class="form-check-label" for="techniques-5">
             <span>شاشة وسائط</span>
           </label>
         </div>  
         <div class="form-check form-switch">
-          <input class="form-check-input" value="راديو" name="techniques[]" type="checkbox" id="techniques-6">
+          <input class="form-check-input" value="راديو" name="techniques[]" type="checkbox" checked id="techniques-6">
           <label class="form-check-label" for="techniques-6">
             <span>راديو</span>
           </label>
         </div> 
         <div class="form-check form-switch">
-          <input class="form-check-input" value="أندرويد أوتو" name="techniques[]" type="checkbox" id="techniques-7">
+          <input class="form-check-input" value="أندرويد أوتو" name="techniques[]" type="checkbox" checked id="techniques-7">
           <label class="form-check-label" for="techniques-7">
             <span>أندرويد أوتو</span>
           </label>
@@ -399,65 +399,65 @@
       <div class="mb-5">
         <label class="form-label h2 font-bold text-dark">تجهيزات خارجية</label>
         <div class="form-check form-switch">
-          <input class="form-check-input" value="مرايا تحكم كهربائي" name="external[]" type="checkbox" id="external-1">
+          <input class="form-check-input" value="مرايا تحكم كهربائي" name="external[]" type="checkbox" checked id="external-1">
           <label class="form-check-label" for="external-1">
             <span>مرايا تحكم كهربائي</span>
           </label>
         </div>  
         <div class="form-check form-switch">
-          <input class="form-check-input" value="كشافات ضباب امامية" name="external[]" type="checkbox" id="external-2">
+          <input class="form-check-input" value="كشافات ضباب امامية" name="external[]" type="checkbox" checked id="external-2">
           <label class="form-check-label" for="external-2">
             <span>كشافات ضباب امامية</span>
           </label>
         </div>          
         <div class="form-check form-switch">
-          <input class="form-check-input" value="جنوط" name="external[]" type="checkbox" id="external-3">
+          <input class="form-check-input" value="جنوط" name="external[]" type="checkbox" checked id="external-3">
           <label class="form-check-label" for="external-3">
             <span>جنوط</span>
           </label>
         </div>   
         <div class="form-check form-switch">
-          <input class="form-check-input" value="حساسات خلفية" name="external[]" type="checkbox" id="external-4">
+          <input class="form-check-input" value="حساسات خلفية" name="external[]" type="checkbox" checked id="external-4">
           <label class="form-check-label" for="external-4">
             <span>حساسات خلفية</span>
           </label>
         </div>   
         <div class="form-check form-switch">
-          <input class="form-check-input" value="اشارات بالمرايا" name="external[]" type="checkbox" id="external-5">
+          <input class="form-check-input" value="اشارات بالمرايا" name="external[]" type="checkbox" checked id="external-5">
           <label class="form-check-label" for="external-5">
             <span>اشارات بالمرايا</span>
           </label>
         </div>  
         <div class="form-check form-switch">
-          <input class="form-check-input" value="جناح خلفى" name="external[]" type="checkbox" id="external-6">
+          <input class="form-check-input" value="جناح خلفى" name="external[]" type="checkbox" checked id="external-6">
           <label class="form-check-label" for="external-6">
             <span>جناح خلفى</span>
           </label>
         </div>
-      </div>
-      <div class="form-check form-switch">
-        <input class="form-check-input" value="مصابيح ليد" name="external[]" type="checkbox" id="external-7">
-        <label class="form-check-label" for="external-7">
-          <span>مصابيح ليد</span>
-        </label>
-      </div>  
-      <div class="form-check form-switch">
-        <input class="form-check-input" value="مصابيح ضباب خلفية" name="external[]" type="checkbox" id="external-8">
-        <label class="form-check-label" for="external-8">
-          <span>مصابيح ضباب خلفية</span>
-        </label>
-      </div>                
-      <div class="form-check form-switch">
-        <input class="form-check-input" value="أنوار نهارية LED" name="external[]" type="checkbox" id="external-9">
-        <label class="form-check-label" for="external-9">
-          <span>أنوار نهارية LED</span>
-        </label>
-      </div>  
-      <div class="form-check form-switch">
-        <input class="form-check-input" value="التحكم بارتفاع الأنوار الأمامية" name="external[]" type="checkbox" id="external-10">
-        <label class="form-check-label" for="external-10">
-          <span>التحكم بارتفاع الأنوار الأمامية</span>
-        </label>
+        <div class="form-check form-switch">
+          <input class="form-check-input" value="مصابيح ليد" name="external[]" type="checkbox" checked id="external-7">
+          <label class="form-check-label" for="external-7">
+            <span>مصابيح ليد</span>
+          </label>
+        </div>  
+        <div class="form-check form-switch">
+          <input class="form-check-input" value="مصابيح ضباب خلفية" name="external[]" type="checkbox" checked id="external-8">
+          <label class="form-check-label" for="external-8">
+            <span>مصابيح ضباب خلفية</span>
+          </label>
+        </div>                
+        <div class="form-check form-switch">
+          <input class="form-check-input" value="أنوار نهارية LED" name="external[]" type="checkbox" checked id="external-9">
+          <label class="form-check-label" for="external-9">
+            <span>أنوار نهارية LED</span>
+          </label>
+        </div>  
+        <div class="form-check form-switch">
+          <input class="form-check-input" value="التحكم بارتفاع الأنوار الأمامية" name="external[]" type="checkbox" checked id="external-10">
+          <label class="form-check-label" for="external-10">
+            <span>التحكم بارتفاع الأنوار الأمامية</span>
+          </label>
+        </div>
       </div>
 
       <a class="btn btn-primary btn-lg w-100" id="AddNewManuallyCars">
@@ -466,8 +466,6 @@
     </div>
   </div>
 </section>
-
-
 
 <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
   <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true">
@@ -496,6 +494,7 @@
         });
       }
     });
+
     // remove item from galleery
     $("body").on('click', '.remove[href^="#"]', function(e) {
       e.preventDefault();
@@ -533,6 +532,7 @@
         }
       });
     });
+
     // add Manually images Inside
     $('body').on('change', '#inside', function() {
       var galleries = $('#galleriesInside');
@@ -604,6 +604,9 @@
       var gear_id               = $('#gear_id').find(":selected").val();
       var color_id              = $('#color_id').find(":selected").val();
       var safeties              = $("input[name='safety[]']").map(function(){return $(this).val();}).get();
+      var comforts              = $("input[name='comforts[]']").map(function(){return $(this).val();}).get();
+      var techniques            = $("input[name='techniques[]']").map(function(){return $(this).val();}).get();
+      var external              = $("input[name='external[]']").map(function(){return $(this).val();}).get();
       var action                = 'set_function_add_new_Basic';
       var basic_name            = $('#parent_brand_id').find(":selected").text() + '-' + $('#child_brand_id').find(":selected").text() ;
 
@@ -621,6 +624,9 @@
           gear_id: gear_id,
           color_id: color_id,
           safeties: safeties,
+          comforts: comforts,
+          techniques: techniques,
+          external: external,
           basic_name: basic_name
         },
         beforeSend: function () {
@@ -631,9 +637,9 @@
           $('.toast-body').html(JSON.parse(response).message);
           $('.toast').toast('show')
           $('.loading').hide();
-          // if(JSON.parse(response).success) {
-          //   addManuallyCar(JSON.parse(response).id_basic)
-          // }
+          if(JSON.parse(response).success) {
+            addManuallyCar(JSON.parse(response).id_basic)
+          }
         },
         error: function(response) {
           $('.loading').hide();
