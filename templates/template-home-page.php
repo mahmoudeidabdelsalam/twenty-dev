@@ -144,7 +144,7 @@ if( !$favorites ){
                   </div>
                   <a class="link-img" href="<?= get_permalink(); ?>"><img class="img-fluid" src="<?= ($image_offer)? $image_offer:$img_url; ?>" alt="<?= get_the_title(); ?>"></a>
                 </div>
-                <div class="car-box-content position-relative p-4">
+                <div class="car-box-content position-relative p-lg-4 p-1">
                   <h4 class="text-uppercase"><?= get_the_title(); ?></h4>
                   <div class="information">
                     <p class="pricing">
@@ -220,7 +220,7 @@ if( !$favorites ){
               $avatar = get_field('user_logo', 'user_'. $author_id);
               $finance_price = get_field('finance_price', $car->ID);
           ?>
-          <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+          <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-4">
 
             <div class="car-box car-offer">
               <?php if(get_field('sold_done', $car->ID)): ?>
@@ -243,7 +243,7 @@ if( !$favorites ){
                 </div>
                 <a class="link-img" href="<?= get_permalink($car->ID); ?>"><img class="img-fluid" src="<?= ($img_url)? $img_url:$placeholder; ?>" alt="<?= get_the_title($car->ID); ?>"></a>
               </div>
-              <div class="car-box-content position-relative p-4">
+              <div class="car-box-content position-relative p-lg-4 p-1">
                 <h4 class="text-uppercase"><?= get_the_title($car->ID); ?></h4>
                 <div class="information">
                   <p class="pricing">
@@ -281,7 +281,7 @@ if( !$favorites ){
               $author_id = get_the_author_meta('ID');
               $avatar = get_field('user_logo', 'user_'. $author_id);
           ?>
-            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-4">
               <div class="car-box car-offer">
                 <?php if(get_field('sold_done')): ?>
                   <div class="sold-done" style="position: absolute;z-index: 9;left: 15px;padding: 30px;bottom: 0;right: 15px;top: 0;pointer-events: none;">
@@ -303,7 +303,7 @@ if( !$favorites ){
                   </div>
                   <a class="link-img" href="<?= get_permalink(); ?>"><img class="img-fluid" src="<?= ($img_url)? $img_url:$placeholder; ?>" alt="<?= get_the_title(); ?>"></a>
                 </div>
-                <div class="car-box-content position-relative p-4">
+                <div class="car-box-content position-relative p-lg-4 p-1">
                   <h4 class="text-uppercase"><?= get_the_title(); ?></h4>
                   <div class="information">
                     <p class="pricing">
@@ -411,9 +411,9 @@ if( !$favorites ){
               continue;
           }
         ?>
-        <div class="col-md-2 col-sm-4 col-12">
+        <div class="col-md-2 col-sm-3 col-3">
           <div class="card-brand">
-            <div class="card-img-top p-3">
+            <div class="card-img-top p-lg-3">
               <div class="card">
                 <a href="<?= $term_link; ?>">
                   <img src="<?= ($image)? $image:$placeholder; ?>" class="img-fluid" alt="<?= $term->name; ?>">
@@ -470,7 +470,7 @@ if( !$favorites ){
                 $avatar = get_field('user_logo', 'user_'. $author_id);
                 $finance_price = get_field('finance_price', $car->ID);
             ?>
-              <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+              <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-4">
                 <div class="car-box car-offer">
                   <?php if(get_field('sold_done', $car->ID)): ?>
                     <div class="sold-done" style="position: absolute;z-index: 9;left: 15px;padding: 30px;bottom: 0;right: 15px;top: 0;pointer-events: none;">
@@ -492,7 +492,7 @@ if( !$favorites ){
                     </div>
                     <a class="link-img" href="<?= get_permalink($car->ID); ?>"><img class="img-fluid" src="<?= ($img_url)? $img_url:$placeholder; ?>" alt="<?= get_the_title($car->ID); ?>"></a>
                   </div>
-                  <div class="car-box-content position-relative p-4">
+                  <div class="car-box-content position-relative p-lg-4 p-1">
                     <h4 class="text-uppercase"><?= get_the_title($car->ID); ?></h4>
                     <div class="information">
                       <p class="pricing">
@@ -533,7 +533,7 @@ if( !$favorites ){
                 $avatar = get_field('user_logo', 'user_'. $author_id);
                 $finance_price = get_field('finance_price');
             ?>
-              <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+              <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-4">
                 <div class="car-box car-offer">
                   <?php if(get_field('sold_done')): ?>
                     <div class="sold-done" style="position: absolute;z-index: 9;left: 15px;padding: 30px;bottom: 0;right: 15px;top: 0;pointer-events: none;">
@@ -555,7 +555,7 @@ if( !$favorites ){
                     </div>
                     <a class="link-img" href="<?= get_permalink(); ?>"><img class="img-fluid" src="<?= ($img_url)? $img_url:$placeholder; ?>" alt="<?= get_the_title(); ?>"></a>
                   </div>
-                  <div class="car-box-content position-relative p-4">
+                  <div class="car-box-content position-relative p-lg-4 p-1">
                     <h4 class="text-uppercase"><?= get_the_title(); ?></h4>
                     <div class="information">
                       <p class="pricing">

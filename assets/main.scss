@@ -228,6 +228,11 @@ img {
 .bg-cyan {
   background-color: $cyan;
 }
+
+.bg-blue {
+  background: $blue;
+}
+
 /**
  * WordPress customization
  */
@@ -730,10 +735,6 @@ h3.section-headline {
 		}
 	}
 
-  .bg-blue {
-    background: $blue;
-  }
-
 	.car-box-content {
 		h4 {
 			font-size: 20px;
@@ -770,6 +771,7 @@ h3.section-headline {
 			.logo-author {
 				img {
 					width: 39px;
+          max-width: 39px;
 					height: 39px;
 					object-fit: cover;
 					border-radius: 100%;
@@ -1999,56 +2001,6 @@ section#basicSpecificationsRemainder {
     min-height: 300px;
 }
 
-// Mobile Style
-@media (max-width: breakpoint-max(sm)) {
-  .navbar-brand {
-      border: none;
-  }
-
-  header {
-    nav {
-      div#navbar {
-          width: 100%;
-
-        .navbar-nav {
-          display: flex;
-          flex-wrap: nowrap;
-          flex-direction: row;
-          overflow-x: scroll;
-          white-space: nowrap;
-          width: 100%;
-          overflow-y: hidden;
-          padding: 15px !important;
-
-          .current_page_item {
-            a {
-              background: #d97d02;
-            }
-          }
-
-          &:hover {
-            .current_page_item {
-              a {
-                background: transparent;
-              }
-            }
-          }
-
-          a {
-            border: none;
-            padding: 10px;
-            border-radius: 15px;
-
-            &:hover {
-              background: #d97d02;
-            }
-          }
-        }
-      }
-    }  
-  }
-}
-
 .form-control {
   border-radius: 8px;
   min-height: 44px;
@@ -2124,4 +2076,275 @@ section#basicSpecificationsRemainder {
       }
     }
   }
+}
+
+.offcanvas {
+  .offcanvas-body {
+    .nav-link {
+      font-size: 20px;
+      line-height: 28px;
+      padding: 10px;
+    }
+  }
+
+  .btn-close {
+    background-color: rgb(255, 255, 255);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Mobile Style
+@media (max-width: breakpoint-max(md)) {
+  .navbar-brand {
+    border: none;
+    margin: 0;
+    padding: 0;
+    padding: 10px 0 0;
+  }
+
+  header {
+    nav {
+      div#navbar {
+          width: 100%;
+
+        .navbar-nav {
+          display: flex;
+          flex-wrap: nowrap;
+          flex-direction: row;
+          overflow-x: scroll;
+          white-space: nowrap;
+          width: 100%;
+          overflow-y: hidden;
+          padding: 15px !important;
+
+          .current_page_item {
+            a {
+              background: #d97d02;
+            }
+          }
+
+          &:hover {
+            .current_page_item {
+              a {
+                background: transparent;
+              }
+            }
+          }
+
+          a {
+            border: none;
+            padding: 10px;
+            border-radius: 15px;
+
+            &:hover {
+              background: #d97d02;
+              border: none !important;
+            }
+          }
+        }
+      }
+    }  
+  }
+
+  .app-mobile {
+    align-items: center;
+
+    .btn {
+      font-size: 12px;
+    }
+  }
+
+  .top-bar-mobile {
+    .btn {
+      font-size: 12px;
+    }
+  }
+
+  section#section-about {
+    display: none;
+  }
+
+  .car-box {
+    .car-box-footer {
+      white-space: nowrap;
+
+      span {
+        font-size: 12px !important;
+      }
+    }
+
+    .car-box-img,
+    .car-box-img img {
+      height: 140px;
+      object-fit: cover;
+    }
+
+    .car-box-content {
+      h4,
+      .h4 {
+        font-size: 14px;
+        min-height: 40px;
+      }
+
+      .pricing {
+        font-size: 10px;
+
+        .new-price {
+          font-size: 18px;
+        }
+      }
+
+       span.author {
+        svg {
+          display: none;
+        }
+
+        span {
+          font-size: 12px;
+        }
+       }
+    }
+  }
+
+  .row {
+    --bs-gutter-y: 0.25rem;
+  }
+
+  section#section-partners {
+    .row {
+      white-space: nowrap;
+      flex-flow: row;
+      overflow-y: hidden;
+      overflow-x: scroll;
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    .col-12 {
+      .btn {
+        width: 100%;
+        background-color: rgb(20, 20, 20);
+        color: rgb(255, 255, 255);
+      }    
+    } 
+  }
+
+  .card-brand {
+    span {
+      font-size: 12px;
+    }
+
+    .card {
+      img {
+        height: auto;
+        min-height: 70px;
+      }
+    }
+  }
+
+  section#section-services {
+    display: none;
+  }
+
+  section#section-app {
+    .row {
+      background-size: contain;
+      background-color: rgb(244, 190, 21);
+      min-height: 1px;
+      padding: 30px 0;
+      background-position: bottom;
+    }
+  }
+
+  .section-app-container {
+    .section-headline {
+      font-size: 20px;
+      margin: 0;
+      line-height: 1;
+    }
+
+    .section-content {
+      font-size: 14px;
+    }
+
+    .section-action {
+      .btn {
+        padding: 10px !important;
+      } 
+    }
+  }
+
+  .section-testimonial {
+      background: transparent;
+      padding: 0;
+      margin: 0;
+
+    h3.section-headline {
+      color: rgb(20, 20, 20) !important;
+      font-size: 18px !important;
+      margin-bottom: 0 !important;
+    }
+
+    .owl-item {
+      margin: 10px !important;
+      background: rgb(248, 248, 248);
+      color: rgb(20, 20, 20);
+
+      p,
+      h4 {
+        color: rgb(20, 20, 20)
+      }
+    }
+  }
+
+  footer#footer {
+    text-align: center;
+    background: rgb(246, 246, 246) !important;
+    padding: 0;
+      
+    nav.menu-footer-container {
+      display: none;
+    }
+
+    ul.social-icons {
+      justify-content: center;
+    }
+
+    .navbar-brand {
+      display: none !important;
+    }
+
+    .social-media {
+      * {
+        color: rgb(20, 20, 20) !important;
+        border-color: rgb(20, 20, 20) !important;
+      }
+    }
+
+  }
+
+  .copyright {
+      text-align: center;
+  }
+
+// end resposnive
 }

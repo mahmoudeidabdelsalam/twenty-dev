@@ -9303,7 +9303,7 @@ if( function_exists('acf_add_local_field_group') ):
         'required' => 0,
         'conditional_logic' => 0,
         'wrapper' => array(
-          'width' => '33.333',
+          'width' => '25',
           'class' => '',
           'id' => '',
         ),
@@ -9318,12 +9318,27 @@ if( function_exists('acf_add_local_field_group') ):
         'required' => 0,
         'conditional_logic' => 0,
         'wrapper' => array(
-          'width' => '33.333',
+          'width' => '25',
           'class' => '',
           'id' => '',
         ),
         'return_format' => 'url',
       ),
+      array(
+        'key' => 'field_62a3423sde2055fc6bf1231246',
+        'label' => 'حراج السيارات المستعملة',
+        'name' => 'page_car_used',
+        'type' => 'link',
+        'instructions' => '',
+        'required' => 0,
+        'conditional_logic' => 0,
+        'wrapper' => array(
+          'width' => '25',
+          'class' => '',
+          'id' => '',
+        ),
+        'return_format' => 'url',
+      ),      
       array(
         'key' => 'field_62a0323e3255fc6bf46',
         'label' => 'صفحة العلامات التجارية',
@@ -9333,7 +9348,7 @@ if( function_exists('acf_add_local_field_group') ):
         'required' => 0,
         'conditional_logic' => 0,
         'wrapper' => array(
-          'width' => '33.333',
+          'width' => '25',
           'class' => '',
           'id' => '',
         ),

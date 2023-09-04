@@ -5,6 +5,7 @@
 	$navbar_position = get_theme_mod( 'navbar_position', 'static' ); // Get custom meta-value.
 	$search_enabled  = get_theme_mod( 'search_enabled', '1' ); // Get custom meta-value.
   $page_car_hraj = get_field('page_car_hraj', 'option');
+  $page_car_used = get_field('page_car_used', 'option');
   $bg_login = get_theme_file_uri().'/assets/img/bg-login.jpg';
   $logo_mobile = get_theme_file_uri().'/assets/img/logo-mobile.svg';
 ?>
@@ -167,12 +168,29 @@
             </div>            
           <?php endif; ?>
         </div>
-
+        
+        <!-- download app in mobile -->
         <div class="app-mobile d-lg-none d-md-none d-flex">
           <span>حمل  تطبيق عشرين الأن</span>
+          <a class="btn bg-dark border-0 rounded-0 text-white me-3">
+            <span>حمل من متجر أبل</span>
+            <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.331 20.3581C16.2972 21.2024 15.1685 21.0691 14.0819 20.6691C12.932 20.2603 11.8771 20.2425 10.664 20.6691C9.14489 21.2202 8.34316 21.0602 7.43593 20.3581C2.28794 15.8875 3.04748 9.07948 8.89172 8.83063C10.3159 8.89284 11.3075 9.48832 12.1409 9.54165C13.3857 9.32834 14.5777 8.71509 15.9069 8.79508C17.4998 8.90173 18.7024 9.435 19.4936 10.3949C16.2023 12.0569 16.9829 15.7098 20 16.7319C19.3987 18.065 18.618 19.3893 17.3205 20.367L17.331 20.3581ZM12.0354 8.7773C11.8771 6.79533 13.7865 5.15998 15.9808 5C16.2867 7.29304 13.5122 8.9995 12.0354 8.7773Z" fill="white"/>
+            </svg>
+          </a>
         </div>
-
-        <!-- menu -->
+        <hr class="d-lg-none d-md-none d-flex col-12">
+        <!-- menu top-bar-mobile -->
+        <div class="top-bar-mobile d-lg-none d-md-none d-flex justify-content-between align-items-center w-100">
+          <a class="btn btn-outline-light" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+            <svg width="35" height="36" viewBox="0 0 35 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M5.88714 8.5H15.3229C15.8234 8.5 16.3034 8.69882 16.6573 9.05273C17.0112 9.40664 17.21 9.88664 17.21 10.3871C17.21 10.8876 17.0112 11.3676 16.6573 11.7216C16.3034 12.0755 15.8234 12.2743 15.3229 12.2743H5.88714C5.38664 12.2743 4.90664 12.0755 4.55273 11.7216C4.19882 11.3676 4 10.8876 4 10.3871C4 9.88664 4.19882 9.40664 4.55273 9.05273C4.90664 8.69882 5.38664 8.5 5.88714 8.5ZM19.0971 23.5971H28.5329C29.0334 23.5971 29.5134 23.796 29.8673 24.1499C30.2212 24.5038 30.42 24.9838 30.42 25.4843C30.42 25.9848 30.2212 26.4648 29.8673 26.8187C29.5134 27.1726 29.0334 27.3714 28.5329 27.3714H19.0971C18.5966 27.3714 18.1166 27.1726 17.7627 26.8187C17.4088 26.4648 17.21 25.9848 17.21 25.4843C17.21 24.9838 17.4088 24.5038 17.7627 24.1499C18.1166 23.796 18.5966 23.5971 19.0971 23.5971ZM5.88714 16.0486H28.5329C29.0334 16.0486 29.5134 16.2474 29.8673 16.6013C30.2212 16.9552 30.42 17.4352 30.42 17.9357C30.42 18.4362 30.2212 18.9162 29.8673 19.2701C29.5134 19.624 29.0334 19.8229 28.5329 19.8229H5.88714C5.38664 19.8229 4.90664 19.624 4.55273 19.2701C4.19882 18.9162 4 18.4362 4 17.9357C4 17.4352 4.19882 16.9552 4.55273 16.6013C4.90664 16.2474 5.38664 16.0486 5.88714 16.0486Z" fill="#323232"/>
+            </svg>
+          </a>
+          <a class="btn btn-primary py-3 px-2 text-white rounded-0" href="<?= $page_car_hraj; ?>">سيارات مفحوصة مضمونة</a>
+          <a class="btn bg-blue py-3 px-2 text-white rounded-0" href="<?= $page_car_used; ?>">حراج السيارات المستعملة</a>
+        </div>
+        <!-- menu topbar dasktop-->
 				<div id="topbar" class="collapse navbar-collapse">
 					<?php
 						// Loading WordPress Custom Menu (theme_location).
@@ -187,7 +205,6 @@
 						);
 					?>
 				</div><!-- /.navbar-collapse -->
-
         <div class="social-media d-none d-lg-flex">
           <span>تواصل معنا :</span>
             <ul class="social-icons">
@@ -203,11 +220,34 @@
               endif;
               ?>
             </ul>          
-        </div>
-
+        </div><!-- /.social-media -->
 			</div><!-- /.container -->
 		</nav>
 
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+          <div class="offcanvas-header bg-dark py-5 px-3 d-flex flex-column position-relative">
+            <a href="<?php echo esc_url(home_url('/')); ?>" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" rel="home">
+              <img class="img-fluid" src="<?=get_theme_file_uri().'/assets/img/logo-footer.svg' ?>" alt="<?=get_bloginfo('name', 'display') ?>" title="<?=get_bloginfo('name') ?>" />
+            </a>
+            <h3 class="mt-3 text-white">موقع عشرين للسيارات</h3>
+            <button type="button" class="btn-close text-reset position-absolute end-0 m-3" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <?php
+              // Loading WordPress Custom Menu (theme_location).
+              wp_nav_menu(
+                array(
+                  'menu_class'     => 'navbar-nav ml-auto p-0',
+                  'container'      => '',
+                  'fallback_cb'    => 'WP_Bootstrap_Navwalker::fallback',
+                  'walker'         => new WP_Bootstrap_Navwalker(),
+                  'theme_location' => 'main-menu',
+                )
+              );
+            ?>
+          </div>
+        </div><!-- /.menu top-bar-mobile -->
+        
     <nav class="navbar navbar-expand-md <?php echo esc_attr( $navbar_scheme ); if ( isset( $navbar_position ) && 'fixed_top' === $navbar_position ) : echo ' fixed-top'; elseif ( isset( $navbar_position ) && 'fixed_bottom' === $navbar_position ) : echo ' fixed-bottom'; endif; if ( is_home() || is_front_page() ) : echo ' home'; endif; ?>">
       <div class="container">
         <!-- menu -->
