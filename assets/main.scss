@@ -150,8 +150,8 @@ body {
 
 /* width */
 ::-webkit-scrollbar {
-  width: 3px;
-  height:3px;
+  width: 6px;
+  height: 6px;
 }
 
 /* Track */
@@ -2189,6 +2189,7 @@ section#basicSpecificationsRemainder {
 
       span {
         font-size: 12px !important;
+        margin: 0 2px;
       }
     }
 
@@ -2244,8 +2245,28 @@ section#basicSpecificationsRemainder {
         width: 100%;
         background-color: rgb(20, 20, 20);
         color: rgb(255, 255, 255);
-      }    
-    } 
+      }
+    }
+
+    .showroom {
+      background: rgb(14, 188, 199) !important;
+      padding: 0 !important;
+
+      h4 {
+        min-height: 1px;
+        color: rgb(255, 255, 255);
+      }
+
+      .information {
+        span.d-block {
+          display: none !important;
+        }
+
+        span {
+          color: rgb(255, 255, 255) !important;
+        }
+      }
+    }
   }
 
   .card-brand {
@@ -2262,7 +2283,29 @@ section#basicSpecificationsRemainder {
   }
 
   section#section-services {
-    display: none;
+    .box-card,
+    .section-header {
+      display: none;
+    }
+
+    h3.section-headline {
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    .section-content {
+      font-size: 12px;
+      line-height: 1;
+
+      p {
+        margin: 0;
+
+        .btn {
+          font-size: 12px;
+          padding: 5px 10px !important;
+        }
+      }
+    }
   }
 
   section#section-app {
@@ -2288,7 +2331,19 @@ section#basicSpecificationsRemainder {
 
     .section-action {
       .btn {
-        padding: 10px !important;
+        padding: 4px!important;
+        font-size: 9px;
+        background: $dark;
+        color: $white;
+
+        svg {
+          width: 12px;
+          margin: 0 5px;
+
+          path {
+            fill: $white;
+          }
+        }
       } 
     }
   }
@@ -2309,15 +2364,26 @@ section#basicSpecificationsRemainder {
       background: rgb(248, 248, 248);
       color: rgb(20, 20, 20);
 
-      p,
       h4 {
-        color: rgb(20, 20, 20)
+        color: rgb(20, 20, 20);
+        font-weight: bold;
+        font-size: 14px;
+      }
+
+      p {
+        font-size: 13px;
+        color: rgb(50, 50, 50);
+        margin: 0 0 5px 0;
       }
     }
 
     .owl-nav {
       left: 15px;
       top: -44px;
+    }
+
+    .owl-stage-outer {
+      height: 275px;
     }
   }
 
@@ -2348,7 +2414,75 @@ section#basicSpecificationsRemainder {
   }
 
   .copyright {
-      text-align: center;
+    text-align: center;
+    background: $dark;
+    color: rgb(255, 255, 255);
+    padding: 20px 0 !important;
+    height: auto;
+
+    span {
+      display: block;
+      margin-bottom: 10px;
+    }
+  }
+
+  .car-box {
+    .car-box-head-offer {
+      font-size: 8px;
+      padding: 0 10px !important;
+      white-space: nowrap;
+      height: 24px;
+    }
+
+    .car-box-head {
+      left: 5px;
+      right: 5px;
+      top: 5px;
+
+      .icon-box {
+        padding: 0 !important;
+        height: 24px;
+        box-shadow: none;
+        width: auto;
+      }
+
+      .car-box-head-360 {
+        width: 24px !important;
+      }
+
+      svg {
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+
+  section#brands {
+    .btn {
+      width: 100%;
+      background: $dark;
+      color: $white;
+    }
+  }
+
+  h3.section-headline {
+    &::after {
+      content: "";
+      width: 36px;
+      height: 2px;
+      background: $primary;
+      display: block;
+    } 
+  } 
+
+  section#section-contact {
+    .box-card {
+      margin-top: 30px;
+
+      .box-services {
+        border-radius: 0;
+      }      
+    }
   }
 
 // end resposnive

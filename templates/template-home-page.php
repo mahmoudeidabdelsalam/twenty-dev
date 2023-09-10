@@ -11,6 +11,9 @@ $placeholder = get_theme_file_uri().'/assets/img/placeholder.png';
 $brands = get_terms('basic-brand', array('parent' => 0, 'number' => 12));
 $term_page_link = get_field('term_page_link', 'option');
 $installment_page_link = get_field('page_installment', 'option');
+$page_offer = get_field('page_offer', 'option');
+$page_car_news = get_field('page_car_news', 'option');
+$page_car_used = get_field('page_car_used', 'option');
 
 $user_id = get_current_user_id();
 $favorites = get_user_meta($user_id, 'favorites', true) ;
@@ -99,8 +102,8 @@ if( !$favorites ){
         <h2 class="section-title">عروضنا مستمرة</h2>
       </div>
       <div class="row">
-        <div class="owl-carousel owl-theme owl-offers">
-        <?php
+        <div class="owl-carousel owl-theme owl-offers d-none d-lg-block d-md-block">
+          <?php
           while ( $query->have_posts() ):
             $query->the_post();
             $img_url = get_the_post_thumbnail_url(get_the_ID(),'medium');
@@ -109,7 +112,6 @@ if( !$favorites ){
             $image_offer = get_field('image_offer');
             $finance_price = get_field('finance_price');
             ?>
-
               <div class="car-box car-offer">
                 <?php if(get_field('sold_done')): ?>
                   <div class="sold-done" style="position: absolute;z-index: 9;left: 15px;padding: 30px;bottom: 0;right: 15px;top: 0;pointer-events: none;">
@@ -172,11 +174,98 @@ if( !$favorites ){
                   <span>ريال/ شهريا</span>
                 </div>
               </div>
+            <?php
+          endwhile; 
+          wp_reset_postdata(); 
+          ?>
+        </div>
+      </div>
 
-          <?php
-            endwhile; 
-          ?>      
-          <?php wp_reset_postdata(); ?>
+      <div class="row d-lg-none d-md-none">
+        <?php
+          while ( $query->have_posts() ):
+            $query->the_post();
+            $img_url = get_the_post_thumbnail_url(get_the_ID(),'medium');
+            $author_id = get_the_author_meta('ID');
+            $avatar = get_field('user_logo', 'user_'. $author_id);
+            $image_offer = get_field('image_offer');
+            $finance_price = get_field('finance_price');
+            ?>
+            <div class="col-6 mb-3">
+              <div class="car-box car-offer">
+                <?php if(get_field('sold_done')): ?>
+                  <div class="sold-done" style="position: absolute;z-index: 9;left: 15px;padding: 30px;bottom: 0;right: 15px;top: 0;pointer-events: none;">
+                    <p><img class="img-fluid" src="<?= get_theme_file_uri().'/assets/img/pay_done.png' ?>" alt="تم البياع" /></p>
+                  </div>
+                <?php endif; ?>
+                <div class="car-box-img position-relative">
+                  <div class="car-box-head d-flex justify-content-between position-absolute">
+                    <div class="car-box-head-right d-flex">
+                      <div class="car-box-head-favorite">
+                      <?php echo '<button class="favorite-button icon-box bg-white rounded-100 text-primary border-0 ' . (in_array(get_the_ID(), $favorites) ? 'is_favorite' : '') . '" data-post-id="' . get_the_ID() . '" data-favorites="' . esc_attr(json_encode($favorites)) . '" data-is-favorite="' . (in_array(get_the_ID(), $favorites) ? 'true' : 'false') . '">' . (in_array(get_the_ID(), $favorites) ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>') . '</button>'; ?>
+                      </div>
+                      <div class="car-box-head-share icon-box bg-white rounded-100 text-primary">
+                        <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6.27816 12.073V3.20029L5.04516 4.47066L3.96629 3.33924L7.04879 0.16333L10.1313 3.33924L9.05241 4.47066L7.81941 3.20029V12.073H6.27816ZM0.883789 17.6308V5.72117H4.73691V7.30912H2.42504V16.0429H11.6725V7.30912H9.36066V5.72117H13.2138V17.6308H0.883789Z" fill="#D97E00"/>
+                        </svg>
+                      </div>
+                    </div>
+                    <div class="car-box-head-left d-flex">
+                      <div class="car-box-head-offer bg-green rounded-4">
+                        <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M19.1327 10.686L20.2367 8.77797C20.3694 8.54841 20.4055 8.27556 20.337 8.0194C20.2686 7.76324 20.1012 7.54475 19.8717 7.41197L17.9617 6.30797V4.10797C17.9617 3.84275 17.8563 3.5884 17.6688 3.40086C17.4812 3.21333 17.2269 3.10797 16.9617 3.10797H14.7627L13.6597 1.19897C13.5265 0.969887 13.3084 0.802476 13.0527 0.732971C12.9258 0.698586 12.7934 0.68972 12.6632 0.706886C12.5329 0.724052 12.4073 0.766908 12.2937 0.832971L10.3837 1.93697L8.47368 0.831971C8.244 0.699368 7.97105 0.663434 7.71488 0.732071C7.45871 0.800709 7.24029 0.968298 7.10768 1.19797L6.00368 3.10797H3.80468C3.53946 3.10797 3.28511 3.21333 3.09757 3.40086C2.91003 3.5884 2.80468 3.84275 2.80468 4.10797V6.30697L0.894678 7.41097C0.78071 7.47653 0.680818 7.56395 0.600742 7.66823C0.520666 7.77251 0.461984 7.89158 0.428067 8.01861C0.39415 8.14564 0.385666 8.27811 0.403104 8.40843C0.420541 8.53874 0.463556 8.66433 0.529678 8.77797L1.63368 10.686L0.529678 12.594C0.397666 12.8237 0.36185 13.0964 0.430036 13.3525C0.498222 13.6085 0.664882 13.8273 0.893678 13.961L2.80368 15.065V17.264C2.80368 17.5292 2.90903 17.7835 3.09657 17.9711C3.28411 18.1586 3.53846 18.264 3.80368 18.264H6.00368L7.10768 20.174C7.19621 20.3253 7.32261 20.451 7.47446 20.5387C7.6263 20.6263 7.79835 20.673 7.97368 20.674C8.14768 20.674 8.32068 20.628 8.47468 20.539L10.3827 19.435L12.2927 20.539C12.5223 20.6714 12.7951 20.7073 13.0511 20.6389C13.3072 20.5705 13.5257 20.4033 13.6587 20.174L14.7617 18.264H16.9607C17.2259 18.264 17.4802 18.1586 17.6678 17.9711C17.8553 17.7835 17.9607 17.5292 17.9607 17.264V15.065L19.8707 13.961C19.9844 13.8952 20.0841 13.8077 20.1641 13.7034C20.244 13.5991 20.3026 13.4801 20.3365 13.3531C20.3704 13.2262 20.3789 13.0938 20.3616 12.9635C20.3443 12.8333 20.3015 12.7077 20.2357 12.594L19.1327 10.686ZM7.88268 5.67597C8.28063 5.6761 8.66224 5.83432 8.94354 6.11581C9.22485 6.3973 9.38281 6.77901 9.38268 7.17697C9.38254 7.57493 9.22433 7.95653 8.94284 8.23784C8.66135 8.51914 8.27963 8.6771 7.88168 8.67697C7.48372 8.67684 7.10211 8.51862 6.82081 8.23713C6.53951 7.95564 6.38155 7.57393 6.38168 7.17597C6.38181 6.77801 6.54002 6.39641 6.82152 6.1151C7.10301 5.8338 7.48472 5.67584 7.88268 5.67597ZM8.18268 15.276L6.58268 14.077L12.5827 6.07697L14.1827 7.27597L8.18268 15.276ZM12.8827 15.676C12.6856 15.6759 12.4905 15.637 12.3085 15.5616C12.1265 15.4861 11.9611 15.3755 11.8218 15.2361C11.6825 15.0967 11.5721 14.9313 11.4967 14.7492C11.4214 14.5672 11.3826 14.372 11.3827 14.175C11.3827 13.9779 11.4216 13.7828 11.4971 13.6008C11.5726 13.4188 11.6831 13.2534 11.8225 13.1141C11.9619 12.9748 12.1273 12.8643 12.3094 12.789C12.4915 12.7137 12.6866 12.6749 12.8837 12.675C13.2816 12.6751 13.6632 12.8333 13.9445 13.1148C14.2258 13.3963 14.3838 13.778 14.3837 14.176C14.3835 14.5739 14.2253 14.9555 13.9438 15.2368C13.6623 15.5181 13.2806 15.6761 12.8827 15.676Z" fill="white"/>
+                        </svg>
+                        <span>عرض خاص</span>
+                      </div>
+                      <div class="car-box-head-360 icon-box bg-primary rounded-100">
+                        <svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M9.93934 1.96381C9.93934 1.75753 9.8574 1.5597 9.71154 1.41384C9.56568 1.26798 9.36785 1.18604 9.16157 1.18604H7.60601C7.39973 1.18604 7.2019 1.26798 7.05604 1.41384C6.91018 1.5597 6.82823 1.75753 6.82823 1.96381V6.63048C6.82823 6.83676 6.91018 7.03459 7.05604 7.18045C7.2019 7.32631 7.39973 7.40826 7.60601 7.40826H9.16157C9.36785 7.40826 9.56568 7.32631 9.71154 7.18045C9.8574 7.03459 9.93934 6.83676 9.93934 6.63048V5.07492C9.93934 4.86864 9.8574 4.67081 9.71154 4.52495C9.56568 4.37909 9.36785 4.29715 9.16157 4.29715H6.82823M1.38379 1.18604H3.32823C3.63765 1.18604 3.9344 1.30895 4.15319 1.52774C4.37198 1.74654 4.4949 2.04328 4.4949 2.3527V3.13048C4.4949 3.4399 4.37198 3.73665 4.15319 3.95544C3.9344 4.17423 3.63765 4.29715 3.32823 4.29715M3.32823 4.29715H2.16157M3.32823 4.29715C3.63765 4.29715 3.9344 4.42006 4.15319 4.63885C4.37198 4.85765 4.4949 5.15439 4.4949 5.46381V6.24159C4.4949 6.55101 4.37198 6.84776 4.15319 7.06655C3.9344 7.28534 3.63765 7.40826 3.32823 7.40826H1.38379M1.38379 9.74159C1.38379 11.0304 4.51823 12.0749 8.38379 12.0749C12.2493 12.0749 15.3838 11.0304 15.3838 9.74159M12.2727 2.74159V5.8527C12.2727 6.26526 12.4366 6.66092 12.7283 6.95265C13.02 7.24437 13.4157 7.40826 13.8282 7.40826C14.2408 7.40826 14.6365 7.24437 14.9282 6.95265C15.2199 6.66092 15.3838 6.26526 15.3838 5.8527V2.74159C15.3838 2.32903 15.2199 1.93337 14.9282 1.64165C14.6365 1.34992 14.2408 1.18604 13.8282 1.18604C13.4157 1.18604 13.02 1.34992 12.7283 1.64165C12.4366 1.93337 12.2727 2.32903 12.2727 2.74159Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </div>
+                    </div>                      
+                  </div>
+                  <a class="link-img" href="<?= get_permalink(); ?>"><img class="img-fluid" src="<?= ($image_offer)? $image_offer:$img_url; ?>" alt="<?= get_the_title(); ?>"></a>
+                </div>
+                <div class="car-box-content position-relative p-lg-4 p-1">
+                  <h4 class="text-uppercase"><?= get_the_title(); ?></h4>
+                  <div class="information">
+                    <p class="pricing">
+                      <span class="price d-block"><?= the_field('price'); ?> <?= the_field('currency_pricing', 'option'); ?></span>
+                      <span class="new-price d-block"><?= the_field('price_offer'); ?> <?= the_field('currency_pricing', 'option'); ?></span>
+                      <span>شامل الضريبة واللوحات</span>
+                    </p>
+                    <p>
+                      <span class="author">
+                        <a class="logo-author" href="#">
+                          <img class="img-fluid" src="<?= ($avatar)? $avatar:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
+                        </a>
+                        <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
+                        <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M20.2588 8.03857H1.25879M1.25879 8.03857L8.25879 15.0386M1.25879 8.03857L8.25879 1.03857" stroke="#141414" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                    </p>
+                  </div>
+                </div>
+                <div class="car-box-footer bg-blue">
+                  <span>قسط يبدأ من</span>
+                  <span>|</span>
+                  <span><?= $finance_price; ?></span>
+                  <span>ريال/ شهريا</span>
+                </div>
+              </div>              
+            </div>
+            <?php
+          endwhile; 
+          wp_reset_postdata(); 
+          ?>
+        <div class="text-center col-12 d-lg-none d-md-none d-block">
+          <a href="<?= $page_offer; ?>" class="btn btn-dark rounded-0 py-2 px-4 w-100">
+            <span>المزيد من العروض</span> 
+            <svg width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21.1973 8L1.80273 8M1.80273 8L8.80273 15M1.80273 8L8.80273 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
         </div>
       </div>
     </div>
@@ -337,6 +426,15 @@ if( !$favorites ){
           ?>      
           <?php wp_reset_postdata(); ?>
         <?php endif; ?>
+
+        <div class="text-center col-12 d-lg-none d-md-none d-block">
+          <a href="<?= $page_car_news; ?>" class="btn btn-dark rounded-0 py-2 px-4 w-100 mt-3">
+            <span>المزيد من السيارات الجديدة</span> 
+            <svg width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21.1973 8L1.80273 8M1.80273 8L8.80273 15M1.80273 8L8.80273 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -350,8 +448,16 @@ if( !$favorites ){
 <section id="section-partners" class="section-partners bg-gray py-4 mt-3">
   <div class="cars-listing">
     <div class="container">
-      <div class="section-header">
+      <div class="section-header position-relative">
         <h2 class="section-title"><?= the_field('partners_headline'); ?></h2>
+        <div class="more-mobile d-inline-block d-lg-none d-md-none position-absolute start-0 top-0">
+          <a href="<?= $installment_page_link; ?>" class="btn btn-gray border rounded-0 py-2 px-4">
+            <span>كل المعارض</span>
+            <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 8H1M1 8L8 15M1 8L8 1" stroke="#141414" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
       </div>
       <div class="row">
         <?php 
@@ -365,7 +471,7 @@ if( !$favorites ){
             $query = new WP_Query( array( 'author' => $author_id, 'post_type' => 'cars' ) );
             $placeholder = get_theme_file_uri().'/assets/img/placeholder.png';
         ?>
-          <div class="col-md-4 col-12 mb-3">
+          <div class="col-md-4 col-9 mb-3">
             <div class="showroom car-box bg-white p-2 position-relative">
               <a class="logo-author" href="#">
                 <img class="img-fluid" src="<?= ($background)? $background:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
@@ -388,7 +494,7 @@ if( !$favorites ){
           </div>
         <?php endforeach; ?>
       </div>
-      <div class="text-center col-12">
+      <div class="text-center col-12 d-none d-lg-block d-md-block">
         <a href="<?= $installment_page_link; ?>" class="btn btn-outline-dark rounded-0 py-2 px-4">كل المعارض</a>
       </div>
     </div>
@@ -589,6 +695,15 @@ if( !$favorites ){
             ?>      
             <?php wp_reset_postdata(); ?>
           <?php endif; ?>
+
+          <div class="text-center col-12 d-lg-none d-md-none d-block">
+            <a href="<?= $page_car_used; ?>" class="btn btn-dark rounded-0 py-2 px-4 w-100 mt-3">
+              <span>المزيد من السيارات المستعملة</span> 
+              <svg width="23" height="16" viewBox="0 0 23 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M21.1973 8L1.80273 8M1.80273 8L8.80273 15M1.80273 8L8.80273 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -603,10 +718,10 @@ if( !$favorites ){
 <section id="section-services" class="section-services mt-3">
   <div class="container">
     <div class="row align-items-center">
-      <div class="col-md-8 col-12">
+      <div class="col-md-8 col-5">
         <img class="img-fluid" src="<?= $bgServices; ?>" alt="<?= $headlineServices; ?>">
       </div>
-      <div class="col-md-4 col-12">
+      <div class="col-md-4 col-7">
         <h3 class="section-headline headline-border font-bold"><?= $headlineServices; ?></h3>
         <div class="section-content">
           <?= $contentServices; ?>
