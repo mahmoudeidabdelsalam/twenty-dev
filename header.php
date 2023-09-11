@@ -224,29 +224,29 @@
 			</div><!-- /.container -->
 		</nav>
 
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-          <div class="offcanvas-header bg-dark py-5 px-3 d-flex flex-column position-relative">
-            <a href="<?php echo esc_url(home_url('/')); ?>" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" rel="home">
-              <img class="img-fluid" src="<?=get_theme_file_uri().'/assets/img/logo-footer.svg' ?>" alt="<?=get_bloginfo('name', 'display') ?>" title="<?=get_bloginfo('name') ?>" />
-            </a>
-            <h3 class="mt-3 text-white">موقع عشرين للسيارات</h3>
-            <button type="button" class="btn-close text-reset position-absolute end-0 m-3" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body">
-            <?php
-              // Loading WordPress Custom Menu (theme_location).
-              wp_nav_menu(
-                array(
-                  'menu_class'     => 'navbar-nav ml-auto p-0',
-                  'container'      => '',
-                  'fallback_cb'    => 'WP_Bootstrap_Navwalker::fallback',
-                  'walker'         => new WP_Bootstrap_Navwalker(),
-                  'theme_location' => 'main-menu',
-                )
-              );
-            ?>
-          </div>
-        </div><!-- /.menu top-bar-mobile -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas-header bg-dark py-5 px-3 d-flex flex-column position-relative">
+        <a href="<?php echo esc_url(home_url('/')); ?>" title="<?php echo esc_attr(get_bloginfo('name', 'display')); ?>" rel="home">
+          <img class="img-fluid" src="<?=get_theme_file_uri().'/assets/img/logo-footer.svg' ?>" alt="<?=get_bloginfo('name', 'display') ?>" title="<?=get_bloginfo('name') ?>" />
+        </a>
+        <h3 class="mt-3 text-white">موقع عشرين للسيارات</h3>
+        <button type="button" class="btn-close text-reset position-absolute end-0 m-3" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <?php
+          // Loading WordPress Custom Menu (theme_location).
+          wp_nav_menu(
+            array(
+              'menu_class'     => 'navbar-nav ml-auto p-0',
+              'container'      => '',
+              'fallback_cb'    => 'WP_Bootstrap_Navwalker::fallback',
+              'walker'         => new WP_Bootstrap_Navwalker(),
+              'theme_location' => 'main-menu',
+            )
+          );
+        ?>
+      </div>
+    </div><!-- /.menu top-bar-mobile -->
         
     <nav class="navbar navbar-expand-md <?php echo esc_attr( $navbar_scheme ); if ( isset( $navbar_position ) && 'fixed_top' === $navbar_position ) : echo ' fixed-top'; elseif ( isset( $navbar_position ) && 'fixed_bottom' === $navbar_position ) : echo ' fixed-bottom'; endif; if ( is_home() || is_front_page() ) : echo ' home'; endif; ?>">
       <div class="container">

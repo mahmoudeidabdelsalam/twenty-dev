@@ -2326,7 +2326,11 @@ section#basicSpecificationsRemainder {
     }
 
     .section-content {
-      font-size: 14px;
+      font-size: 12px;
+      max-width: 200px;
+      line-height: 1.5;
+      margin: 10px auto 0;
+      font-weight: bold;
     }
 
     .section-action {
@@ -2482,6 +2486,57 @@ section#basicSpecificationsRemainder {
       .box-services {
         border-radius: 0;
       }      
+    }
+  }
+
+  .carousel-single.carousel {
+    .carousel-indicators {
+      button {
+        &.active {
+          margin: 0;
+
+          &::after,
+          &::before {
+            display: none;
+          }
+        }
+      } 
+    }
+
+    .carousel-item {
+      img {
+        height: 260px;
+        -o-object-fit: cover;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .specifications {
+    .nav {
+      .nav-item {
+        padding: 10px 0;
+        background: $dark;
+        .nav-link {
+          font-size: 14px;
+          padding: 5px 5px;
+          &.active {
+            background: transparent;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
+  .h-banner {
+      background: rgb(237, 242, 248);
+      min-height: 1px;
+
+    .banner-data {
+      padding: 30px !important;
+      position: relative !important;
+      text-align: center;
     }
   }
 

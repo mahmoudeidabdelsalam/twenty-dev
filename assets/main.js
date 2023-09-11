@@ -2,6 +2,12 @@
 import * as bootstrap from 'bootstrap';
 import 'owl.carousel';
 
+import lightslider from 'lightslider';
+import lightGallery from 'lightgallery';
+// Plugins
+import lgThumbnail from 'lightgallery/plugins/thumbnail'
+import lgZoom from 'lightgallery/plugins/zoom'
+
 (function () {
 	'use strict';
 

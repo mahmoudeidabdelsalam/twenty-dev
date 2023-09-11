@@ -73,7 +73,7 @@ if ($query->have_posts()):
   </div>
 
   <!-- Page breadcrumb -->
-  <div class="breadcrumb">
+  <div class="breadcrumb d-none d-lg-block d-md-block">
     <div class="container">
       <div class="d-inline-flex">
         <h6 class="text-dark m-0"><a class="text-dark" href="<?php echo esc_url(home_url('/')); ?>">الرئيسية</a></h6>
@@ -130,6 +130,78 @@ if ($query->have_posts()):
               <span class="visually-hidden">Next</span>
             </button>
           </div>
+        
+          <!-- SideBar Car mobile -->
+          <div class="col-12 d-lg-none d-md-none d-block mt-3">
+            <div class="alert alert-warning" role="alert">
+              <?php if(get_post_field('post_content', $car_id)): ?>
+                <?= get_post_field('post_content', $car_id); ?>
+              <?php else: ?>
+                <h3 style="text-align: right;">لماذا هذه السيارة مناسبة لك ؟</h3>
+                <p style="text-align: right;"><strong>لانها تحتوي علي : </strong></p>
+                <p style="text-align: right;">مثبت سرعة - تبريد وتدفئة للمقاعد - بلوتوث - كاميرا خلفية</p>
+              <?php endif; ?>
+            </div>
+            <div class="d-flex flex-row">
+              <div class="cash-money box-price mb-2">
+                <h3><img src="<?= get_theme_file_uri().'/assets/img/price.svg'; ?>" alt="السعر كاش"> السعر كاش</h3>
+                <div class="priceing">
+                  <p>قبل الضريبة</p>
+                  <strong class="d-block"><?= ($car_price - $percentage); ?> <?= the_field('currency_pricing', 'option'); ?></strong>
+                  <p>بعد الضريبة</p>
+                  <strong class="text-green d-block"><?= ($price_offer)? $price_offer:$car_price; ?> <?= the_field('currency_pricing', 'option'); ?></strong>
+                  <?php if($price_offer):?><span class="old-price"><?= $car_price; ?> <?= the_field('currency_pricing', 'option'); ?></span><?php endif; ?>              
+                  <a class="btn btn-success text-white w-100" href="/buying/?car=<?= $car_id; ?>">شراء هذة السيارة <i class="fas fa-arrow-left"></i></a>
+                </div>
+              </div>
+              <div class="cash-money box-price mb-2">
+                <h3><img src="<?= get_theme_file_uri().'/assets/img/calendar.svg'; ?>" alt="قسط يبدأ من"> قسط يبدأ من</h3>
+                <div class="priceing">
+                  <p>القسط شهريا</p>
+                  <strong class="text-green d-block"><?= $finance_price; ?></strong>
+                  <p>مدة القسط</p>
+                  <b>60</b> <small>شهر</small>
+                  <a class="btn btn-dark text-white w-100" href="/financing/?car=<?= $car_id; ?>">طلب تمويل للسيارة <i class="fas fa-arrow-left"></i></a>
+                </div>
+              </div>
+            </div>
+            <!-- information author  -->
+            <div class="accordion accordion-author bg-light" id="informationAuthor">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed text-center font-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    تواصل معنا عن طريق
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#informationAuthor">
+                  <div class="accordion-body">
+                    <div class="d-flex-inline bg-darken rounded-2 text-white p-4">
+                      <i class="fas fa-phone fa-lg ms-2"></i> <span class="font-bold">اتصل</span> <a class="text-white float-left" href="tel:<?= $user_phone; ?>"><?= $user_phone; ?></a>
+                    </div>
+                    <div class="d-flex-inline bg-green text-white p-4 mt-2 rounded-2">
+                      <i class="fab fa-whatsapp fa-lg ms-2"></i> <span class="font-bold">واتساب</span> <a class="text-white float-left" target="_blank" href="https://wa.me/+<?= $user_whatsapp; ?>"><?= $user_whatsapp; ?></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Share & actions -->
+            <div class="d-flex flex-row">
+              <a class="text-dark w-100 p-3" href="#">
+                <i class="far fa-heart fa-lg text-primary ms-2"></i>
+                <span>إضافة للمفضلة</span>
+              </a>
+              <a class="text-dark w-100 p-3" href="#">
+                <i class="fas fa-share-square fa-lg text-primary ms-2"></i>
+                <span>مشاركة الأعلان</span>
+              </a>
+            </div>
+            <!-- number ads cars -->
+            <div class="alert alert-light border-top-0 border-start-0 border-end-0 border-dark">
+              <p class="text-lg"><img src="<?= get_theme_file_uri().'/assets/img/number-ads.svg'; ?>" alt="رقم الأعلان"> <span class="mx-2">رقم الأعلان:</span> <?= $car_id; ?></p>
+            </div>
+          </div>      
+
           <!-- Colos Car -->
           <div class="box-colors mt-3 border-dark border border-bottom-1 border-top-0 border-start-0 border-end-0">
             <h5 class="font-bold">الألوان الخارجية المتاحة</h5>
@@ -246,7 +318,7 @@ if ($query->have_posts()):
         </div>
 
         <!-- SideBar Car -->
-        <div class="col-md-4 col-12">
+        <div class="col-md-4 col-12 d-none d-lg-block d-md-block">
           <div class="alert alert-warning" role="alert">
             <?php if(get_post_field('post_content', $car_id)): ?>
               <?= get_post_field('post_content', $car_id); ?>
@@ -318,7 +390,7 @@ if ($query->have_posts()):
       </div>
     </div>
 
-    <div class="bg-gray p-5 mt-5">
+    <div class="bg-gray p-lg-5 py-3 mt-lg-5">
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-12">
