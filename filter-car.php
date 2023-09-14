@@ -160,11 +160,11 @@ $structures = get_terms( array(
         <div class="accordion-body">
           <div class="input-group mb-3">
             <label class="input-group-text" for="fromPrice">من</label>
-            <input type="number" id="fromPrice" class="form-control" placeholder="من">
+            <input type="number" id="fromPrice" class="form-control" placeholder="100000">
           </div>  
           <div class="input-group mb-3">
             <label class="input-group-text" for="toPrice">الي</label>
-            <input type="number" id="toPrice" class="form-control" placeholder="الي">
+            <input type="number" id="toPrice" class="form-control" placeholder="200000">
           </div>                     
         </div>
       </div>
