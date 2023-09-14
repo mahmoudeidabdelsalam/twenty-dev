@@ -62,6 +62,11 @@
       </div><!-- /.row -->
     </div><!-- /.container -->
   </div>
+
+
+  <a href="https://wa.me/+966112091447" class="whatsapp-btn whatsapp" target="_blank">
+    <img class="img-fluid" src="https://dev.twenty.sa/wp-content/themes/numbertwenty20/assets/img/whatsapp.png" alt="عشرين للسيارات" title="عشرين للسيارات">
+  </a>
 </div><!-- /#wrapper -->
 <?php
   wp_footer();

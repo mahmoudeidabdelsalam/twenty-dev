@@ -27,6 +27,12 @@ $args['tax_query'] = array(
   ),
 );
 $query = new WP_Query( $args );
+
+$user_id = get_current_user_id();
+$favorites = get_user_meta($user_id, 'favorites', true) ;
+if( !$favorites ){
+    $favorites = [];
+}
 ?>
 
 <section class="container-fluid position-relative">
@@ -88,8 +94,14 @@ $query = new WP_Query( $args );
               <div class="car-box-img position-relative">
                 <div class="car-box-head d-flex justify-content-between position-absolute">
                   <div class="car-box-head-right d-flex">
-                    <div class="car-box-head-favorite icon-box bg-white rounded-100 text-primary"><i class="far fa-heart"></i></div>
-                    <div class="car-box-head-share icon-box bg-white rounded-100 text-primary"><i class="fas fa-share-square"></i></div>
+                    <div class="car-box-head-favorite">
+                      <?php echo '<button class="favorite-button icon-box bg-white rounded-100 text-primary border-0 ' . (in_array(get_the_ID(), $favorites) ? 'is_favorite' : '') . '" data-post-id="' . get_the_ID() . '" data-favorites="' . esc_attr(json_encode($favorites)) . '" data-is-favorite="' . (in_array(get_the_ID(), $favorites) ? 'true' : 'false') . '">' . (in_array(get_the_ID(), $favorites) ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>') . '</button>'; ?>
+                    </div>
+                    <div class="car-box-head-share icon-box bg-white rounded-100 text-primary">
+                      <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M6.27816 12.073V3.20029L5.04516 4.47066L3.96629 3.33924L7.04879 0.16333L10.1313 3.33924L9.05241 4.47066L7.81941 3.20029V12.073H6.27816ZM0.883789 17.6308V5.72117H4.73691V7.30912H2.42504V16.0429H11.6725V7.30912H9.36066V5.72117H13.2138V17.6308H0.883789Z" fill="#D97E00"/>
+                        </svg>
+                    </div>
                   </div>                    
                 </div>
                 <a class="link-img" href="<?= get_permalink(); ?>"><img class="img-fluid" src="<?= ($img_url)? $img_url:$placeholder; ?>" alt="<?= get_the_title(); ?>"></a>

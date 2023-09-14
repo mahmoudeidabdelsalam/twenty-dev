@@ -27,6 +27,12 @@ $args = array(
 
 
 $query = new WP_Query( $args );
+
+$user_id = get_current_user_id();
+$favorites = get_user_meta($user_id, 'favorites', true) ;
+if( !$favorites ){
+    $favorites = [];
+}
 ?>
 
 <section class="container-fluid position-relative">
@@ -68,7 +74,9 @@ $query = new WP_Query( $args );
               <div class="car-box-img position-relative">
                 <div class="car-box-head d-flex justify-content-between position-absolute">
                   <div class="car-box-head-right d-flex">
-                    <div class="car-box-head-favorite icon-box bg-white rounded-100 text-primary"><i class="far fa-heart"></i></div>
+                    <div class="car-box-head-favorite">
+                      <?php echo '<button class="favorite-button icon-box bg-white rounded-100 text-primary border-0 ' . (in_array(get_the_ID(), $favorites) ? 'is_favorite' : '') . '" data-post-id="' . get_the_ID() . '" data-favorites="' . esc_attr(json_encode($favorites)) . '" data-is-favorite="' . (in_array(get_the_ID(), $favorites) ? 'true' : 'false') . '">' . (in_array(get_the_ID(), $favorites) ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>') . '</button>'; ?>
+                    </div>
                     <div class="car-box-head-share icon-box bg-white rounded-100 text-primary"><i class="fas fa-share-square"></i></div>
                   </div> 
                   <div class="car-box-head-left d-flex">

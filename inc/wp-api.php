@@ -802,6 +802,106 @@ add_action('rest_api_init' , function(){
   ));
 });
 
+
+// single vendor data ($data) 
+function vendor_single($data){
+  $data=$data->get_params('GET');
+  extract($data);
+
+  $vendor_id = !empty($vendor_id) ? $vendor_id : false;
+  $vendor = get_user_by('id', $vendor_id);
+
+
+  $vendors_list = [];
+
+  $query = new WP_Query( array( 'author' => $vendor->ID, 'post_type' => array('cars', 'products') ) );
+
+  $term = get_field('cities', 'user_'.$vendor->ID);
+  $city  = get_term_by('id', $term, 'realestate-cities');
+
+
+  $views = array();
+  foreach( $query->posts as &$post ):
+    $specifications = array();
+    $views[] = get_post_meta( $post->ID, 'link_click_counter', true );
+    $author_id = $post->post_author;
+    $avatar = get_field('user_logo', 'user_'. $author_id);
+    $author = [
+      'id'    => $author_id,
+      'image' => $avatar,
+      'name' => get_the_author_meta( 'display_name', $author_id ),
+    ];
+    $post->id    = $post->ID;
+    $post->title = htmlspecialchars_decode( get_the_title($post->ID) );
+    $post->price = get_post_meta( $post->ID, 'price', true );
+    $post->image = (get_the_post_thumbnail_url($post->ID, 'full' ))? get_the_post_thumbnail_url($post->ID, 'full' ): '';
+
+    // Get offer price and installments from offers meta data.
+    $post->offer = ($offer)? $offer: '';
+    $post->offer_price = get_post_meta( $post->ID, 'price_offer', true );
+
+    $post->installment_price = get_post_meta( $post->ID, 'finance_price', true );
+    $post->view = get_post_meta( $post->ID, 'link_click_counter', true );
+    $post->author = $author;
+    $post->link = get_permalink($post->ID);
+    unset($post->ID, $post->post_name, $post->post_type, $post->post_excerpt);
+    formatPost($post);
+  endforeach;
+
+
+  preg_match('/src="([^"]+)"/', get_field('map_user', 'user_'.$vendor->ID), $match);
+  $map_link = $match[1];
+
+  $vendors_list[] = array(
+    'id' => $vendor->ID,
+    'name' => $vendor->display_name,
+    'background' => get_field('user_background', 'user_'.$vendor->ID),
+    'cities' => $city->name,
+    'address' => get_field('user_address', 'user_'.$vendor->ID),
+    'email' => $vendor->user_email,
+    'phone' => get_field('user_phone', 'user_'.$vendor->ID),
+    'whatsapp' => get_field('user_whatsapp', 'user_'.$vendor->ID),
+    'logo' => get_field('user_logo', 'user_'.$vendor->ID),
+    'map' => get_field('map_user', 'user_'.$vendor->ID),
+    'map_link' => $map_link,
+    'cars' => $query->found_posts,
+    'list_cars' => $query->posts,
+    'views' => array_sum($views)
+  );
+
+
+  if ( $vendors_list ) {
+    $result = [
+      "success" => true,
+      "code" => 200,
+      "message" => 'Successfully retrieved',
+      "data" => $vendors_list,
+    ];  
+  } else {
+    $result = [
+      "success" => false,
+      "code" => 401,
+      "message" => 'vendor Not Found',
+      "data" => [],
+    ];
+  }
+ 
+  return $result;
+}
+add_action('rest_api_init' , function(){
+  register_rest_route('wp/api/' ,'vendor/single',array(
+    'methods' => 'GET',
+    'callback' => 'vendor_single',
+    'args' => array(
+      'vendor_id' => array(
+        'validate_callback' => function($param,$request,$key){
+          return true;
+        }
+      ),
+    )
+  ));
+});
+
 // list agents list ($data) 
 function agents_list($data){
   $data=$data->get_params('GET');
@@ -2180,7 +2280,7 @@ function list_blog($data){
         }
 
 
-      unset($post->ID, $post->post_name, $post->post_type,);
+      unset($post->ID, $post->post_name, $post->post_type);
       formatPost($post);
     endforeach;
   }
@@ -2212,3 +2312,7 @@ add_action('rest_api_init' , function(){
     )
   ));
 });
+
+
+
+
