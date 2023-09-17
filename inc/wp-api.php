@@ -309,6 +309,7 @@ function single_car($data){
       ],
       'counter_view' => $counter_view,
       'link_financing' => "https://twenty.sa/financing/?car=".htmlspecialchars_decode( get_the_title($post->ID) )."",
+      'link_buying' => "https://twenty.sa/buying/?car=".htmlspecialchars_decode( get_the_title($post->ID) )."",
       'link_report_agent' => "https://twenty.sa/report-agent/?author=". get_the_author_meta( 'display_name', $author_id ).""
     );
 
@@ -393,13 +394,27 @@ function single_car($data){
     if( $related )  {
       foreach( $related as $post ) {
         setup_postdata($post);
+        $author_id = $post->post_author;
+        $avatar = get_field('user_logo', 'user_'. $author_id);
+        $counter_view = get_post_meta($post->ID, "link_click_counter", true);
         $list_related[] = array( 
           'id' => $post->ID,
           'title' => htmlspecialchars_decode( get_the_title($post->ID) ),
           'image' => (get_the_post_thumbnail_url($post->ID, 'full' ))? get_the_post_thumbnail_url($post->ID, 'full' ):'',
           'price' => get_post_meta( $post->ID, 'price', true ),
           'offer' => (get_post_meta( $post->ID, 'offers', true ))? get_post_meta( $post->ID, 'offers', true ):'',
-          'price_offer' => get_post_meta( $post->ID, 'price_offer', true )
+          'price_offer' => get_post_meta( $post->ID, 'price_offer', true ),
+          'author' => [
+            'id'    => $author_id,
+            'image' => ($avatar)? $avatar:'',
+            'name' => get_the_author_meta( 'display_name', $author_id ),
+            'phone' => (get_field('user_phone', 'user_'.$author_id))? get_field('user_phone', 'user_'.$author_id) : "",
+            'whatsapp' => (get_field('user_whatsapp', 'user_'.$author_id))? get_field('user_whatsapp', 'user_'.$author_id) : "",
+          ],
+          'counter_view' => $counter_view,
+          'link_financing' => "https://twenty.sa/financing/?car=".htmlspecialchars_decode( get_the_title($post->ID) )."",
+          'link_buying' => "https://twenty.sa/buying/?car=".htmlspecialchars_decode( get_the_title($post->ID) )."",
+          'link_report_agent' => "https://twenty.sa/report-agent/?author=". get_the_author_meta( 'display_name', $author_id ).""
         );
       }
     }
