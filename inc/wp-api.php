@@ -284,14 +284,19 @@ function single_car($data){
     $term_tag_list = get_the_terms( $car_id, 'products-tag' );
     $tag = join(', ', wp_list_pluck($term_tag_list, 'name')); 
     $offer = get_post_meta( $post->ID, 'offers', true );
-    $price_tax = get_post_meta( $post->ID, 'price', true ) * 100 / 115;
+    if (is_numeric(get_post_meta( $post->ID, 'price', true ))) {
+      $price_tax += get_post_meta( $post->ID, 'price', true ) * 100 / 115;
+    } else {
+      $price_tax = "";
+    }
+    
     $counter_view = get_post_meta($post->ID, "link_click_counter", true);
 
     $array = array(
       'id' => $post->ID,
       'title' => htmlspecialchars_decode( get_the_title($post->ID) ),
       'price' => get_post_meta( $post->ID, 'price', true ),
-      'before_tax' => number_format($price_tax, 3, '.', ','),
+      'before_tax' => ($price_tax)? number_format($price_tax, 3, '.', ','): '',
       'installment_price' => get_post_meta( $post->ID, 'finance_price', true ),
       'color' => get_post_meta( $post->ID, 'color_car', true ),
       'image' => (get_the_post_thumbnail_url($post->ID, 'full' ))? get_the_post_thumbnail_url($post->ID, 'full' ):'',
