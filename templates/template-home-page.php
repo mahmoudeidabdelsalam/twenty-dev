@@ -23,7 +23,7 @@ if( !$favorites ){
 ?>
 
 <section id="section-slider" class="section-slider">
-  <div id="carouselExampleIndicators" class="carousel slide">
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
         <?php
         $counter = -1;
@@ -44,7 +44,7 @@ if( !$favorites ){
           while( have_rows('slider_home') ) : the_row();
           $counter++;
         ?>
-          <div class="carousel-item <?= ($counter == '1')? 'active':'';?>">
+          <div class="carousel-item <?= ($counter == '1')? 'active':'';?>" data-bs-interval="2000">
             <img src="<?= get_sub_field('image_slider'); ?>" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
                 <?= get_sub_field('content_slider'); ?>
@@ -106,7 +106,7 @@ if( !$favorites ){
           <?php
           while ( $query->have_posts() ):
             $query->the_post();
-            $img_url = get_the_post_thumbnail_url(get_the_ID(),'medium');
+            $img_url = get_the_post_thumbnail_url(get_the_ID(),'full');
             $author_id = get_the_author_meta('ID');
             $avatar = get_field('user_logo', 'user_'. $author_id);
             $image_offer = get_field('image_offer');
@@ -185,7 +185,7 @@ if( !$favorites ){
         <?php
           while ( $query->have_posts() ):
             $query->the_post();
-            $img_url = get_the_post_thumbnail_url(get_the_ID(),'medium');
+            $img_url = get_the_post_thumbnail_url(get_the_ID(),'full');
             $author_id = get_the_author_meta('ID');
             $avatar = get_field('user_logo', 'user_'. $author_id);
             $image_offer = get_field('image_offer');
@@ -304,7 +304,7 @@ if( !$favorites ){
         <?php
           if ( $cars ):
             foreach( $cars as $car ): 
-              $img_url = get_the_post_thumbnail_url($car->ID,'medium');
+              $img_url = get_the_post_thumbnail_url($car->ID,'full');
               $author_id =  get_post_field( 'post_author', $car->ID );
               $avatar = get_field('user_logo', 'user_'. $author_id);
               $finance_price = get_field('finance_price', $car->ID);
@@ -366,7 +366,7 @@ if( !$favorites ){
             if ( $query->have_posts() ):
             while ( $query->have_posts() ):
               $query->the_post();
-              $img_url = get_the_post_thumbnail_url(get_the_ID(),'medium');
+              $img_url = get_the_post_thumbnail_url(get_the_ID(),'full');
               $author_id = get_the_author_meta('ID');
               $avatar = get_field('user_logo', 'user_'. $author_id);
           ?>
@@ -571,7 +571,7 @@ if( !$favorites ){
           <?php
             if ( $cars ):
               foreach( $cars as $car ): 
-                $img_url = get_the_post_thumbnail_url($car->ID,'medium');
+                $img_url = get_the_post_thumbnail_url($car->ID,'full');
                 $author_id =  get_post_field( 'post_author', $car->ID );
                 $avatar = get_field('user_logo', 'user_'. $author_id);
                 $finance_price = get_field('finance_price', $car->ID);
@@ -634,7 +634,7 @@ if( !$favorites ){
             if ( $query->have_posts() ):
               while ( $query->have_posts() ):
                 $query->the_post();
-                $img_url = get_the_post_thumbnail_url(get_the_ID(),'medium');
+                $img_url = get_the_post_thumbnail_url(get_the_ID(),'full');
                 $author_id = get_the_author_meta('ID');
                 $avatar = get_field('user_logo', 'user_'. $author_id);
                 $finance_price = get_field('finance_price');

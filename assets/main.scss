@@ -2092,7 +2092,32 @@ section#basicSpecificationsRemainder {
   }
 }
 
+.author-single-car {
+  .author {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    
+    .logo-author {
+      width: 64px;
+      border-radius: 100%;
+      border: 1px solid;
+      height: 64px;
+      object-fit: cover;
+      margin-left: 10px;
+      overflow: hidden;
 
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    
+    a {
+      color: rgb(20, 20, 20) !important;
+    }
+  }
+}
 
 
 

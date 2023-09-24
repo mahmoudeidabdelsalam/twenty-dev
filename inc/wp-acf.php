@@ -9372,7 +9372,7 @@ if( function_exists('acf_add_local_field_group') ):
       array(
         'key' => 'field_62a3423sde2055fc6bf1231246',
         'label' => 'حراج السيارات المستعملة',
-        'name' => 'page_car_used',
+        'name' => 'page_car_used_hraj',
         'type' => 'link',
         'instructions' => '',
         'required' => 0,

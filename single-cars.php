@@ -2,6 +2,13 @@
 get_header();
 
 $get_basic_specifications = get_field('id_basic_specifications');
+$placeholder = get_theme_file_uri().'/assets/img/placeholder.png';
+
+$user_id = get_current_user_id();
+$favorites = get_user_meta($user_id, 'favorites', true) ;
+if( !$favorites ){
+    $favorites = [];
+}
 
 $img_tag    = get_theme_file_uri().'/assets/img/tag.svg';
 $img_eye    = get_theme_file_uri().'/assets/img/eye.svg';
@@ -9,6 +16,8 @@ $img_offer  = get_theme_file_uri().'/assets/img/offer.svg';
 
 $car_id = get_the_ID();
 $author_id = get_post_field( 'post_author', $car_id );
+
+$show = new WP_Query( array( 'author' => $author_id, 'post_type' => 'car-show' ) );
 
 $query = new WP_Query ( array( 'post_type' => 'basic_specifications', 'post__in' => array($get_basic_specifications) ) );
 
@@ -57,7 +66,11 @@ if ($query->have_posts()):
 
     // conditions Car Details
     $items = ($galleries)? $galleries:$images;
-    $percentage = (15 / 100) * $car_price;
+
+    $clear_price = str_replace(".", "", $car_price);
+    $percentage = (15 / 100) * $clear_price;
+
+    $avatar = get_field('user_logo', 'user_'. $author_id);
   ?> 
 
   <!-- Page Header Start -->
@@ -66,9 +79,6 @@ if ($query->have_posts()):
       <h1 class="text-dark mb-3 font-bold"><?= the_title(); ?></h1>
       <p class="text-lg"><img src="<?= $img_tag; ?>" alt="<?= $tag; ?>"> <?= $tag; ?></p>
       <p class="text-lg"><img src="<?= $img_eye; ?>" alt="المشاهدات"> <span>عدد المشاهدات :</span> <?= $post_views; ?></p>
-      <?php if($price_offer): ?>
-        <p class="text-lg"><img src="<?= $img_offer; ?>" alt="أرخص من سعر السوق"> <span>أرخص من سعر السوق ب</span> <?= $car_price - $price_offer; ?> الف <?= the_field('currency_pricing', 'option'); ?></p>
-      <?php endif; ?>
     </div>
   </div>
 
@@ -333,10 +343,9 @@ if ($query->have_posts()):
               <h3><img src="<?= get_theme_file_uri().'/assets/img/price.svg'; ?>" alt="السعر كاش"> السعر كاش</h3>
               <div class="priceing">
                 <p>قبل الضريبة</p>
-                <strong class="d-block"><?= ($car_price - $percentage); ?> <?= the_field('currency_pricing', 'option'); ?></strong>
+                <strong class="d-block"><?=  number_format(($clear_price - $percentage) , 0, ',', '.'); ?> <?= the_field('currency_pricing', 'option'); ?></strong>
                 <p>بعد الضريبة</p>
                 <strong class="text-green d-block"><?= ($price_offer)? $price_offer:$car_price; ?> <?= the_field('currency_pricing', 'option'); ?></strong>
-                <?php if($price_offer):?><span class="old-price"><?= $car_price; ?> <?= the_field('currency_pricing', 'option'); ?></span><?php endif; ?>              
                 <a class="btn btn-success text-white w-100" href="/buying/?car=<?= $car_id; ?>">شراء هذة السيارة <i class="fas fa-arrow-left"></i></a>
               </div>
             </div>
@@ -374,11 +383,13 @@ if ($query->have_posts()):
           <!-- Share & actions -->
           <div class="d-flex flex-lg-row flex-column mb-4 mt-2">
             <a class="text-dark w-100 p-3" href="#">
-              <i class="far fa-heart fa-lg text-primary ms-2"></i>
+              <?php echo '<button class="favorite-button icon-box bg-white rounded-100 text-primary border-0 ' . (in_array(get_the_ID(), $favorites) ? 'is_favorite' : '') . '" data-post-id="' . get_the_ID() . '" data-favorites="' . esc_attr(json_encode($favorites)) . '" data-is-favorite="' . (in_array(get_the_ID(), $favorites) ? 'true' : 'false') . '">' . (in_array(get_the_ID(), $favorites) ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>') . '</button>'; ?>
               <span>إضافة للمفضلة</span>
             </a>
             <a class="text-dark w-100 p-3" href="#">
-              <i class="fas fa-share-square fa-lg text-primary ms-2"></i>
+              <svg width="16" height="24" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.27816 12.073V3.20029L5.04516 4.47066L3.96629 3.33924L7.04879 0.16333L10.1313 3.33924L9.05241 4.47066L7.81941 3.20029V12.073H6.27816ZM0.883789 17.6308V5.72117H4.73691V7.30912H2.42504V16.0429H11.6725V7.30912H9.36066V5.72117H13.2138V17.6308H0.883789Z" fill="#D97E00"/>
+              </svg>
               <span>مشاركة الأعلان</span>
             </a>
           </div>
@@ -386,6 +397,34 @@ if ($query->have_posts()):
           <div class="alert alert-light border-top-0 border-start-0 border-end-0 border-dark">
             <p class="text-lg"><img src="<?= get_theme_file_uri().'/assets/img/number-ads.svg'; ?>" alt="رقم الأعلان"> <span class="mx-2">رقم الأعلان:</span> <?= $car_id; ?></p>
           </div>
+          
+          <?php 
+          if ($show->have_posts()):
+            while ($show->have_posts()):
+            $show->the_post(); 
+            ?>
+          <!-- تفاصيل البائع -->
+          <div class="author-single-car">
+            <h4>تفاصيل البائع</h4>
+            <div>
+              <span class="author">
+                <a class="logo-author" href="<?= get_permalink(); ?>">
+                  <img class="img-fluid" src="<?= ($avatar)? $avatar:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
+                </a>
+                <a class="link-author" href="<?= get_permalink(); ?>">
+                  <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
+                  <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.2588 8.03857H1.25879M1.25879 8.03857L8.25879 15.0386M1.25879 8.03857L8.25879 1.03857" stroke="#141414" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </span>
+            </div>
+          </div>
+          <?php
+          endwhile;
+          wp_reset_postdata();
+        endif;
+        ?>
         </div>      
       </div>
     </div>
@@ -439,7 +478,46 @@ if ($query->have_posts()):
       </div> 
     </div>
   </div>
-
+        <script type="text/javascript">
+          jQuery(function ($) {
+            $('.favorite-button').click(function(e) {
+              e.preventDefault();
+              var button = $(this);
+              var action = 'add';
+              var ajax = 0;
+              var postId = button.data('postId');
+              if (button.hasClass('is_favorite')) { 
+                  var action = 'remove';
+              }
+              if (postId !== "" && !ajax) { 
+                  ajax = 1 ;
+                  // Save favorites to the user metadata via AJAX 
+                  $.post("<?= admin_url( 'admin-ajax.php' ); ?>", {
+                      'action': 'save_user_favorites',
+                      'favorites': 'favorites',
+                      'post_id': postId // add user ID to request parameters,
+                  })  
+                  .done(function(response) {
+                    ajax = 0;
+                    console.log('Favorites saved:', response);
+                    if (action == 'add') { 
+                      button.addClass('is_favorite');
+                      button.html( '<i class="fas fa-heart"></i>' );
+                    } else {
+                      console.log(`User ${postId} removed from favorites.`);
+                      button.html( '<i class="far fa-heart"></i>');
+                    }
+                  })
+                  .fail(function(xhr, status, error) {
+                      console.log('Failed to save favorites:', error);
+                      console.log('Server response:', xhr.responseText);
+                  });
+              } else {
+                  console.log(`Cannot add/remove user with empty ID`);
+              } 
+            });
+          });
+        </script> 
 <?php
   endwhile;
   wp_reset_postdata();

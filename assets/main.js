@@ -34,6 +34,7 @@ import lgZoom from 'lightgallery/plugins/zoom'
 
   const carousel = new bootstrap.Carousel(myCarouselElement, {
     interval: 2000,
+    cycle: true,
     touch: false
   });
   console.log(carousel);
@@ -42,6 +43,7 @@ import lgZoom from 'lightgallery/plugins/zoom'
 
   const carouselSingle = new bootstrap.Carousel(carouselBasicCar, {
     interval: 2000,
+    cycle: true,
     touch: false
   });
   console.log(carouselSingle);
