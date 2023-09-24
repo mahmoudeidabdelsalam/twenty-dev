@@ -672,109 +672,93 @@ function vendor_list($data){
   $data=$data->get_params('GET');
   extract($data);
 
-  $status = !empty($status) ? $status : false;
-  $search = !empty($search) ? $search : false;
-  $city = !empty($city) ? $city : false;
+  $status     = !empty($status) ? $status : false;
+  $search     = !empty($search) ? $search : false;
+  $city       = !empty($city) ? $city : false;
+  $paged      = !empty($page) ? $page : 1;
+  $per_page   = !empty($per_page) ? $per_page : 9;
 
-  $args = array (
-    'role' => 'vendor',
-    'orderby' => 'post_count',
+
+
+  $args = array(
+    'post_type'         => array( 'car-show' ),
+    'posts_per_page'    => $per_page,
+    'paged'             => $paged,
   );
 
+
   if( $status != false ) {
-    $args['meta_query'] = array(
-      'relation' => 'OR',
+    $args['tax_query'] = array(
+      'relation' => 'AND',
       array(
-          'key'     => 'vendor_cars_status',
-          'value'   => $status,
-          'compare' => 'LIKE'
-      ),
-      array(
-        'key' => 'vendor_cars_status',
-        'compare' => 'NOT EXISTS',
+        'taxonomy' => 'show-type',
+        'field'    => 'term_id',
+        'terms'    => $status,
       ),
     );
   }
 
   if ($search != false) {
-    $args = array (
-      'search'         => '*'.esc_attr( $search ).'*',
-      'search_columns' => array( 'display_name', 'user_email' ),
-      'role' => 'vendor',
-      'order' => 'ASC',
-      'orderby' => 'display_name',
-      'meta_query' => array(
-        array(
-            'key'     => 'vendor_cars_status',
-            'value'   => $status,
-            'compare' => 'LIKE'
-        ),
-      )
-    );
+    $args['s'] = $search;
   }
   
-  if( $city != false ) {
-    $args['meta_query'] = array(
+   if( $city != false ) {
+    $args['tax_query'] = array(
       'relation' => 'AND',
       array(
-        'key' => 'cities',
-        'value'    => $city,
-        'compare'    => 'LIKE',
-      ),
-      array(
-        'key' => 'vendor_cars_status',
-        'value'    => $status,
-        'compare'    => 'LIKE',
+        'taxonomy' => 'realestate-cities',
+        'field'    => 'term_id',
+        'terms'    => $city,
       ),
     );
   }
-  $vendors = get_users( $args );
+
+
+  // $vendors = get_users( $args );
+  $query = new WP_Query( $args );
   $vendor_list = [];
 
-  foreach ($vendors as $vender): 
-    $query = new WP_Query( array( 'author' => $vender->ID, 'post_type' => array('products', 'post', 'cars') ) );
+  foreach( $query->posts as &$post ):
+    $author_id = $post->post_author;
+    $query = new WP_Query( array( 'author' => $author_id, 'post_type' => array('products', 'post', 'cars') ) );
     $views = array();
     foreach( $query->posts as &$post ):
-      $specifications = array();
       $views[] = get_post_meta( $post->ID, 'link_click_counter', true );
-      $author_id = $post->post_author;
-      $avatar = (get_field('user_logo', 'user_'. $author_id))? get_field('user_logo', 'user_'. $author_id):'';
-      $author = [
-        'id'    => $author_id,
-        'image' => $avatar,
-        'name' => get_the_author_meta( 'display_name', $author_id ),
-      ];
-      $post->id    = $post->ID;
-      $post->title = htmlspecialchars_decode( get_the_title($post->ID) );
-      $post->price = get_post_meta( $post->ID, 'price', true );
-      $post->image = (get_the_post_thumbnail_url($post->ID, 'full' ))? get_the_post_thumbnail_url($post->ID, 'full' ): '';
-      $post->offer = ($offer)? $offer: '';
-      $post->offer_price = get_post_meta( $post->ID, 'price_offer', true );
-      $post->installment_price = get_post_meta( $post->ID, 'finance_price', true );
-      $post->view = get_post_meta( $post->ID, 'link_click_counter', true );
-      $post->author = $author;
-      $post->link = get_permalink($post->ID);
       unset($post->ID, $post->post_name, $post->post_type, $post->post_excerpt);
       formatPost($post);
     endforeach;
-    
-    preg_match('/src="([^"]+)"/', get_field('map_user', 'user_'.$agent->ID), $match);
+
+    preg_match('/src="([^"]+)"/', get_field('map_user', 'user_'.$author_id), $match);
     $map_link = $match[1];
 
+    $list_whatsapps = [];
+    if( have_rows('user_whatsapps', 'user_'. $author_id) ):
+      while ( have_rows('user_whatsapps', 'user_'. $author_id) ) : the_row(); 
+          $list_whatsapps[] = get_sub_field('number_whatsapp');
+      endwhile;
+    endif;
+    $list_phones = [];
+    if( have_rows('user_phones', 'user_'. $author_id) ):
+      while ( have_rows('user_phones', 'user_'. $author_id) ) : the_row(); 
+          $list_phones[] = get_sub_field('number_phone');
+      endwhile;
+    endif;
+    
     $vendor_list[] = array(
-      'id' => $vender->ID,
-      'name' => $vender->display_name,
-      'background' => (get_field('user_background', 'user_'.$vender->ID))? get_field('user_background', 'user_'.$vender->ID) : "",
-      'cities' => (get_field('cities', 'user_'.$vender->ID))? get_field('cities', 'user_'.$vender->ID) : "",
-      'address' => (get_field('user_address', 'user_'.$vender->ID))? get_field('user_address', 'user_'.$vender->ID) : "",
-      'email' => $vender->user_email,
-      'phone' => (get_field('user_phone', 'user_'.$vender->ID))? get_field('user_phone', 'user_'.$vender->ID) : "",
-      'whatsapp' => (get_field('user_whatsapp', 'user_'.$vender->ID))? get_field('user_whatsapp', 'user_'.$vender->ID) : "",
-      'logo' => (get_field('user_logo', 'user_'.$vender->ID)) ? get_field('user_logo', 'user_'.$vender->ID) : "",
-      'map' => (get_field('map_user', 'user_'.$vender->ID))? get_field('map_user', 'user_'.$vender->ID) : "",
+      'id' => $author_id,
+      'name' => get_the_author_meta( 'display_name', $author_id ),
+      'background' => (get_field('user_background', 'user_'.$author_id))? get_field('user_background', 'user_'.$author_id) : "",
+      'cities' => (get_field('cities', 'user_'.$author_id))? get_field('cities', 'user_'.$author_id) : "",
+      'address' => (get_field('user_address', 'user_'.$author_id))? get_field('user_address', 'user_'.$author_id) : "",
+      'email' => get_the_author_meta( 'user_email', $author_id ),
+      'phone' => (get_field('user_phone', 'user_'.$author_id))? get_field('user_phone', 'user_'.$author_id) : "",
+      'list_phones' => $list_phones,
+      'whatsapp' => (get_field('user_whatsapp', 'user_'.$author_id))? get_field('user_whatsapp', 'user_'.$author_id) : "",
+      'list_whatsapps' => $list_whatsapps,
+      'logo' => (get_field('user_logo', 'user_'.$author_id)) ? get_field('user_logo', 'user_'.$author_id) : "",
+      'map' => (get_field('map_user', 'user_'.$author_id))? get_field('map_user', 'user_'.$author_id) : "",
       'map_link' => $map_link,
       'cars' => $query->found_posts,
-      'list_cars' => $query->posts,
       'views' => array_sum($views)
     );
   endforeach; 
@@ -834,14 +818,15 @@ function vendor_single($data){
 
   $vendors_list = [];
 
-  $query = new WP_Query( array( 'author' => $vendor->ID, 'post_type' => array('cars', 'products') ) );
+  $query = new WP_Query( array( 'author' => $vendor_id, 'post_type' => array('cars', 'products') ) );
 
-  $term = get_field('cities', 'user_'.$vendor->ID);
+  $term = get_field('cities', 'user_'.$vendor_id);
   $city  = get_term_by('id', $term, 'realestate-cities');
 
 
   $views = array();
   foreach( $query->posts as &$post ):
+    $offer = get_post_meta( $post->ID, 'offers', true );
     $specifications = array();
     $views[] = get_post_meta( $post->ID, 'link_click_counter', true );
     $author_id = $post->post_author;
@@ -869,18 +854,33 @@ function vendor_single($data){
   endforeach;
 
 
-  preg_match('/src="([^"]+)"/', get_field('map_user', 'user_'.$vendor->ID), $match);
+  preg_match('/src="([^"]+)"/', get_field('map_user', 'user_'.$vendor_id), $match);
   $map_link = $match[1];
+
+  $list_whatsapps = [];
+  if( have_rows('user_whatsapps', 'user_'. $vendor_id) ):
+    while ( have_rows('user_whatsapps', 'user_'. $vendor_id) ) : the_row(); 
+        $list_whatsapps[] = get_sub_field('number_whatsapp');
+    endwhile;
+  endif;
+  $list_phones = [];
+  if( have_rows('user_phones', 'user_'. $vendor_id) ):
+    while ( have_rows('user_phones', 'user_'. $vendor_id) ) : the_row(); 
+        $list_phones[] = get_sub_field('number_phone');
+    endwhile;
+  endif;
 
   $vendors_list[] = array(
     'id' => $vendor->ID,
     'name' => $vendor->display_name,
     'background' => get_field('user_background', 'user_'.$vendor->ID),
-    'cities' => $city->name,
+    'cities' => ($city)?$city->name:"",
     'address' => get_field('user_address', 'user_'.$vendor->ID),
     'email' => $vendor->user_email,
     'phone' => get_field('user_phone', 'user_'.$vendor->ID),
+    'list_phones' => $list_phones,
     'whatsapp' => get_field('user_whatsapp', 'user_'.$vendor->ID),
+    'list_whatsapps' => $list_whatsapps,
     'logo' => get_field('user_logo', 'user_'.$vendor->ID),
     'map' => get_field('map_user', 'user_'.$vendor->ID),
     'map_link' => $map_link,
