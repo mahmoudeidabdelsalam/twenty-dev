@@ -14,6 +14,9 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <meta property="og:site_name" content="Snapchat" />
+  <meta property="og:title" content="The fastest way to share a moment!" />
+
   <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
   <!--WordPress head-->

@@ -122,11 +122,11 @@ if ($query->have_posts()):
                 $slide = -1;
                 foreach( $items as $item ): 
                   $slide++;
-              ?>
+                ?>
                 <div class="carousel-item <?= ($slide == 0)? 'active':''; ?>">
                   <img src="<?= $item['url']; ?>" class="d-block w-100" alt="<?= the_title(); ?>" />
                 </div>
-              <?php
+                <?php
                 endforeach;
               endif;
               ?>              
@@ -197,14 +197,16 @@ if ($query->have_posts()):
             </div>
             <!-- Share & actions -->
             <div class="d-flex flex-row">
-              <a class="text-dark w-100 p-3" href="#">
-                <i class="far fa-heart fa-lg text-primary ms-2"></i>
+              <a class="btn btn-outline-light border-0 shadow-0 text-dark w-100 p-3" href="#">
+                <?php echo '<button class="favorite-button icon-box bg-white rounded-100 text-primary border-0 ' . (in_array(get_the_ID(), $favorites) ? 'is_favorite' : '') . '" data-post-id="' . get_the_ID() . '" data-favorites="' . esc_attr(json_encode($favorites)) . '" data-is-favorite="' . (in_array(get_the_ID(), $favorites) ? 'true' : 'false') . '">' . (in_array(get_the_ID(), $favorites) ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>') . '</button>'; ?>
                 <span>إضافة للمفضلة</span>
               </a>
-              <a class="text-dark w-100 p-3" href="#">
-                <i class="fas fa-share-square fa-lg text-primary ms-2"></i>
+              <button type="button" class="btn btn-outline-light border-0 shadow-0 text-dark w-100 p-3" data-bs-toggle="modal" data-bs-target="#ShareMeta">
+                <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 16.3636V4.17273L5.4 5.91818L4 4.36364L8 0L12 4.36364L10.6 5.91818L9 4.17273V16.3636H7ZM0 24V7.63636H5V9.81818H2V21.8182H14V9.81818H11V7.63636H16V24H0Z" fill="#D97E00"/>
+                </svg>
                 <span>مشاركة الأعلان</span>
-              </a>
+              </button>
             </div>
             <!-- number ads cars -->
             <div class="alert alert-light border-top-0 border-start-0 border-end-0 border-dark">
@@ -382,16 +384,28 @@ if ($query->have_posts()):
           </div>
           <!-- Share & actions -->
           <div class="d-flex flex-lg-row flex-column mb-4 mt-2">
-            <a class="text-dark w-100 p-3" href="#">
+            <a class="btn btn-outline-light border-0 shadow-0 text-dark w-100 p-3" href="#">
               <?php echo '<button class="favorite-button icon-box bg-white rounded-100 text-primary border-0 ' . (in_array(get_the_ID(), $favorites) ? 'is_favorite' : '') . '" data-post-id="' . get_the_ID() . '" data-favorites="' . esc_attr(json_encode($favorites)) . '" data-is-favorite="' . (in_array(get_the_ID(), $favorites) ? 'true' : 'false') . '">' . (in_array(get_the_ID(), $favorites) ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>') . '</button>'; ?>
               <span>إضافة للمفضلة</span>
             </a>
-            <a class="text-dark w-100 p-3" href="#">
-              <svg width="16" height="24" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6.27816 12.073V3.20029L5.04516 4.47066L3.96629 3.33924L7.04879 0.16333L10.1313 3.33924L9.05241 4.47066L7.81941 3.20029V12.073H6.27816ZM0.883789 17.6308V5.72117H4.73691V7.30912H2.42504V16.0429H11.6725V7.30912H9.36066V5.72117H13.2138V17.6308H0.883789Z" fill="#D97E00"/>
+            <button type="button" class="btn btn-outline-light border-0 shadow-0 text-dark w-100 p-3" data-bs-toggle="modal" data-bs-target="#ShareMeta">
+              <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 16.3636V4.17273L5.4 5.91818L4 4.36364L8 0L12 4.36364L10.6 5.91818L9 4.17273V16.3636H7ZM0 24V7.63636H5V9.81818H2V21.8182H14V9.81818H11V7.63636H16V24H0Z" fill="#D97E00"/>
               </svg>
               <span>مشاركة الأعلان</span>
-            </a>
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="ShareMeta" tabindex="-1" aria-labelledby="ShareMetaLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h1 class="modal-title fs-5 text-center w-100" id="ShareMetaLabel">شارك هذا الإعلان</h1>
+                  </div>
+                  <?= get_template_part( 'templates/include/share', 'meta' ); ?>
+                </div>
+              </div>
+            </div>            
           </div>
           <!-- number ads cars -->
           <div class="alert alert-light border-top-0 border-start-0 border-end-0 border-dark">
@@ -478,46 +492,47 @@ if ($query->have_posts()):
       </div> 
     </div>
   </div>
-        <script type="text/javascript">
-          jQuery(function ($) {
-            $('.favorite-button').click(function(e) {
-              e.preventDefault();
-              var button = $(this);
-              var action = 'add';
-              var ajax = 0;
-              var postId = button.data('postId');
-              if (button.hasClass('is_favorite')) { 
-                  var action = 'remove';
-              }
-              if (postId !== "" && !ajax) { 
-                  ajax = 1 ;
-                  // Save favorites to the user metadata via AJAX 
-                  $.post("<?= admin_url( 'admin-ajax.php' ); ?>", {
-                      'action': 'save_user_favorites',
-                      'favorites': 'favorites',
-                      'post_id': postId // add user ID to request parameters,
-                  })  
-                  .done(function(response) {
-                    ajax = 0;
-                    console.log('Favorites saved:', response);
-                    if (action == 'add') { 
-                      button.addClass('is_favorite');
-                      button.html( '<i class="fas fa-heart"></i>' );
-                    } else {
-                      console.log(`User ${postId} removed from favorites.`);
-                      button.html( '<i class="far fa-heart"></i>');
-                    }
-                  })
-                  .fail(function(xhr, status, error) {
-                      console.log('Failed to save favorites:', error);
-                      console.log('Server response:', xhr.responseText);
-                  });
+
+  <script type="text/javascript">
+    jQuery(function ($) {
+      $('.favorite-button').click(function(e) {
+        e.preventDefault();
+        var button = $(this);
+        var action = 'add';
+        var ajax = 0;
+        var postId = button.data('postId');
+        if (button.hasClass('is_favorite')) { 
+            var action = 'remove';
+        }
+        if (postId !== "" && !ajax) { 
+            ajax = 1 ;
+            // Save favorites to the user metadata via AJAX 
+            $.post("<?= admin_url( 'admin-ajax.php' ); ?>", {
+                'action': 'save_user_favorites',
+                'favorites': 'favorites',
+                'post_id': postId // add user ID to request parameters,
+            })  
+            .done(function(response) {
+              ajax = 0;
+              console.log('Favorites saved:', response);
+              if (action == 'add') { 
+                button.addClass('is_favorite');
+                button.html( '<i class="fas fa-heart"></i>' );
               } else {
-                  console.log(`Cannot add/remove user with empty ID`);
-              } 
+                console.log(`User ${postId} removed from favorites.`);
+                button.html( '<i class="far fa-heart"></i>');
+              }
+            })
+            .fail(function(xhr, status, error) {
+                console.log('Failed to save favorites:', error);
+                console.log('Server response:', xhr.responseText);
             });
-          });
-        </script> 
+        } else {
+            console.log(`Cannot add/remove user with empty ID`);
+        } 
+      });
+    });
+  </script> 
 <?php
   endwhile;
   wp_reset_postdata();

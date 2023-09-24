@@ -2119,10 +2119,25 @@ section#basicSpecificationsRemainder {
   }
 }
 
+.shadow-0 {
+    box-shadow: none !important;
+}
 
+.snapchat-creative-kit-share {
+  width: 100%;
+  margin: 0 10px;
 
-
-
+  button {
+    width: 100%;
+    height: 44px;
+    padding-right: 20px;
+  }
+}
+.share-box {
+  .btn {
+    margin: 0 10px;
+  }
+}
 
 
 
