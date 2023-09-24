@@ -30,7 +30,7 @@ if( !$favorites ){
         <div class="page-header page-showroom mb-3 bg-light">
           <div class="container-fluid">
             <div class="row">
-              <div class="col-md-6 col-12 pt-4 pb-4">
+              <div class="col-md-6 col-12 pt-4 pb-4 d-none d-lg-block d-md-block">
                 <h1 class="text-dark mb-3 font-bold"><?= the_title(); ?></h1>
                 <div class="d-flex flex-column">
                   <span>
@@ -73,7 +73,7 @@ if( !$favorites ){
                   </div>  
                 </div>            
               </div>
-              <div class="col-md-6 col-12 ps-0">
+              <div class="col-md-6 col-12 p-0">
                 <div class="bg-showroom">
                   <img class="img-fluid" src="<?= ($background)? $background:$placeholder; ?>" alt="<?= the_title(); ?>">
                 </div>
@@ -95,7 +95,7 @@ if( !$favorites ){
                 $avatar = get_field('user_logo', 'user_'. $author_id);
                 $finance_price = get_field('finance_price');
             ?>
-              <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+              <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-4">
                 <div class="car-box car-offer">
                   <?php if(get_field('sold_done')): ?>
                     <div class="sold-done" style="position: absolute;z-index: 9;left: 15px;padding: 30px;bottom: 0;right: 15px;top: 0;pointer-events: none;">
@@ -150,7 +150,7 @@ if( !$favorites ){
             <?php wp_reset_postdata(); ?>
           </div>
         </div>
-        
+
         <script type="text/javascript">
           jQuery(function ($) {
             $('.favorite-button').click(function(e) {

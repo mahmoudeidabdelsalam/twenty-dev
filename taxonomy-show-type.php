@@ -112,7 +112,7 @@ $query = new WP_Query( $args );
         <!-- Start of the loop -->
         <div class="filter col-12 mb-5">
           <form class="row g-3">
-            <div class="col-12 col-md-3">
+            <div class="col-12 col-md-3 mb-3">
               <span class="form-icon">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -121,7 +121,7 @@ $query = new WP_Query( $args );
               </span>
               <input type="search" name="search" class="form-control" placeholder="بحث عن معرض" id="Search" <?= ($search)? 'value="'.$search.'"':'';?>>
             </div>
-            <div class="col-12 col-md-3">
+            <div class="col-6 col-md-3 mb-3">
               <span class="form-icon">
                 <svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M18.6667 15.1667H16.3333V12.8333H18.6667M18.6667 19.8333H16.3333V17.5H18.6667M11.6667 5.83333H9.33333V3.5H11.6667M11.6667 10.5H9.33333V8.16667H11.6667M11.6667 15.1667H9.33333V12.8333H11.6667M11.6667 19.8333H9.33333V17.5H11.6667M4.66667 10.5H2.33333V8.16667H4.66667M4.66667 15.1667H2.33333V12.8333H4.66667M4.66667 19.8333H2.33333V17.5H4.66667M14 10.5V3.5L10.5 0L7 3.5V5.83333H0V22.1667H21V10.5H14Z" fill="#3E3E3E"/>
@@ -134,7 +134,7 @@ $query = new WP_Query( $args );
                 <?php endforeach; ?>                
               </select>
             </div>
-            <div class="col-12 col-md-3">
+            <div class="col-6 col-md-3 mb-3">
               <span class="form-icon">
                 <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M18.3332 6.24913L20.579 7.61496L19.9832 5.03913L21.9998 3.31579L19.3507 3.08663L18.3332 0.666626L17.2973 3.08663L14.6665 3.31579L16.6648 5.03913L16.0415 7.61496L18.3332 6.24913ZM21.0832 18.0833H15.5832V8.91663H21.0832V18.0833ZM0.916504 12.5833V18.0833H6.4165V12.5833H0.916504ZM4.58317 16.25H2.74984V14.4166H4.58317V16.25ZM8.24984 6.16663V18.0833H13.7498V6.16663H8.24984ZM11.9165 16.25H10.0832V7.99996H11.9165V16.25Z" fill="#3E3E3E"/>

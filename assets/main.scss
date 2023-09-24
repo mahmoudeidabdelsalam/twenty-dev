@@ -2565,5 +2565,13 @@ section#basicSpecificationsRemainder {
     }
   }
 
+  .page-showroom {
+    .bg-showroom {
+      img {
+        min-height: 200px;
+      }      
+    }
+  }
+
 // end resposnive
 }
