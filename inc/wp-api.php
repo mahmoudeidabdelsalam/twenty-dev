@@ -743,6 +743,8 @@ function vendor_list($data){
           $list_phones[] = get_sub_field('number_phone');
       endwhile;
     endif;
+
+    $status = get_field('vendor_cars_status', 'user_'.$author_id);
     
     $vendor_list[] = array(
       'id' => $author_id,
@@ -759,6 +761,7 @@ function vendor_list($data){
       'map' => (get_field('map_user', 'user_'.$author_id))? get_field('map_user', 'user_'.$author_id) : "",
       'map_link' => $map_link,
       'cars' => $query->found_posts,
+      'status' => ($status)? $status:"",
       'views' => array_sum($views)
     );
   endforeach; 
@@ -823,6 +826,8 @@ function vendor_single($data){
   $term = get_field('cities', 'user_'.$vendor_id);
   $city  = get_term_by('id', $term, 'realestate-cities');
 
+  
+  $status = get_field('vendor_cars_status', 'user_'.$vendor_id);
 
   $views = array();
   foreach( $query->posts as &$post ):
@@ -886,6 +891,7 @@ function vendor_single($data){
     'map_link' => $map_link,
     'cars' => $query->found_posts,
     'list_cars' => $query->posts,
+    'status' => ($status)? $status:"",
     'views' => array_sum($views)
   );
 
