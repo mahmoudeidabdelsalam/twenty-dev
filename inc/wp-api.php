@@ -747,7 +747,7 @@ function vendor_list($data){
     $status = get_field('vendor_cars_status', 'user_'.$author_id);
     
     $vendor_list[] = array(
-      'id' => $author_id,
+      'id' => (int) $author_id,
       'name' => get_the_author_meta( 'display_name', $author_id ),
       'background' => (get_field('user_background', 'user_'.$author_id))? get_field('user_background', 'user_'.$author_id) : "",
       'cities' => (get_field('cities', 'user_'.$author_id))? get_field('cities', 'user_'.$author_id) : "",
