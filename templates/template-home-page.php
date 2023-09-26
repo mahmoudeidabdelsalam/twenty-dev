@@ -44,7 +44,7 @@ if( !$favorites ){
           while( have_rows('slider_home') ) : the_row();
           $counter++;
         ?>
-          <div class="carousel-item <?= ($counter == '1')? 'active':'';?>" data-bs-interval="2000">
+          <div class="carousel-item <?= ($counter == '1')? 'active':'';?>" data-bs-interval="5000">
             <img src="<?= get_sub_field('image_slider'); ?>" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
                 <?= get_sub_field('content_slider'); ?>

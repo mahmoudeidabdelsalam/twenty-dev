@@ -187,6 +187,15 @@ if( !$favorites ){
       } 
     });
 
+    $(window).resize(function(){
+      var width = $(window).width();
+      if(width <= 766){
+        $('.d-lg-block').remove();
+      } else {
+        $('.d-lg-none').remove();
+      }
+    })
+    .resize();//trigger the resize event on page load.
   });
 </script>
 
