@@ -283,14 +283,21 @@ function single_car($data){
     $model = join(', ', wp_list_pluck($term_model_list, 'name')); 
     $term_tag_list = get_the_terms( $car_id, 'products-tag' );
     $tag = join(', ', wp_list_pluck($term_tag_list, 'name')); 
+
     $offer = get_post_meta( $post->ID, 'offers', true );
     if (is_numeric(get_post_meta( $post->ID, 'price', true ))) {
-      $price_tax += get_post_meta( $post->ID, 'price', true ) * 100 / 115;
+      $price_tax = get_post_meta( $post->ID, 'price', true ) * 100 / 115;
     } else {
       $price_tax = "";
     }
     
     $counter_view = get_post_meta($post->ID, "link_click_counter", true);
+
+    $cars = new WP_Query( array( 'author' => $author_id, 'post_type' => array('cars') ) );
+    $count_car = $cars->found_posts;
+
+    $cities = get_field('cities', 'user_'.$author_id);
+    $city  = get_term_by('id', $cities, 'realestate-cities');
 
     $array = array(
       'id' => $post->ID,
@@ -311,6 +318,9 @@ function single_car($data){
         'name' => get_the_author_meta( 'display_name', $author_id ),
         'phone' => (get_field('user_phone', 'user_'.$author_id))? get_field('user_phone', 'user_'.$author_id) : "",
         'whatsapp' => (get_field('user_whatsapp', 'user_'.$author_id))? get_field('user_whatsapp', 'user_'.$author_id) : "",
+        'whatsapp' => (get_field('user_whatsapp', 'user_'.$author_id))? get_field('user_whatsapp', 'user_'.$author_id) : "",
+        'car_counter' => $count_car,
+        'address' => ($cities)? $city->name:"",
       ],
       'counter_view' => $counter_view,
       'link_financing' => "https://twenty.sa/financing/?car=".htmlspecialchars_decode( get_the_title($post->ID) )."",
@@ -808,7 +818,6 @@ add_action('rest_api_init' , function(){
     )
   ));
 });
-
 
 // single vendor data ($data) 
 function vendor_single($data){
@@ -2230,7 +2239,6 @@ add_action('rest_api_init' , function(){
     )
   ));
 });
-
 
 // Get All Cars with filters
 function list_blog($data){
