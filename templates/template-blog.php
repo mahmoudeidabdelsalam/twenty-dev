@@ -40,7 +40,7 @@ if ( have_posts() ) :
     if ( $posts ) :
 	   foreach($posts as $post):
       setup_postdata( $post );
-        $img_url = get_the_post_thumbnail_url(get_the_ID(),'medium');
+        $img_url = get_the_post_thumbnail_url(get_the_ID(),'full');
         ?>
           <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
             <div class="car-box car-offer">

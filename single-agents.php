@@ -51,7 +51,7 @@ if(!$brand):
             if ( $cars->have_posts() ):
               while ( $cars->have_posts() ):
                 $cars->the_post();
-                $img_url = get_the_post_thumbnail_url(get_the_ID(),'medium');
+                $img_url = get_the_post_thumbnail_url(get_the_ID(),'full');
                 $author_id = get_the_author_meta('ID');
                 $avatar = get_field('user_logo', 'user_'. $author_id);
                 $finance_price = get_field('finance_price');
@@ -146,7 +146,7 @@ if(!$brand):
             if ( $cars->have_posts() ):
               while ( $cars->have_posts() ):
                 $cars->the_post();
-                $img_url = get_the_post_thumbnail_url(get_the_ID(),'medium');
+                $img_url = get_the_post_thumbnail_url(get_the_ID(),'full');
                 $author_id = get_the_author_meta('ID');
                 $avatar = get_field('user_logo', 'user_'. $author_id);
                 $finance_price = get_field('finance_price');

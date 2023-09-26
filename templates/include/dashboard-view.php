@@ -50,7 +50,7 @@
   if ( $query->have_posts() ):
     while ( $query->have_posts() ):
       $query->the_post();
-      $img_url = get_the_post_thumbnail_url(get_the_ID(),'medium');
+      $img_url = get_the_post_thumbnail_url(get_the_ID(),'full');
       $author_id = get_the_author_meta('ID');
       $avatar = get_field('user_logo', 'user_'. $author_id);
       $finance_price = get_field('finance_price');
