@@ -157,10 +157,9 @@ if ($query->have_posts()):
                 <h3><img src="<?= get_theme_file_uri().'/assets/img/price.svg'; ?>" alt="السعر كاش"> السعر كاش</h3>
                 <div class="priceing">
                   <p>قبل الضريبة</p>
-                  <strong class="d-block"><?= ($car_price - $percentage); ?> <?= the_field('currency_pricing', 'option'); ?></strong>
+                  <strong class="d-block"><?=  number_format(($clear_price - $percentage) , 0, ',', '.'); ?> <?= the_field('currency_pricing', 'option'); ?></strong>
                   <p>بعد الضريبة</p>
                   <strong class="text-green d-block"><?= ($price_offer)? $price_offer:$car_price; ?> <?= the_field('currency_pricing', 'option'); ?></strong>
-                  <?php if($price_offer):?><span class="old-price"><?= $car_price; ?> <?= the_field('currency_pricing', 'option'); ?></span><?php endif; ?>              
                   <a class="btn btn-success text-white w-100" href="/buying/?car=<?= $car_id; ?>">شراء هذة السيارة <i class="fas fa-arrow-left"></i></a>
                 </div>
               </div>
