@@ -464,7 +464,7 @@ function additionCarManually($id_basic, $car_name, $car_price, $car_price_after,
       update_field('car_galleries', $galleries , $car_id);
       set_post_thumbnail($car_id, $featured_img);
       // UPDATE TAXONOMY
-      wp_set_post_terms( $car_id, $tag_id, 'products-tag' );
+      // wp_set_post_terms( $car_id, $tag_id, 'products-tag' );
       wp_set_post_terms( $car_id, $model_id, 'products-model' );
     }
   return $car_id;
