@@ -393,19 +393,7 @@ if ($query->have_posts()):
                 <path d="M7 16.3636V4.17273L5.4 5.91818L4 4.36364L8 0L12 4.36364L10.6 5.91818L9 4.17273V16.3636H7ZM0 24V7.63636H5V9.81818H2V21.8182H14V9.81818H11V7.63636H16V24H0Z" fill="#D97E00"/>
               </svg>
               <span>مشاركة الأعلان</span>
-            </button>
-            <!-- Modal -->
-            <div class="modal fade" id="ShareMeta" tabindex="-1" aria-labelledby="ShareMetaLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    <h1 class="modal-title fs-5 text-center w-100" id="ShareMetaLabel">شارك هذا الإعلان</h1>
-                  </div>
-                  <?= get_template_part( 'templates/include/share', 'meta' ); ?>
-                </div>
-              </div>
-            </div>            
+            </button>           
           </div>
           <!-- number ads cars -->
           <div class="alert alert-light border-top-0 border-start-0 border-end-0 border-dark">
@@ -492,7 +480,18 @@ if ($query->have_posts()):
       </div> 
     </div>
   </div>
-
+  <!-- Modal -->
+  <div class="modal fade" id="ShareMeta" tabindex="-1" aria-labelledby="ShareMetaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h1 class="modal-title fs-5 text-center w-100" id="ShareMetaLabel">شارك هذا الإعلان</h1>
+        </div>
+        <?= get_template_part( 'templates/include/share', 'meta' ); ?>
+      </div>
+    </div>
+  </div> 
   <script type="text/javascript">
     jQuery(function ($) {
       $('.favorite-button').click(function(e) {
