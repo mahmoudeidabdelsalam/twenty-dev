@@ -76,6 +76,11 @@ if ($query->have_posts()):
   <!-- Page Header Start -->
   <div class="page-header mb-3 bg-orange">
     <div class="container">
+      <?php if(get_field('sold_done', $car_id)): ?>
+        <div class="sold-done">
+          <p><img class="img-fluid" src="<?= get_theme_file_uri().'/assets/img/pay_done.png' ?>" alt="تم البياع" /></p>
+        </div>
+      <?php endif; ?>
       <h1 class="text-dark mb-3 font-bold"><?= the_title(); ?></h1>
       <p class="text-lg"><img src="<?= $img_tag; ?>" alt="<?= $tag; ?>"> <?= $tag; ?></p>
       <p class="text-lg"><img src="<?= $img_eye; ?>" alt="المشاهدات"> <span>عدد المشاهدات :</span> <?= $post_views; ?></p>
@@ -196,11 +201,11 @@ if ($query->have_posts()):
             </div>
             <!-- Share & actions -->
             <div class="d-flex flex-row">
-              <a class="btn btn-outline-light border-0 shadow-0 text-dark w-100 p-3" href="#">
+              <a class="btn btn-outline-light border-0 shadow-0 text-dark w-100 py-3 px-2 text-right" href="#">
                 <?php echo '<button class="favorite-button icon-box bg-white rounded-100 text-primary border-0 ' . (in_array(get_the_ID(), $favorites) ? 'is_favorite' : '') . '" data-post-id="' . get_the_ID() . '" data-favorites="' . esc_attr(json_encode($favorites)) . '" data-is-favorite="' . (in_array(get_the_ID(), $favorites) ? 'true' : 'false') . '">' . (in_array(get_the_ID(), $favorites) ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>') . '</button>'; ?>
                 <span>إضافة للمفضلة</span>
               </a>
-              <button type="button" class="btn btn-outline-light border-0 shadow-0 text-dark w-100 p-3" data-bs-toggle="modal" data-bs-target="#ShareMeta">
+              <button type="button" class="btn btn-outline-light border-0 shadow-0 text-dark w-100 py-3 px-2 text-right" data-bs-toggle="modal" data-bs-target="#ShareMeta">
                 <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M7 16.3636V4.17273L5.4 5.91818L4 4.36364L8 0L12 4.36364L10.6 5.91818L9 4.17273V16.3636H7ZM0 24V7.63636H5V9.81818H2V21.8182H14V9.81818H11V7.63636H16V24H0Z" fill="#D97E00"/>
                 </svg>
@@ -383,11 +388,11 @@ if ($query->have_posts()):
           </div>
           <!-- Share & actions -->
           <div class="d-flex flex-lg-row flex-column mb-4 mt-2">
-            <a class="btn btn-outline-light border-0 shadow-0 text-dark w-100 p-3" href="#">
+            <a class="btn btn-outline-light border-0 shadow-0 text-dark w-100 py-3 px-2 text-right" href="#">
               <?php echo '<button class="favorite-button icon-box bg-white rounded-100 text-primary border-0 ' . (in_array(get_the_ID(), $favorites) ? 'is_favorite' : '') . '" data-post-id="' . get_the_ID() . '" data-favorites="' . esc_attr(json_encode($favorites)) . '" data-is-favorite="' . (in_array(get_the_ID(), $favorites) ? 'true' : 'false') . '">' . (in_array(get_the_ID(), $favorites) ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>') . '</button>'; ?>
               <span>إضافة للمفضلة</span>
             </a>
-            <button type="button" class="btn btn-outline-light border-0 shadow-0 text-dark w-100 p-3" data-bs-toggle="modal" data-bs-target="#ShareMeta">
+            <button type="button" class="btn btn-outline-light border-0 shadow-0 text-dark w-100 py-3 px-2 text-right" data-bs-toggle="modal" data-bs-target="#ShareMeta">
               <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7 16.3636V4.17273L5.4 5.91818L4 4.36364L8 0L12 4.36364L10.6 5.91818L9 4.17273V16.3636H7ZM0 24V7.63636H5V9.81818H2V21.8182H14V9.81818H11V7.63636H16V24H0Z" fill="#D97E00"/>
               </svg>
@@ -405,8 +410,8 @@ if ($query->have_posts()):
             $show->the_post(); 
             ?>
           <!-- تفاصيل البائع -->
-          <div class="author-single-car">
-            <h4>تفاصيل البائع</h4>
+          <div class="author-single-car mt-4">
+            <h6>تفاصيل البائع</h6>
             <div>
               <span class="author">
                 <a class="logo-author" href="<?= get_permalink(); ?>">

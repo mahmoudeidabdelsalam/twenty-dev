@@ -44,8 +44,8 @@ if( !$favorites ){
           while( have_rows('slider_home') ) : the_row();
           $counter++;
         ?>
-          <div class="carousel-item <?= ($counter == '1')? 'active':'';?>" data-bs-interval="5000">
-            <img src="<?= get_sub_field('image_slider'); ?>" class="d-block w-100" alt="...">
+          <div class="carousel-item <?= ($counter == '1')? 'active':'';?>" data-bs-interval="10000">
+            <img src="<?= get_sub_field('image_slider'); ?>" class="d-block w-100" alt="slide">
             <div class="carousel-caption d-none d-md-block">
                 <?= get_sub_field('content_slider'); ?>
 
@@ -473,7 +473,7 @@ if( !$favorites ){
         ?>
           <div class="col-md-4 col-9 mb-3">
             <div class="showroom car-box bg-white p-2 position-relative">
-              <a class="logo-author" href="#">
+              <a class="logo-author" href="<?= get_the_permalink($partner->ID); ?>">
                 <img class="img-fluid" src="<?= ($background)? $background:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
                 <span class="package position-absolute text-dark font-bold">
                   <svg width="22" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">

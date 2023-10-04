@@ -141,6 +141,14 @@ function ajax_function_get_cars() {
     }
   endforeach;
 
+  if(empty($ids)){
+    ?>
+      <div class="alert-not-found">
+        لا يوجد نتائج لهذا البحث يرجاء اعادة البحث
+      </div>
+    <?php
+    die;
+  }
   // Get query cars
   $args = array (
     'post__in' => $ids,
@@ -180,6 +188,16 @@ function ajax_function_get_cars() {
         $author_id = get_the_author_meta('ID');
         $avatar = get_field('user_logo', 'user_'. $author_id);
         $finance_price = get_field('finance_price');
+
+
+
+        $term_model_list = get_the_terms( $car_id, 'products-model' );
+        $model = join(', ', wp_list_pluck($term_model_list, 'id')); 
+
+        $price = get_field('price');
+
+
+  if($from_price && $to_price  && $price >= $from_price && $price <= $to_price):
   ?>
     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
       <div class="car-box car-offer">
@@ -231,6 +249,60 @@ function ajax_function_get_cars() {
         <?php endif; ?>
       </div>
     </div>
+
+  <?php elseif(empty($from_price) || empty($to_price)): ?>
+
+    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+      <div class="car-box car-offer">
+        <?php if(get_field('sold_done')): ?>
+          <div class="sold-done" style="position: absolute;z-index: 9;left: 15px;padding: 30px;bottom: 0;right: 15px;top: 0;pointer-events: none;">
+            <p><img class="img-fluid" src="<?= get_theme_file_uri().'/assets/img/pay_done.png' ?>" alt="تم البياع" /></p>
+          </div>
+        <?php endif; ?>
+        <div class="car-box-img position-relative">
+          <div class="car-box-head d-flex justify-content-between position-absolute">
+            <div class="car-box-head-right d-flex">
+              <div class="car-box-head-favorite">
+                <?php echo '<button class="favorite-button icon-box bg-white rounded-100 text-primary border-0 ' . (in_array(get_the_ID(), $favorites) ? 'is_favorite' : '') . '" data-post-id="' . get_the_ID() . '" data-favorites="' . esc_attr(json_encode($favorites)) . '" data-is-favorite="' . (in_array(get_the_ID(), $favorites) ? 'true' : 'false') . '">' . (in_array(get_the_ID(), $favorites) ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>') . '</button>'; ?>
+              </div>
+              <div class="car-box-head-share icon-box bg-white rounded-100 text-primary">
+                <svg width="14" height="18" viewBox="0 0 14 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M6.27816 12.073V3.20029L5.04516 4.47066L3.96629 3.33924L7.04879 0.16333L10.1313 3.33924L9.05241 4.47066L7.81941 3.20029V12.073H6.27816ZM0.883789 17.6308V5.72117H4.73691V7.30912H2.42504V16.0429H11.6725V7.30912H9.36066V5.72117H13.2138V17.6308H0.883789Z" fill="#D97E00"/>
+                </svg>
+              </div>
+            </div>                    
+          </div>
+          <a class="link-img" href="<?= get_permalink(); ?>"><img class="img-fluid" src="<?= ($img_url)? $img_url:$placeholder; ?>" alt="<?= get_the_title(); ?>"></a>
+        </div>
+        <div class="car-box-content position-relative p-4">
+          <h4 class="text-uppercase"><?= get_the_title(); ?></h4>
+          <div class="information">
+            <p class="pricing">
+              <span class="new-price d-block"><?= the_field('price'); ?> <?= the_field('currency_pricing', 'option'); ?></span>
+              <span>شامل الضريبة واللوحات</span>
+            </p>
+            <p>
+              <span class="author">
+                <a class="logo-author" href="#">
+                  <img class="img-fluid" src="<?= ($avatar)? $avatar:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
+                </a>
+                <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
+                <i class="fas fa-arrow-left"></i>
+              </span>
+            </p>
+          </div>
+        </div>
+        <?php if($finance_price): ?>
+        <div class="car-box-footer bg-primary">
+          <span>قسط يبدأ من</span>
+          <span>|</span>
+          <span><?= $finance_price; ?></span>
+          <span>ريال/ شهريا</span>
+        </div>
+        <?php endif; ?>
+      </div>
+    </div>
+    <?php endif; ?>  
     <?php endwhile; ?>
   <?php else: ?>
     <div class="alert-not-found">
