@@ -56,6 +56,12 @@ add_action('wp_ajax_ajax_function_get_cars', 'ajax_function_get_cars', 0);
 add_action('wp_ajax_nopriv_ajax_function_get_cars', 'ajax_function_get_cars');
 function ajax_function_get_cars() {
         
+  $user_id = get_current_user_id();
+  $favorites = get_user_meta($user_id, 'favorites', true) ;
+  if( !$favorites ){
+      $favorites = [];
+  }
+
   $placeholder = get_theme_file_uri().'/assets/img/placeholder.png';
   $paged    = ( get_query_var( 'paged' ) ) ? absint( get_query_var( 'paged' ) ) : 1;
 
