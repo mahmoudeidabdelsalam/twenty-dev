@@ -31,6 +31,8 @@ if ($query->have_posts()):
     $price_offer = get_field('price_offer', $car_id);
     $finance_price = get_field('finance_price', $car_id);
     $galleries = get_field('car_galleries', $car_id);
+
+    $km_car = get_field('km_car', $car_id);
     
     // by basic id
     $images = get_field('car_galleries');
@@ -76,11 +78,6 @@ if ($query->have_posts()):
   <!-- Page Header Start -->
   <div class="page-header mb-3 bg-orange">
     <div class="container">
-      <?php if(get_field('sold_done', $car_id)): ?>
-        <div class="sold-done">
-          <p><img class="img-fluid" src="<?= get_theme_file_uri().'/assets/img/pay_done.png' ?>" alt="تم البياع" /></p>
-        </div>
-      <?php endif; ?>
       <h1 class="text-dark mb-3 font-bold"><?= the_title(); ?></h1>
       <p class="text-lg"><img src="<?= $img_tag; ?>" alt="<?= $tag; ?>"> <?= $tag; ?></p>
       <p class="text-lg"><img src="<?= $img_eye; ?>" alt="المشاهدات"> <span>عدد المشاهدات :</span> <?= $post_views; ?></p>
@@ -97,6 +94,12 @@ if ($query->have_posts()):
         <h6 class="text-dark m-0 px-1">/</h6>
         <h6 class="text-dark m-0"><?= the_title(); ?></h6>
       </div>
+
+      <?php if(get_field('sold_done', $car_id)): ?>
+        <div class="sold-done">
+          <p><img class="img-fluid" src="<?= get_theme_file_uri().'/assets/img/pay_done.png' ?>" alt="تم البياع" /></p>
+        </div>
+      <?php endif; ?>
     </div>
   </div>
 
@@ -188,12 +191,12 @@ if ($query->have_posts()):
                   </button>
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#informationAuthor">
-                  <div class="accordion-body">
-                    <div class="d-flex-inline bg-darken rounded-2 text-white p-4">
-                      <i class="fas fa-phone fa-lg ms-2"></i> <span class="font-bold">اتصل</span> <a class="text-white float-left" href="tel:<?= $user_phone; ?>"><?= $user_phone; ?></a>
+                  <div class="accordion-body d-inline-block w-100">
+                    <div class="d-flex">
+                      <a class="bg-darken rounded-2 text-white p-4 w-100" href="tel:<?= $user_phone; ?>"><i class="fas fa-phone fa-lg ms-2"></i> <span class="font-bold">اتصل</span> <span class="text-white float-left"><?= $user_phone; ?></span></a>
                     </div>
-                    <div class="d-flex-inline bg-green text-white p-4 mt-2 rounded-2">
-                      <i class="fab fa-whatsapp fa-lg ms-2"></i> <span class="font-bold">واتساب</span> <a class="text-white float-left" target="_blank" href="https://wa.me/+<?= $user_whatsapp; ?>"><?= $user_whatsapp; ?></a>
+                    <div class="d-flexs">
+                      <a class="bg-green text-white p-4 mt-2 rounded-2 text-white float-left w-100" target="_blank" href="https://wa.me/+<?= $user_whatsapp; ?>"> <i class="fab fa-whatsapp fa-lg ms-2"></i> <span class="font-bold">واتساب</span> <span class="text-white float-left"><?= $user_whatsapp; ?></span></a>
                     </div>
                   </div>
                 </div>
@@ -251,14 +254,13 @@ if ($query->have_posts()):
                   </div>
                   <div class="col-md-6 col-12">
                     <p><img src="<?= get_theme_file_uri().'/assets/img/icon-model.svg'; ?>" alt="الموديل"> <b>الموديل:</b> <strong><?= $model; ?></strong></p>
-                  </div>
+                  </div>              
                   <div class="col-md-6 col-12">
                     <p><img src="<?= get_theme_file_uri().'/assets/img/icon-color.svg'; ?>" alt=""> <b>اللون:</b> <strong><?= $color; ?></strong></p>
                   </div>
                   <div class="col-md-6 col-12">
                     <p><img src="<?= get_theme_file_uri().'/assets/img/icon-fuels.svg'; ?>" alt=""> <b>نوع الوقود:</b> <strong><?= $fuels; ?></strong></p>
                   </div>
-                  
                   <div class="col-md-6 col-12">
                     <p><img src="<?= get_theme_file_uri().'/assets/img/icon-gear.svg'; ?>" alt=""> <b>نوع القير:</b> <strong><?= $gears; ?></strong></p>
                   </div>
@@ -270,7 +272,12 @@ if ($query->have_posts()):
                   </div>
                   <div class="col-md-6 col-12">
                     <p><img src="<?= get_theme_file_uri().'/assets/img/icon-engines.svg'; ?>" alt=""> <b>حجم المحرك:</b> <strong><?= $engines; ?></strong></p>
-                  </div>                                                                        
+                  </div>
+                  <?php if($km_car): ?>
+                  <div class="col-md-6 col-12">
+                    <p><img src="<?= get_theme_file_uri().'/assets/img/km-car.svg'; ?>" alt=""> <b>الممشى:</b> <strong><?= $km_car; ?></strong> كيلو</p>
+                  </div>  
+                  <?php endif; ?>
                 </div>
               </div>
               <div class="tab-pane fade" id="car-safety" role="tabpanel" aria-labelledby="car-safety-tab">
@@ -375,12 +382,12 @@ if ($query->have_posts()):
                 </button>
               </h2>
               <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#informationAuthor">
-                <div class="accordion-body">
-                  <div class="d-flex-inline bg-darken rounded-2 text-white p-4">
-                    <i class="fas fa-phone fa-lg ms-2"></i> <span class="font-bold">اتصل</span> <a class="text-white float-left" href="tel:<?= $user_phone; ?>"><?= $user_phone; ?></a>
+                <div class="accordion-body d-inline-block w-100">
+                  <div class="d-flex">
+                    <a class="bg-darken rounded-2 text-white p-4 w-100" href="tel:<?= $user_phone; ?>"><i class="fas fa-phone fa-lg ms-2"></i> <span class="font-bold">اتصل</span> <span class="text-white float-left"><?= $user_phone; ?></span></a>
                   </div>
-                  <div class="d-flex-inline bg-green text-white p-4 mt-2 rounded-2">
-                    <i class="fab fa-whatsapp fa-lg ms-2"></i> <span class="font-bold">واتساب</span> <a class="text-white float-left" target="_blank" href="https://wa.me/+<?= $user_whatsapp; ?>"><?= $user_whatsapp; ?></a>
+                  <div class="d-flexs">
+                    <a class="bg-green text-white p-4 mt-2 rounded-2 text-white float-left w-100" target="_blank" href="https://wa.me/+<?= $user_whatsapp; ?>"> <i class="fab fa-whatsapp fa-lg ms-2"></i> <span class="font-bold">واتساب</span> <span class="text-white float-left"><?= $user_whatsapp; ?></span></a>
                   </div>
                 </div>
               </div>
