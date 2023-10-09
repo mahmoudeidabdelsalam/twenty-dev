@@ -64,7 +64,7 @@ function all_cars($data){
     $args['tax_query'] = array(
       'relation' => 'AND',
       array(
-        'taxonomy' => 'products-brand',
+        'taxonomy' => 'basic-brand',
         'field'    => 'term_id',
         'terms'    => $brand_id,
       ),
@@ -96,7 +96,7 @@ function all_cars($data){
         'terms'    => $model_id,
       ), 
       array(
-        'taxonomy' => 'products-brand',
+        'taxonomy' => 'basic-brand',
         'field'    => 'term_id',
         'terms'    => $brand_id,
       ),
@@ -113,7 +113,7 @@ function all_cars($data){
     $args['tax_query'] = array(
       'relation' => 'AND',
       array(
-        'taxonomy' => 'products-brand',
+        'taxonomy' => 'basic-brand',
         'field'    => 'term_id',
         'terms'    => $brand_id,
       ),
@@ -336,7 +336,7 @@ function single_car($data){
 
     if($post->post_type == 'products') {
       $specifications = get_field('specifications', $post->ID );
-      $brands = get_the_terms( $post->ID, 'products-brand' );
+      $brands = get_the_terms( $post->ID, 'basic-brand' );
       $group = get_the_terms( $post->ID, 'products-group' );
       $array['brand_lvl_one'] = $brands[1]->name;
       $array['brand_lvl_two'] = $brands[0]->name;
@@ -574,7 +574,7 @@ add_action('rest_api_init' , function(){
 // list brands ($data) 
 function list_brands($data){
   $list_brands = [];
-  $categories =  get_categories('parent=0&hide_empty=1&taxonomy=products-brand');
+  $categories =  get_categories('parent=0&hide_empty=1&taxonomy=basic-brand');
   foreach ($categories as $term): 
     $list_brands[] = array(
       'id' => $term->term_id,
