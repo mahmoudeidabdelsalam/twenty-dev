@@ -85,10 +85,6 @@ if( !$favorites ){
   $args = array(
     'post_type'      => array('cars'),
     'posts_per_page' => 6,
-    'orderby' => 'ID',
-    'order' => 'DESC',
-    'post_status' => 'publish',
-    'suppress_filters' => true,
     'meta_query' => array(
       array(
         'key'     => 'offers',
