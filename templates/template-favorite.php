@@ -68,7 +68,7 @@ $query = new WP_Query( $args );
             <div class="information">
               <p class="pricing">
                 <span class="new-price d-block"><?= the_field('price'); ?> <?= the_field('currency_pricing', 'option'); ?></span>
-                <span>شامل الضريبة واللوحات</span>
+                <span>شامل الضريبة</span>
               </p>
               <p>
                 <span class="author">
