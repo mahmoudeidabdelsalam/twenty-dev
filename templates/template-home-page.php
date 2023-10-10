@@ -111,6 +111,7 @@ if( !$favorites ){
             $avatar = get_field('user_logo', 'user_'. $author_id);
             $image_offer = get_field('image_offer');
             $finance_price = get_field('finance_price');
+            $show = new WP_Query( array( 'author' => $author_id, 'posts_per_page' => 1, 'post_type' => 'car-show' ) );
             ?>
               <div class="car-box car-offer">
                 <?php if(get_field('sold_done')): ?>
@@ -155,15 +156,27 @@ if( !$favorites ){
                       <span>شامل الضريبة</span>
                     </p>
                     <p>
+                    <?php 
+                    if ($show->have_posts()):
+                      while ($show->have_posts()):
+                      $show->the_post(); 
+                      ?>
                       <span class="author">
-                        <a class="logo-author" href="#">
+                        <a class="logo-author text-dark" href="<?= get_permalink(); ?>">
                           <img class="img-fluid" src="<?= ($avatar)? $avatar:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
                         </a>
-                        <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
-                        <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M20.2588 8.03857H1.25879M1.25879 8.03857L8.25879 15.0386M1.25879 8.03857L8.25879 1.03857" stroke="#141414" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                        <a class="logo-author text-dark" href="<?= get_permalink(); ?>">
+                          <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
+                          <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.2588 8.03857H1.25879M1.25879 8.03857L8.25879 15.0386M1.25879 8.03857L8.25879 1.03857" stroke="#141414" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        </a>
                       </span>
+                    <?php
+                      endwhile;
+                      wp_reset_postdata();
+                    endif;
+                    ?>
                     </p>
                   </div>
                 </div>
@@ -190,6 +203,7 @@ if( !$favorites ){
             $avatar = get_field('user_logo', 'user_'. $author_id);
             $image_offer = get_field('image_offer');
             $finance_price = get_field('finance_price');
+            $show = new WP_Query( array( 'author' => $author_id, 'posts_per_page' => 1, 'post_type' => 'car-show' ) );
             ?>
             <div class="col-6 mb-3">
               <div class="car-box car-offer">
@@ -235,15 +249,27 @@ if( !$favorites ){
                       <span>شامل الضريبة</span>
                     </p>
                     <p>
-                      <span class="author">
-                        <a class="logo-author" href="#">
-                          <img class="img-fluid" src="<?= ($avatar)? $avatar:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
-                        </a>
-                        <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
-                        <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M20.2588 8.03857H1.25879M1.25879 8.03857L8.25879 15.0386M1.25879 8.03857L8.25879 1.03857" stroke="#141414" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                      </span>
+                      <?php 
+                      if ($show->have_posts()):
+                        while ($show->have_posts()):
+                        $show->the_post(); 
+                        ?>
+                        <span class="author">
+                          <a class="logo-author text-dark" href="<?= get_permalink(); ?>">
+                            <img class="img-fluid" src="<?= ($avatar)? $avatar:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
+                          </a>
+                          <a class="logo-author text-dark" href="<?= get_permalink(); ?>">
+                            <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
+                            <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M20.2588 8.03857H1.25879M1.25879 8.03857L8.25879 15.0386M1.25879 8.03857L8.25879 1.03857" stroke="#141414" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                          </a>
+                        </span>
+                      <?php
+                        endwhile;
+                        wp_reset_postdata();
+                      endif;
+                      ?>
                     </p>
                   </div>
                 </div>
@@ -308,6 +334,7 @@ if( !$favorites ){
               $author_id =  get_post_field( 'post_author', $car->ID );
               $avatar = get_field('user_logo', 'user_'. $author_id);
               $finance_price = get_field('finance_price', $car->ID);
+              $show = new WP_Query( array( 'author' => $author_id, 'posts_per_page' => 1, 'post_type' => 'car-show' ) );
           ?>
           <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-4">
 
@@ -340,15 +367,27 @@ if( !$favorites ){
                     <span>شامل الضريبة</span>
                   </p>
                   <p>
-                    <span class="author">
-                      <a class="logo-author" href="#">
-                        <img class="img-fluid" src="<?= ($avatar)? $avatar:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
-                      </a>
-                      <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
-                      <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20.2588 8.03857H1.25879M1.25879 8.03857L8.25879 15.0386M1.25879 8.03857L8.25879 1.03857" stroke="#141414" stroke-linecap="round" stroke-linejoin="round"/>
-                      </svg>
-                    </span>
+                    <?php 
+                    if ($show->have_posts()):
+                      while ($show->have_posts()):
+                      $show->the_post(); 
+                      ?>
+                      <span class="author">
+                        <a class="logo-author text-dark" href="<?= get_permalink(); ?>">
+                          <img class="img-fluid" src="<?= ($avatar)? $avatar:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
+                        </a>
+                        <a class="logo-author text-dark" href="<?= get_permalink(); ?>">
+                          <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
+                          <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.2588 8.03857H1.25879M1.25879 8.03857L8.25879 15.0386M1.25879 8.03857L8.25879 1.03857" stroke="#141414" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        </a>
+                      </span>
+                    <?php
+                      endwhile;
+                      wp_reset_postdata();
+                    endif;
+                    ?>
                   </p>
                 </div>
               </div>
@@ -369,6 +408,7 @@ if( !$favorites ){
               $img_url = get_the_post_thumbnail_url(get_the_ID(),'full');
               $author_id = get_the_author_meta('ID');
               $avatar = get_field('user_logo', 'user_'. $author_id);
+              $show = new WP_Query( array( 'author' => $author_id, 'posts_per_page' => 1, 'post_type' => 'car-show' ) );
           ?>
             <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-4">
               <div class="car-box car-offer">
@@ -400,15 +440,27 @@ if( !$favorites ){
                       <span>شامل الضريبة</span>
                     </p>
                     <p>
-                      <span class="author">
-                        <a class="logo-author" href="#">
-                          <img class="img-fluid" src="<?= ($avatar)? $avatar:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
-                        </a>
-                        <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
-                        <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M20.2588 8.03857H1.25879M1.25879 8.03857L8.25879 15.0386M1.25879 8.03857L8.25879 1.03857" stroke="#141414" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                      </span>
+                      <?php 
+                      if ($show->have_posts()):
+                        while ($show->have_posts()):
+                        $show->the_post(); 
+                        ?>
+                        <span class="author">
+                          <a class="logo-author text-dark" href="<?= get_permalink(); ?>">
+                            <img class="img-fluid" src="<?= ($avatar)? $avatar:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
+                          </a>
+                          <a class="logo-author text-dark" href="<?= get_permalink(); ?>">
+                            <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
+                            <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M20.2588 8.03857H1.25879M1.25879 8.03857L8.25879 15.0386M1.25879 8.03857L8.25879 1.03857" stroke="#141414" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                          </a>
+                        </span>
+                      <?php
+                        endwhile;
+                        wp_reset_postdata();
+                      endif;
+                    ?>
                     </p>
                   </div>
                 </div>
@@ -575,6 +627,7 @@ if( !$favorites ){
                 $author_id =  get_post_field( 'post_author', $car->ID );
                 $avatar = get_field('user_logo', 'user_'. $author_id);
                 $finance_price = get_field('finance_price', $car->ID);
+                $show = new WP_Query( array( 'author' => $author_id, 'posts_per_page' => 1, 'post_type' => 'car-show' ) );
             ?>
               <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-4">
                 <div class="car-box car-offer">
@@ -606,15 +659,27 @@ if( !$favorites ){
                         <span>شامل الضريبة</span>
                       </p>
                       <p>
+                      <?php 
+                      if ($show->have_posts()):
+                        while ($show->have_posts()):
+                        $show->the_post(); 
+                        ?>
                         <span class="author">
-                          <a class="logo-author" href="#">
+                          <a class="logo-author text-dark" href="<?= get_permalink(); ?>">
                             <img class="img-fluid" src="<?= ($avatar)? $avatar:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
                           </a>
-                          <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
-                          <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M20.2588 8.03857H1.25879M1.25879 8.03857L8.25879 15.0386M1.25879 8.03857L8.25879 1.03857" stroke="#141414" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
+                          <a class="logo-author text-dark" href="<?= get_permalink(); ?>">
+                            <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
+                            <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M20.2588 8.03857H1.25879M1.25879 8.03857L8.25879 15.0386M1.25879 8.03857L8.25879 1.03857" stroke="#141414" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                          </a>
                         </span>
+                      <?php
+                        endwhile;
+                        wp_reset_postdata();
+                      endif;
+                      ?>
                       </p>
                     </div>
                   </div>
@@ -638,6 +703,7 @@ if( !$favorites ){
                 $author_id = get_the_author_meta('ID');
                 $avatar = get_field('user_logo', 'user_'. $author_id);
                 $finance_price = get_field('finance_price');
+                $show = new WP_Query( array( 'author' => $author_id, 'posts_per_page' => 1, 'post_type' => 'car-show' ) );
             ?>
               <div class="col-lg-4 col-md-6 col-sm-6 col-6 mb-4">
                 <div class="car-box car-offer">
@@ -669,15 +735,27 @@ if( !$favorites ){
                         <span>شامل الضريبة</span>
                       </p>
                       <p>
+                      <?php 
+                      if ($show->have_posts()):
+                        while ($show->have_posts()):
+                        $show->the_post(); 
+                        ?>
                         <span class="author">
-                          <a class="logo-author" href="#">
+                          <a class="logo-author text-dark" href="<?= get_permalink(); ?>">
                             <img class="img-fluid" src="<?= ($avatar)? $avatar:$placeholder; ?>" alt="<?= the_author_meta( 'display_name', $author_id ); ?>">
                           </a>
-                          <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
-                          <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M20.2588 8.03857H1.25879M1.25879 8.03857L8.25879 15.0386M1.25879 8.03857L8.25879 1.03857" stroke="#141414" stroke-linecap="round" stroke-linejoin="round"/>
-                          </svg>
+                          <a class="logo-author text-dark" href="<?= get_permalink(); ?>">
+                            <span><?= the_author_meta( 'display_name', $author_id ); ?></span>
+                            <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M20.2588 8.03857H1.25879M1.25879 8.03857L8.25879 15.0386M1.25879 8.03857L8.25879 1.03857" stroke="#141414" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                          </a>
                         </span>
+                      <?php
+                        endwhile;
+                        wp_reset_postdata();
+                      endif;
+                      ?>
                       </p>
                     </div>
                   </div>
@@ -812,6 +890,7 @@ if( !$favorites ){
           $image_of_testimonials = get_sub_field('image_of_testimonials');
           ?>
           <div class="box-testimonials">
+            <img class="box-testimonials-img" src="<?= $image_of_testimonials; ?>" alt="<?= $name_of_testimonials; ?>">
             <!-- Button trigger modal -->
             <div class="embed-responsive embed-responsive-16by9">
               <iframe src="<?= $video_of_testimonials; ?>" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
