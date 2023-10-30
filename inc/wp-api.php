@@ -1700,8 +1700,7 @@ function filters_cars($data){
 
   $args = array(
     'post_type'        => array('basic_specifications' ),
-    'posts_per_page'   => $per_page,
-    'paged'            => $page,
+    'posts_per_page'   => -1,
     'post_status'      => 'publish',
   );
 
@@ -1833,7 +1832,6 @@ function filters_cars($data){
 
         if($type_id) {
           $cars['tax_query'] = array(
-            'relation' => 'AND', 
             array(
               'taxonomy' => 'products-tag',
               'field'    => 'term_id',
