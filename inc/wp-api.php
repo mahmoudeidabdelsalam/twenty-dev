@@ -369,7 +369,7 @@ function single_car($data){
       $array['engines'] = join(', ', wp_list_pluck($term_engine_list, 'name')); 
       
       $term_colors_list = get_the_terms( $id_basic_specifications, 'color-type' );
-      $array['colors'] = join(', ', wp_list_pluck($term_colors_list, 'name')); 
+      $array['color'] = join(', ', wp_list_pluck($term_colors_list, 'name')); 
 
       $array['gallery_type'] = 'images';
       $car_galleries = get_field('car_galleries', $post->ID );
