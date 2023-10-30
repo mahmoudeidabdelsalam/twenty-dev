@@ -178,6 +178,8 @@ function all_cars($data){
             $post->installment_price = get_post_meta( $post->ID, 'finance_price', true );
             $post->author = $author;
 
+            $post->link = get_permalink($post->ID);
+
             unset($post->ID, $post->post_name, $post->post_type, $post->post_excerpt);
             formatPost($post);
           endforeach;
@@ -192,6 +194,7 @@ function all_cars($data){
           'name' => get_the_author_meta( 'display_name', $author_id ),
         ];
         $post->id    = $post->ID;
+        $post->link = get_permalink($post->ID);
         $post->title = htmlspecialchars_decode( get_the_title($post->ID) );
         $post->price = get_post_meta( $post->ID, 'price', true );
         $post->image = get_the_post_thumbnail_url($post->ID, 'full' );
@@ -331,8 +334,8 @@ function single_car($data){
     $array['offer'] = ($offer)? $offer: '';
     $array['image_offer'] = (get_post_meta($post->ID, 'image_offer', true))? get_post_meta($post->ID, 'image_offer', true):'';
     $array['price_offer'] = get_post_meta( $post->ID, 'price_offer', true );
+    $array['link'] = get_permalink($post->ID);
     
-
     if($post->post_type == 'products') {
       $specifications = get_field('specifications', $post->ID );
       $brands = get_the_terms( $post->ID, 'basic-brand' );
