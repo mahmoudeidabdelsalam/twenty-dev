@@ -2353,6 +2353,7 @@ function list_blog($data){
 
       } else {
           $post->id = $post->ID;
+          $post->link = "source://".get_permalink($post->ID);
           $post->title = htmlspecialchars_decode( get_the_title($post->ID) );
           $post->image = (get_the_post_thumbnail_url($post->ID, 'full' ))? get_the_post_thumbnail_url($post->ID, 'full' ):'';
           $post->time =  get_the_date('c', $post->ID);
