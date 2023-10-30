@@ -305,7 +305,6 @@ function single_car($data){
       'price' => get_post_meta( $post->ID, 'price', true ),
       'before_tax' => ($price_tax)? number_format($price_tax, 3, '.', ','): '',
       'installment_price' => get_post_meta( $post->ID, 'finance_price', true ),
-      'color' => get_post_meta( $post->ID, 'color_car', true ),
       'image' => (get_the_post_thumbnail_url($post->ID, 'full' ))? get_the_post_thumbnail_url($post->ID, 'full' ):'',
       'model' => $model,
       'category' => $tag,
@@ -369,6 +368,9 @@ function single_car($data){
       $term_engine_list = get_the_terms( $id_basic_specifications, 'engine-type' );
       $array['engines'] = join(', ', wp_list_pluck($term_engine_list, 'name')); 
       
+      $term_colors_list = get_the_terms( $id_basic_specifications, 'color-type' );
+      $array['colors'] = join(', ', wp_list_pluck($term_colors_list, 'name')); 
+
       $array['gallery_type'] = 'images';
       $car_galleries = get_field('car_galleries', $post->ID );
       foreach($car_galleries as $key => $car_gallery) {
