@@ -335,7 +335,7 @@ function single_car($data){
     $array['image_offer'] = (get_post_meta($post->ID, 'image_offer', true))? get_post_meta($post->ID, 'image_offer', true):'';
     $array['price_offer'] = get_post_meta( $post->ID, 'price_offer', true );
     $array['link'] = get_permalink($post->ID);
-    
+
     if($post->post_type == 'products') {
       $specifications = get_field('specifications', $post->ID );
       $brands = get_the_terms( $post->ID, 'basic-brand' );
@@ -1574,26 +1574,65 @@ function partners_list($data){
   $data=$data->get_params('GET');
   extract($data);
 
-  $pre_page = !empty($pre_page) ? $pre_page : false;
+  $page_id = 8;
 
-  $args = array (
-    'role' => 'vendor',
-    'orderby' => 'post_count',
-    'number' => $pre_page
-  );
+  $partners = get_field('partners', $page_id);
 
-  $vendors = get_users( $args );
+  foreach ($partners as $partner): 
 
-  $vendor_list = [];
+    $author_id =  get_post_field( 'post_author', $partner->ID );
+    $background = get_field('user_background', 'user_'. $author_id);
+    $package_id = get_field('package', 'user_'. $author_id);
+    $cities_id = get_field('cities', 'user_'. $author_id);
+    $package_term = get_term_by('id', $package_id, 'realestate-package');
+    $cities_term = get_term_by('id', $cities_id, 'realestate-cities');
+    $query = new WP_Query( array( 'author' => $author_id, 'post_type' => 'cars' ) );
+    $placeholder = get_theme_file_uri().'/assets/img/placeholder.png';
+    $query = new WP_Query( array( 'author' => $partner->ID, 'post_type' => array('products', 'post', 'cars') ) );
 
-  foreach ($vendors as $vender): 
-    $query = new WP_Query( array( 'author' => $vender->ID, 'post_type' => array('products', 'post', 'cars') ) );
+
+    $views = array();
+    foreach( $query->posts as &$post ):
+      $views[] = get_post_meta( $post->ID, 'link_click_counter', true );
+      unset($post->ID, $post->post_name, $post->post_type, $post->post_excerpt);
+      formatPost($post);
+    endforeach;
+
+    preg_match('/src="([^"]+)"/', get_field('map_user', 'user_'.$author_id), $match);
+    $map_link = $match[1];
+
+    $list_whatsapps = [];
+    if( have_rows('user_whatsapps', 'user_'. $author_id) ):
+      while ( have_rows('user_whatsapps', 'user_'. $author_id) ) : the_row(); 
+          $list_whatsapps[] = get_sub_field('number_whatsapp');
+      endwhile;
+    endif;
+    $list_phones = [];
+    if( have_rows('user_phones', 'user_'. $author_id) ):
+      while ( have_rows('user_phones', 'user_'. $author_id) ) : the_row(); 
+          $list_phones[] = get_sub_field('number_phone');
+      endwhile;
+    endif;
+
+    $status = get_field('vendor_cars_status', 'user_'.$author_id);
+
     $vendor_list[] = array(
-      'id' => $vender->ID,
-      'name' => $vender->display_name,
-      'background' => (get_field('user_background', 'user_'.$vender->ID))? get_field('user_background', 'user_'.$vender->ID) : null,
-      'image' => (get_field('user_logo', 'user_'.$vender->ID)) ? get_field('user_logo', 'user_'.$vender->ID) : null,
+      'id' => $partner->ID,
+      'name' => get_the_author_meta( 'display_name', $author_id ),
+      'background' => (get_field('user_background', 'user_'.$author_id))? get_field('user_background', 'user_'.$author_id) : "",
+      'cities' => (get_field('cities', 'user_'.$author_id))? get_field('cities', 'user_'.$author_id) : "",
+      'address' => (get_field('user_address', 'user_'.$author_id))? get_field('user_address', 'user_'.$author_id) : "",
+      'email' => get_the_author_meta( 'user_email', $author_id ),
+      'phone' => (get_field('user_phone', 'user_'.$author_id))? get_field('user_phone', 'user_'.$author_id) : "",
+      'list_phones' => $list_phones,
+      'whatsapp' => (get_field('user_whatsapp', 'user_'.$author_id))? get_field('user_whatsapp', 'user_'.$author_id) : "",
+      'list_whatsapps' => $list_whatsapps,
+      'logo' => (get_field('user_logo', 'user_'.$author_id)) ? get_field('user_logo', 'user_'.$author_id) : "",
+      'map' => (get_field('map_user', 'user_'.$author_id))? get_field('map_user', 'user_'.$author_id) : "",
+      'map_link' => $map_link,
       'cars' => $query->found_posts,
+      'status' => ($status)? $status:"",
+      'views' => array_sum($views)
     );
   endforeach; 
 
