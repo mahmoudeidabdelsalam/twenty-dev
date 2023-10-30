@@ -1,269 +1,269 @@
 <?php
 // List Cars with filters
-// function all_cars($data){
+function all_cars($data){
 
-//   $data=$data->get_params('GET');
-//   extract($data);
+  $data=$data->get_params('GET');
+  extract($data);
 
-//   $per_page     = !empty($per_page) ? $per_page : 10;
-//   $page         = !empty($page) ? $page : true;
-//   $searchText   = !empty($searchText) ? $searchText : false;
-//   $type_id      = !empty($type_id) ? $type_id : false;
-//   $brand_id     = !empty($brand_id) ? $brand_id : false;
-//   $model_id     = !empty($model_id) ? $model_id : false;
-//   $price        = !empty($price) ? $price : false;
-//   $agent_id     = !empty($agent_id) ? $agent_id : false;
-//   $fuel_type    = !empty($fuel_type) ? $fuel_type : false;
+  $per_page     = !empty($per_page) ? $per_page : 10;
+  $page         = !empty($page) ? $page : true;
+  $searchText   = !empty($searchText) ? $searchText : false;
+  $type_id      = !empty($type_id) ? $type_id : false;
+  $brand_id     = !empty($brand_id) ? $brand_id : false;
+  $model_id     = !empty($model_id) ? $model_id : false;
+  $price        = !empty($price) ? $price : false;
+  $agent_id     = !empty($agent_id) ? $agent_id : false;
+  $fuel_type    = !empty($fuel_type) ? $fuel_type : false;
 
-//   $args = array(
-//     'post_type'        => array( 'cars', 'products', 'basic_specifications' ),
-//     'posts_per_page'   => $per_page,
-//     'paged'            => $page ,
-//     'post_status'      => 'publish',
-//   );
+  $args = array(
+    'post_type'        => array( 'cars', 'products', 'basic_specifications' ),
+    'posts_per_page'   => $per_page,
+    'paged'            => $page ,
+    'post_status'      => 'publish',
+  );
 
-//   if($price != false) {
-//     $args['meta_key'] = 'price';
-//     $args['orderby'] = 'meta_value_num';
-//     $args['order'] = $price;
-//   }
+  if($price != false) {
+    $args['meta_key'] = 'price';
+    $args['orderby'] = 'meta_value_num';
+    $args['order'] = $price;
+  }
   
 
-//   if($searchText != false) {
-//     $args['s'] = $searchText;
-//   }
+  if($searchText != false) {
+    $args['s'] = $searchText;
+  }
 
-//   if( $type_id != false && $brand_id == false && $model_id == false && $agent_id == false) {
-//     $args['tax_query'] = array(
-//       array(
-//         'taxonomy' => 'products-tag',
-//         'field'    => 'term_id',
-//         'terms'    => $type_id,
-//       ),
-//     );
-//   }
+  if( $type_id != false && $brand_id == false && $model_id == false && $agent_id == false) {
+    $args['tax_query'] = array(
+      array(
+        'taxonomy' => 'products-tag',
+        'field'    => 'term_id',
+        'terms'    => $type_id,
+      ),
+    );
+  }
 
-//   if( $model_id != false && $brand_id == false && $agent_id == false) {
-//     $args['tax_query'] = array(
-//       'relation' => 'AND',
-//       array(
-//         'taxonomy' => 'products-model',
-//         'field'    => 'term_id',
-//         'terms'    => $model_id,
-//       ),   
-//       array(
-//         'taxonomy' => 'products-tag',
-//         'field'    => 'term_id',
-//         'terms'    => $type_id,
-//       ),
-//     );
-//   }
+  if( $model_id != false && $brand_id == false && $agent_id == false) {
+    $args['tax_query'] = array(
+      'relation' => 'AND',
+      array(
+        'taxonomy' => 'products-model',
+        'field'    => 'term_id',
+        'terms'    => $model_id,
+      ),   
+      array(
+        'taxonomy' => 'products-tag',
+        'field'    => 'term_id',
+        'terms'    => $type_id,
+      ),
+    );
+  }
 
 
-//   if( $brand_id != false  && $model_id == false && $agent_id == false) {
-//     $args['tax_query'] = array(
-//       'relation' => 'AND',
-//       array(
-//         'taxonomy' => 'basic-brand',
-//         'field'    => 'term_id',
-//         'terms'    => $brand_id,
-//       ),
-//       array(
-//         'taxonomy' => 'products-tag',
-//         'field'    => 'term_id',
-//         'terms'    => $type_id,
-//       ),
-//     );
-//   }
+  if( $brand_id != false  && $model_id == false && $agent_id == false) {
+    $args['tax_query'] = array(
+      'relation' => 'AND',
+      array(
+        'taxonomy' => 'basic-brand',
+        'field'    => 'term_id',
+        'terms'    => $brand_id,
+      ),
+      array(
+        'taxonomy' => 'products-tag',
+        'field'    => 'term_id',
+        'terms'    => $type_id,
+      ),
+    );
+  }
 
-//   if( $fuel_type != false && $model_id == false && $agent_id == false && $brand_id == false) {
-//     $args['tax_query'] = array(
-//       'relation' => 'AND',
-//       array(
-//         'taxonomy' => 'fuel-type',
-//         'field'    => 'term_id',
-//         'terms'    => $fuel_type,
-//       ),
-//     );
-//   }
+  if( $fuel_type != false && $model_id == false && $agent_id == false && $brand_id == false) {
+    $args['tax_query'] = array(
+      'relation' => 'AND',
+      array(
+        'taxonomy' => 'fuel-type',
+        'field'    => 'term_id',
+        'terms'    => $fuel_type,
+      ),
+    );
+  }
 
-//   if( $brand_id != false && $model_id != false && $agent_id == false) {
-//     $args['tax_query'] = array(
-//       'relation' => 'AND',
-//       array(
-//         'taxonomy' => 'products-model',
-//         'field'    => 'term_id',
-//         'terms'    => $model_id,
-//       ), 
-//       array(
-//         'taxonomy' => 'basic-brand',
-//         'field'    => 'term_id',
-//         'terms'    => $brand_id,
-//       ),
-//       array(
-//         'taxonomy' => 'products-tag',
-//         'field'    => 'term_id',
-//         'terms'    => $type_id,
-//       ), 
-//     );
-//   }
+  if( $brand_id != false && $model_id != false && $agent_id == false) {
+    $args['tax_query'] = array(
+      'relation' => 'AND',
+      array(
+        'taxonomy' => 'products-model',
+        'field'    => 'term_id',
+        'terms'    => $model_id,
+      ), 
+      array(
+        'taxonomy' => 'basic-brand',
+        'field'    => 'term_id',
+        'terms'    => $brand_id,
+      ),
+      array(
+        'taxonomy' => 'products-tag',
+        'field'    => 'term_id',
+        'terms'    => $type_id,
+      ), 
+    );
+  }
 
-//   if($agent_id != false) {
-//     $args['author'] = $agent_id;
-//     $args['tax_query'] = array(
-//       'relation' => 'AND',
-//       array(
-//         'taxonomy' => 'basic-brand',
-//         'field'    => 'term_id',
-//         'terms'    => $brand_id,
-//       ),
-//     );
-//   }
+  if($agent_id != false) {
+    $args['author'] = $agent_id;
+    $args['tax_query'] = array(
+      'relation' => 'AND',
+      array(
+        'taxonomy' => 'basic-brand',
+        'field'    => 'term_id',
+        'terms'    => $brand_id,
+      ),
+    );
+  }
 
-//   $posts = new WP_Query( $args );
+  $posts = new WP_Query( $args );
   
-//   $count_car = $posts->found_posts;
-//   $counter = [];
+  $count_car = $posts->found_posts;
+  $counter = [];
 
-//   if ( $posts->have_posts() ) {
-//     foreach( $posts->posts as &$post ):
+  if ( $posts->have_posts() ) {
+    foreach( $posts->posts as &$post ):
 
-//       $counter[] = get_post_meta( $post->ID, 'link_click_counter', true );
+      $counter[] = get_post_meta( $post->ID, 'link_click_counter', true );
 
-//       if($post->post_type == 'basic_specifications') {
-//         $cars = array(
-//           'post_type' => 'cars',
-//           'posts_per_page'   => $per_page,
-//           'paged'            => $page ,
-//           'post_status'      => 'publish',
-//           'meta_query' => array(
-//             'relation' => 'OR',
-//             array(
-//               'key' => 'id_basic_specifications',
-//               'value' => '"' . $post->ID . '"',
-//               'compare' => 'LIKE'
-//             ),
-//             array(
-//               'key' => 'id_basic_specifications',
-//               'value' => $post->ID,
-//               'compare' => '='
-//             )
-//            )
-//         );
-//         $posts = new WP_Query( $cars );
-//         if ( $posts->have_posts() ) {
-//           foreach( $posts->posts as &$post ):
-//             $specifications = array();
+      if($post->post_type == 'basic_specifications') {
+        $cars = array(
+          'post_type' => 'cars',
+          'posts_per_page'   => $per_page,
+          'paged'            => $page ,
+          'post_status'      => 'publish',
+          'meta_query' => array(
+            'relation' => 'OR',
+            array(
+              'key' => 'id_basic_specifications',
+              'value' => '"' . $post->ID . '"',
+              'compare' => 'LIKE'
+            ),
+            array(
+              'key' => 'id_basic_specifications',
+              'value' => $post->ID,
+              'compare' => '='
+            )
+           )
+        );
+        $posts = new WP_Query( $cars );
+        if ( $posts->have_posts() ) {
+          foreach( $posts->posts as &$post ):
+            $specifications = array();
 
-//             $author_id = $post->post_author;
-//             $avatar = get_field('user_logo', 'user_'. $author_id);
-//             $user_whatsapp = get_field('user_whatsapp', 'user_'. $author_id);
-//             $user_phone = get_field('user_phone', 'user_'. $author_id);
-//             $author = [
-//               'id'    => $author_id,
-//               'image' => $avatar,
-//               'name' => get_the_author_meta( 'display_name', $author_id ),
-//               'phone' => $user_phone,
-//               'whatsapp' => $user_whatsapp,
-//             ];
+            $author_id = $post->post_author;
+            $avatar = get_field('user_logo', 'user_'. $author_id);
+            $user_whatsapp = get_field('user_whatsapp', 'user_'. $author_id);
+            $user_phone = get_field('user_phone', 'user_'. $author_id);
+            $author = [
+              'id'    => $author_id,
+              'image' => $avatar,
+              'name' => get_the_author_meta( 'display_name', $author_id ),
+              'phone' => $user_phone,
+              'whatsapp' => $user_whatsapp,
+            ];
       
-//             $post->id    = $post->ID;
-//             $post->title = htmlspecialchars_decode( get_the_title($post->ID) );
-//             $post->price = get_post_meta( $post->ID, 'price', true );
-//             $post->image = get_the_post_thumbnail_url($post->ID, 'full' );
+            $post->id    = $post->ID;
+            $post->title = htmlspecialchars_decode( get_the_title($post->ID) );
+            $post->price = get_post_meta( $post->ID, 'price', true );
+            $post->image = get_the_post_thumbnail_url($post->ID, 'full' );
 
-//             $post->offer = ($offer)? $offer: '';
-//             $post->offer_price = get_post_meta( $post->ID, 'price_offer', true );
+            $post->offer = ($offer)? $offer: '';
+            $post->offer_price = get_post_meta( $post->ID, 'price_offer', true );
 
-//             $post->installment_price = get_post_meta( $post->ID, 'finance_price', true );
-//             $post->author = $author;
+            $post->installment_price = get_post_meta( $post->ID, 'finance_price', true );
+            $post->author = $author;
 
-//             unset($post->ID, $post->post_name, $post->post_type, $post->post_excerpt);
-//             formatPost($post);
-//           endforeach;
-//         }
-//       } else {
-//         $offer = get_post_meta( $post->ID, 'offers', true );
-//         $author_id = $post->post_author;
-//         $avatar = get_field('user_logo', 'user_'. $author_id);
-//         $author = [
-//           'id'    => $author_id,
-//           'image' => $avatar,
-//           'name' => get_the_author_meta( 'display_name', $author_id ),
-//         ];
-//         $post->id    = $post->ID;
-//         $post->title = htmlspecialchars_decode( get_the_title($post->ID) );
-//         $post->price = get_post_meta( $post->ID, 'price', true );
-//         $post->image = get_the_post_thumbnail_url($post->ID, 'full' );
-//         // Get offer price and installments from offers meta data.
-//         $post->offer = ($offer)? $offer: '';
-//         $post->offer_price = get_post_meta( $post->ID, 'price_offer', true );
-//         $post->installment_price = get_post_meta( $post->ID, 'finance_price', true );
-//         $post->author = $author;
-//       }
+            unset($post->ID, $post->post_name, $post->post_type, $post->post_excerpt);
+            formatPost($post);
+          endforeach;
+        }
+      } else {
+        $offer = get_post_meta( $post->ID, 'offers', true );
+        $author_id = $post->post_author;
+        $avatar = get_field('user_logo', 'user_'. $author_id);
+        $author = [
+          'id'    => $author_id,
+          'image' => $avatar,
+          'name' => get_the_author_meta( 'display_name', $author_id ),
+        ];
+        $post->id    = $post->ID;
+        $post->title = htmlspecialchars_decode( get_the_title($post->ID) );
+        $post->price = get_post_meta( $post->ID, 'price', true );
+        $post->image = get_the_post_thumbnail_url($post->ID, 'full' );
+        // Get offer price and installments from offers meta data.
+        $post->offer = ($offer)? $offer: '';
+        $post->offer_price = get_post_meta( $post->ID, 'price_offer', true );
+        $post->installment_price = get_post_meta( $post->ID, 'finance_price', true );
+        $post->author = $author;
+      }
 
 
-//       unset($post->ID, $post->post_name, $post->post_type, $post->post_excerpt);
-//       formatPost($post);
-//     endforeach;
+      unset($post->ID, $post->post_name, $post->post_type, $post->post_excerpt);
+      formatPost($post);
+    endforeach;
       
-//     $agents = [];
+    $agents = [];
 
-//     if($agent_id != false) {
-//       $agents['count_cars'] = $count_car;
-//       $agents['count_visitors'] = array_sum($counter);
+    if($agent_id != false) {
+      $agents['count_cars'] = $count_car;
+      $agents['count_visitors'] = array_sum($counter);
 
-//       $result = [
-//         "success" => true,
-//         "code" => 200,
-//         "message" => 'Successfully retrieved',
-//         "agent" => $agents,
-//         "data" => $posts->posts,
-//       ]; 
-//     } else {
-//       $result = [
-//         "success" => true,
-//         "code" => 200,
-//         "message" => 'Successfully retrieved',
-//         "data" => $posts->posts,
-//       ];  
-//     }
+      $result = [
+        "success" => true,
+        "code" => 200,
+        "message" => 'Successfully retrieved',
+        "agent" => $agents,
+        "data" => $posts->posts,
+      ]; 
+    } else {
+      $result = [
+        "success" => true,
+        "code" => 200,
+        "message" => 'Successfully retrieved',
+        "data" => $posts->posts,
+      ];  
+    }
      
-//   } else {
-//     $result = [
-//       'success' => 'false',
-//       'code' => 200,
-//       'message' => 'cars Not Found',
-//       "data" => []
-//     ];
-//   }
+  } else {
+    $result = [
+      'success' => 'false',
+      'code' => 200,
+      'message' => 'cars Not Found',
+      "data" => []
+    ];
+  }
   
-//   return $result;
+  return $result;
 
-// }
-// add_action('rest_api_init' , function(){
-//   register_rest_route('wp/api/' ,'cars',array(
-//     'methods' => 'GET',
-//     'callback' => 'all_cars',
-//     'args' => array(
-//       'per_page' => array(
-//         'validate_callback' => function($param,$request,$key){
-//           return true;
-//         }
-//       ),
-//       'page' => array(
-//         'validate_callback' => function($param,$request,$key){
-//           return is_numeric($param);
-//         }
-//       ),
-//       'searchText'  => array(
-//         'validate_callback' => function($param,$request,$key){
-//           return true;
-//         }
-//       ),
-//     )
-//   ));
-// });
+}
+add_action('rest_api_init' , function(){
+  register_rest_route('wp/api/' ,'cars',array(
+    'methods' => 'GET',
+    'callback' => 'all_cars',
+    'args' => array(
+      'per_page' => array(
+        'validate_callback' => function($param,$request,$key){
+          return true;
+        }
+      ),
+      'page' => array(
+        'validate_callback' => function($param,$request,$key){
+          return is_numeric($param);
+        }
+      ),
+      'searchText'  => array(
+        'validate_callback' => function($param,$request,$key){
+          return true;
+        }
+      ),
+    )
+  ));
+});
 
 // single car ($data) {
 function single_car($data){
@@ -1683,15 +1683,13 @@ function filters_cars($data){
   $data=$data->get_params('GET');
   extract($data);
 
-  $per_page     = !empty($per_page) ? $per_page : 10;
-  $page         = !empty($page) ? $page : true;
-  $agent_id     = !empty($agent_id) ? $agent_id : false;
-
+  
   $brand_id         = !empty($brand_id) ? $brand_id : false; // العلامة التجارية
   $brand_lo_id      = !empty($brand_lo_id) ? $brand_lo_id : false;
   $brand_lt_id      = !empty($brand_lt_id) ? $brand_lt_id : false;
   $shape_type       = !empty($shape_type) ? $shape_type : false;
   
+
   $type_id          = !empty($type_id) ? $type_id : false; // النوع
   $price_from       = !empty($price_from) ? $price_from : false; // السعر
   $price_to         = !empty($price_to) ? $price_to : false; 
@@ -1699,7 +1697,7 @@ function filters_cars($data){
   $model_to_id      = !empty($model_to_id) ? $model_to_id : false;
 
   $args = array(
-    'post_type'        => array('basic_specifications' ),
+    'post_type'        => array( 'cars', 'products', 'basic_specifications' ),
     'posts_per_page'   => -1,
     'post_status'      => 'publish',
   );
@@ -1791,7 +1789,7 @@ function filters_cars($data){
         $cars = array(
           'post_type' => 'cars',
           'posts_per_page'   => $per_page,
-          'paged'            => $page,
+          'paged'            => $page ,
           'post_status'      => 'publish',
           'meta_query' => array(
             'relation' => 'OR',
@@ -1830,16 +1828,6 @@ function filters_cars($data){
           );
         }
 
-        if($type_id) {
-          $cars['tax_query'] = array(
-            array(
-              'taxonomy' => 'products-tag',
-              'field'    => 'term_id',
-              'terms'    => $type_id,
-            ), 
-          );
-        }
-        
         $posts = new WP_Query( $cars );
         if ( $posts->have_posts() ) {
           foreach( $posts->posts as &$post ):
@@ -1906,7 +1894,7 @@ function filters_cars($data){
 
 }
 add_action('rest_api_init' , function(){
-  register_rest_route('wp/api/' ,'cars/',array(
+  register_rest_route('wp/api/' ,'cars/filter/',array(
     'methods' => 'GET',
     'callback' => 'filters_cars',
   ));
